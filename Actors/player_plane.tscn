@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c8b4tpi0vutm"]
+
+[ext_resource type="Script" uid="uid://br02mh06oubdt" path="res://scripts/player_plane.gd" id="1_3egua"]
+[ext_resource type="Texture2D" uid="uid://bm4vn8hxa67qh" path="res://ship_0005.png" id="1_ktbm3"]
+
+[sub_resource type="Curve" id="Curve_3egua"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5860215, 0.9523809), -0.21744642, -0.21744642, 0, 0, Vector2(1, 0.62831855), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt4u1"]
+size = Vector2(17, 20)
+
+[node name="PlayerPlane" type="CharacterBody2D" unique_id=402383368]
+script = ExtResource("1_3egua")
+acc_velo_graph = SubResource("Curve_3egua")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1154159354]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_ktbm3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2036732075]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_nt4u1")
