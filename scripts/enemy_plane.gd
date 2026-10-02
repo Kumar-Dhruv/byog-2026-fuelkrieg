@@ -15,7 +15,6 @@ var tracking
 var track_point : Vector2
 var plane_forward : Vector2 = Vector2.UP
 
-
 signal finished_path
 
 
@@ -83,9 +82,6 @@ func follow_path():
 	var curve_transform = current_path.sample_baked_with_rotation(current_distance)
 	global_position = curve_transform.get_origin()
 	rotation = curve_transform.get_rotation() + PI/2
-	
-
-
 	
 func new_path():
 	current_path = path_generator.generate_curve_resource(global_position)

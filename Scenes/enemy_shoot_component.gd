@@ -10,6 +10,7 @@ var single_shot_shoot_distance = 450.0
 var bullets_to_shoot = 1
 var time_between_each_shot = 0.3
 @export var bullet_scene : PackedScene
+@export var missile_scene : PackedScene
 
 signal finished_shooting
 
@@ -36,3 +37,10 @@ func pattern_shot(dir, pos):
 	b3.velocity = dir.rotated(deg_to_rad(-5)).normalized() * bullet_speed
 	get_tree().root.add_child(b3)
 	finished_shooting.emit()
+
+func missile_shot(pos):
+	var b : CharacterBody2D = missile_scene.instantiate()
+	b.global_position = pos
+	get_tree().root.add_child(b)
+	finished_shooting.emit()
+	
