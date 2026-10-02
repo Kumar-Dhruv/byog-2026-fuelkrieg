@@ -1,10 +1,19 @@
 [gd_scene format=3 uid="uid://bd64053fn5i18"]
 
+[ext_resource type="Script" uid="uid://b2as2eccw5icw" path="res://scripts/warship_logic.gd" id="1_fcxi3"]
 [ext_resource type="Texture2D" uid="uid://dg32d8g80dnfo" path="res://icon.svg" id="1_s0xty"]
+[ext_resource type="PackedScene" uid="uid://imynxh12ifwj" path="res://Scenes/enemy_shoot_component.tscn" id="3_va2wd"]
 
 [node name="warship" type="Node2D" unique_id=105833457]
 
-[node name="warship logic" type="Node2D" parent="." unique_id=92354417]
+[node name="warship logic" type="Node2D" parent="." unique_id=92354417 node_paths=PackedStringArray("lower", "upper", "bullet_shooter", "missile_shooter", "bullet_timer", "missile_timer")]
+script = ExtResource("1_fcxi3")
+lower = [NodePath("../d1"), NodePath("../d2")]
+upper = [NodePath("../u1"), NodePath("../u2")]
+bullet_shooter = NodePath("../bullet")
+missile_shooter = NodePath("../missile")
+bullet_timer = NodePath("../bullet timer")
+missile_timer = NodePath("../missile timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=583600095]
 scale = Vector2(3.59375, 1.4453125)
@@ -21,3 +30,16 @@ position = Vector2(107, -88)
 
 [node name="u2" type="Marker2D" parent="." unique_id=1131521541]
 position = Vector2(-118, -90)
+
+[node name="bullet" parent="." unique_id=331890768 instance=ExtResource("3_va2wd")]
+
+[node name="missile" parent="." unique_id=1774916118 instance=ExtResource("3_va2wd")]
+
+[node name="bullet timer" type="Timer" parent="." unique_id=1392823003]
+wait_time = 5.0
+
+[node name="missile timer" type="Timer" parent="." unique_id=1450525769]
+wait_time = 7.0
+
+[connection signal="timeout" from="bullet timer" to="warship logic" method="_on_bullet_timer_timeout"]
+[connection signal="timeout" from="missile timer" to="warship logic" method="_on_missile_timer_timeout"]

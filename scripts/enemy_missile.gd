@@ -9,7 +9,6 @@ var initial_dir : Vector2
 var move_dir : Vector2
 
 func _ready() -> void:
-	move_dir = initial_dir
 	move_dir = (player.global_position - global_position)
 	
 

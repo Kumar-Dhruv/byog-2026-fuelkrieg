@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c7fybbhu6ka7r"]
 
-[ext_resource type="PackedScene" uid="uid://bxkgrynxhesee" path="res://Scenes/enemy_missile.tscn" id="2_37tse"]
+[ext_resource type="PackedScene" uid="uid://cba140p80h01b" path="res://Actors/missile_plane.tscn" id="2_37tse"]
 [ext_resource type="PackedScene" uid="uid://b63ul0dnxrj4a" path="res://Scenes/player.tscn" id="2_i7kxl"]
 
 [node name="enemy test world" type="Node2D" unique_id=891534995]
 
 [node name="Player" parent="." unique_id=1087157977 instance=ExtResource("2_i7kxl")]
 
-[node name="enemy missile" parent="." unique_id=650863913 instance=ExtResource("2_37tse")]
-position = Vector2(-367, -542)
+[node name="missile plane" parent="." unique_id=1266426368 instance=ExtResource("2_37tse")]
+position = Vector2(-156, -204)

@@ -16,6 +16,7 @@ one_shot = true
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1686415765]
+modulate = Color(0.9678063, 0.39736506, 0.2981977, 1)
 texture_filter = 1
 texture = ExtResource("2_4ryg4")
 
