@@ -2,7 +2,7 @@ extends Node2D
 var bullet_sprite : PackedScene = preload("res://Scenes/bullet_sprite.tscn")
 @onready var player_plane: CharacterBody2D = $"../PlayerPlane"
 var SPEED = 800
-
+var can_shoot : bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -10,11 +10,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
-	
 
 func shoot():
+	can_shoot = false
 	var bullet = bullet_sprite.instantiate()
 	bullet.global_position = player_plane.global_position
 	bullet.rotation = player_plane.rotation
@@ -23,3 +23,6 @@ func shoot():
 	bullet.Velocity = facing_dir * SPEED
 	
 	get_tree().current_scene.add_child(bullet)
+	
+	await get_tree().create_timer(0.2).timeout
+	can_shoot = true
