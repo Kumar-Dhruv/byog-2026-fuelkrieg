@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bme7ws4uvbw4e"]
+
+[ext_resource type="Script" uid="uid://cdbd7e82ihb1x" path="res://scripts/path_generator.gd" id="1_6s8de"]
+
+[node name="path generator" type="Node2D" unique_id=482814776]
+script = ExtResource("1_6s8de")
+max_radius = 350.0
+max_angle = 60.0

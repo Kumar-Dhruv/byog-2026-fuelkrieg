@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c7fybbhu6ka7r"]
+
+[ext_resource type="PackedScene" uid="uid://c8b4tpi0vutm" path="res://Actors/player_plane.tscn" id="1_i7kxl"]
+[ext_resource type="PackedScene" uid="uid://clxdsxc0fbjtr" path="res://Actors/kamikaze plane.tscn" id="2_37tse"]
+
+[node name="enemy test world" type="Node2D" unique_id=891534995]
+
+[node name="PlayerPlane" parent="." unique_id=402383368 instance=ExtResource("1_i7kxl")]
+position = Vector2(597, 316)
+
+[node name="enemy test" parent="." unique_id=381237455 instance=ExtResource("2_37tse")]
+position = Vector2(1063, 26)
+
+[node name="enemy test2" parent="." unique_id=1658957671 instance=ExtResource("2_37tse")]
+position = Vector2(100, -10)
+
+[node name="enemy test3" parent="." unique_id=1809836721 instance=ExtResource("2_37tse")]
+position = Vector2(258, 584)

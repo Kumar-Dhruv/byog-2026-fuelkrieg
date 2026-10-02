@@ -16,6 +16,9 @@ var input_dir := Vector2(0, 0) # x = acc, y = rot
 var brake_dir : Vector2
 
 func _ready() -> void:
+	
+	Loader.player = self
+	
 	global_rotation = plane_forward.angle_to(Vector2.UP)
 	plane_normal = plane_forward.rotated(PI/2)
 
@@ -40,7 +43,7 @@ func handle_movement(stop_movement = false):
 	
 	
 	acceleration = max_acceleration * acc_velo_graph.sample(velocity.length() / top_speed)
-	print(acceleration)
+	#print(acceleration)
 	
 	# linear
 	if input_dir.x != 0.0:
