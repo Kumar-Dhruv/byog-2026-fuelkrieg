@@ -4,4 +4,5 @@
 
 [node name="path generator" type="Node2D" unique_id=482814776]
 script = ExtResource("1_6s8de")
-max_radius = 700.0
+max_radius = 350.0
+max_angle = 60.0

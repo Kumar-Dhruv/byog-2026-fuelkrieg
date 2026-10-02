@@ -6,7 +6,7 @@ class_name PathGenerator
 
 @export var max_radius = 200.0
 
-@export var max_angle = deg_to_rad(45.0)
+@export var max_angle = (45.0)
 
 @export var enemy_plane : CharacterBody2D
 
@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 func generate_curve_resource(start = enemy_plane.global_position) -> Curve2D:
 	var d = start.distance_to(player.global_position)
-	var theta = randi_range(-max_angle, max_angle)
+	var theta = deg_to_rad(randi_range(-max_angle, max_angle))
 	var psi = (player.global_position - start).angle()
 	var alpha = psi + theta
 	
