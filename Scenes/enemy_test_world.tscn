@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://c7fybbhu6ka7r"]
 
-[ext_resource type="PackedScene" uid="uid://bvuiowq0ha1ft" path="res://Actors/bullet_planes.tscn" id="2_37tse"]
+[ext_resource type="PackedScene" uid="uid://h5x5sv28gp4v" path="res://Actors/bullet_planes.tscn" id="2_37tse"]
 [ext_resource type="PackedScene" uid="uid://b63ul0dnxrj4a" path="res://Scenes/player.tscn" id="2_i7kxl"]
-[ext_resource type="PackedScene" uid="uid://clxdsxc0fbjtr" path="res://Actors/kamikaze plane.tscn" id="3_37tse"]
 
 [node name="enemy test world" type="Node2D" unique_id=891534995]
 
@@ -14,8 +13,5 @@ position = Vector2(-217, -283)
 [node name="bullet planes2" parent="." unique_id=451121253 instance=ExtResource("2_37tse")]
 position = Vector2(-217, -283)
 
-[node name="kamikaze planes" parent="." unique_id=381237455 instance=ExtResource("3_37tse")]
-
-[node name="kamikaze planes2" parent="." unique_id=474077097 instance=ExtResource("3_37tse")]
-
-[node name="kamikaze planes3" parent="." unique_id=1275517162 instance=ExtResource("3_37tse")]
+[node name="bullet planes3" parent="." unique_id=906936548 instance=ExtResource("2_37tse")]
+position = Vector2(-217, -283)
