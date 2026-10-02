@@ -15,7 +15,7 @@ var gravity = 10.0
 var input_dir := Vector2(0, 0) # x = acc, y = rot
 var brake_dir : Vector2
 var boost_state : bool = false
-var boost_speed = 300.0
+var boost_speed = 500.0
 
 func _ready() -> void:
 	
@@ -42,7 +42,7 @@ func handle_movement(stop_movement = false):
 	plane_normal = plane_forward.rotated(PI/2)
 	
 	#adding
-	plane_forward = plane_forward.rotated((input_dir.y) * turn_speed * get_physics_process_delta_time())
+	plane_forward = plane_forward.rotated((input_dir.y) * (turn_speed if (not boost_state) else turn_speed * 0.35) * get_physics_process_delta_time())
 	
 	acceleration = max_acceleration * acc_velo_graph.sample(velocity.length() / top_speed)
 	#print(acceleration)
