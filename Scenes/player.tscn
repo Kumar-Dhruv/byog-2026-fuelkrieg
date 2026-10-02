@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b63ul0dnxrj4a"]
+
+[ext_resource type="Texture2D" uid="uid://bx8i1v1hxmyl6" path="res://orig.png" id="1_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://c8b4tpi0vutm" path="res://Actors/player_plane.tscn" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://dti0nkuwnj1aj" path="res://scripts/camera.gd" id="2_cvnsp"]
+
+[node name="Player" type="Node2D" unique_id=1087157977]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1646771476]
+texture_filter = 1
+scale = Vector2(6, 6)
+texture = ExtResource("1_6t5aa")
+metadata/_edit_group_ = true
+
+[node name="PlayerPlane" parent="." unique_id=402383368 instance=ExtResource("1_v0iea")]
+texture_filter = 1
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1611694088]
+zoom = Vector2(1.15, 1.15)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0
+script = ExtResource("2_cvnsp")
