@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cba140p80h01b"]
+
+[ext_resource type="PackedScene" uid="uid://bme7ws4uvbw4e" path="res://Scenes/path_generator.tscn" id="2_2v5e1"]
+[ext_resource type="PackedScene" uid="uid://imynxh12ifwj" path="res://Scenes/enemy_shoot_component.tscn" id="3_y6mt3"]
+[ext_resource type="Script" uid="uid://cfjapwrmpc55n" path="res://scripts/missile_plane_logic.gd" id="4_2v5e1"]
+[ext_resource type="Texture2D" uid="uid://cwyck76r7r67e" path="res://ship_0000.png" id="4_y6mt3"]
+[ext_resource type="Script" uid="uid://bmhxst0neynmi" path="res://scripts/enemy_plane.gd" id="5_y6mt3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8j8bx"]
+radius = 27.5
+
+[node name="missile plane" type="Node2D" unique_id=1266426368]
+
+[node name="path generator" parent="." unique_id=482814776 node_paths=PackedStringArray("enemy_plane") instance=ExtResource("2_2v5e1")]
+num_bends = 2
+max_radius = 500.0
+enemy_plane = NodePath("../plane")
+
+[node name="enemy shoot component" parent="." unique_id=331890768 instance=ExtResource("3_y6mt3")]
+
+[node name="missile plane logic" type="Node2D" parent="." unique_id=769222009 node_paths=PackedStringArray("enemy_plane", "attack_timer", "shooting_component")]
+script = ExtResource("4_2v5e1")
+enemy_plane = NodePath("../plane")
+attack_timer = NodePath("../attack timer")
+shooting_component = NodePath("../enemy shoot component")
+
+[node name="plane" type="CharacterBody2D" parent="." unique_id=716023927 node_paths=PackedStringArray("path_generator")]
+script = ExtResource("5_y6mt3")
+path_generator = NodePath("../path generator")
+plane_speed = 150.0
+
+[node name="Ship0000" type="Sprite2D" parent="plane" unique_id=145422145]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_y6mt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plane" unique_id=1899064819]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_8j8bx")
+
+[node name="attack timer" type="Timer" parent="." unique_id=1948651519]
+
+[connection signal="finished_path" from="plane" to="missile plane logic" method="_on_plane_finished_path"]
+[connection signal="timeout" from="attack timer" to="missile plane logic" method="_on_attack_timer_timeout"]
