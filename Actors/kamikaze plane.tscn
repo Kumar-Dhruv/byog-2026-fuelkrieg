@@ -7,10 +7,12 @@
 [node name="kamikaze planes" type="Node2D" unique_id=381237455]
 
 [node name="path generator" parent="." unique_id=482814776 node_paths=PackedStringArray("enemy_plane") instance=ExtResource("1_hmo6y")]
+max_radius = 500.0
 enemy_plane = NodePath("../enemy plane")
 
 [node name="enemy plane" parent="." unique_id=465186032 node_paths=PackedStringArray("path_generator") instance=ExtResource("2_x45o3")]
 path_generator = NodePath("../path generator")
+plane_speed = 250.0
 
 [node name="Kamikaze" type="Node2D" parent="." unique_id=2117540539 node_paths=PackedStringArray("enemy_plane")]
 script = ExtResource("4_aotlr")

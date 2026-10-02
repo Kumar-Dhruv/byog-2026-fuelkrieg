@@ -4,7 +4,7 @@ class_name EnemyPlane
 @onready var player : CharacterBody2D = Loader.player
 
 var current_path : Curve2D
-var plane_speed = 200.0
+@export var plane_speed = 200.0
 var current_distance = 0.0
 var path_length = 0.0
 var is_following_path = false
@@ -13,6 +13,8 @@ var is_following_player = false
 var max_tracking = 10
 var tracking
 var track_point : Vector2
+var plane_forward : Vector2 = Vector2.UP
+
 
 signal finished_path
 
@@ -35,8 +37,16 @@ func switch_state(state_id):
 func _ready() -> void:
 	tracking = max_tracking * tracking_modifier
 	#start_player_follow()
-	
+
+func get_dist_to_player():
+	return global_position.distance_to(player.global_position)
+
 func _process(delta: float) -> void:
+	
+	plane_forward = plane_forward.rotated(rotation - plane_forward.angle() - PI/2)
+	
+	DebugDraw2D.arrow_vector(global_position, plane_forward * 50)
+	
 	if is_following_path:
 		follow_path()
 	

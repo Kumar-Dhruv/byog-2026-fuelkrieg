@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bvuiowq0ha1ft"]
+
+[ext_resource type="PackedScene" uid="uid://dvhkscwa8f0se" path="res://Actors/enemy_plane.tscn" id="1_j60in"]
+[ext_resource type="PackedScene" uid="uid://bme7ws4uvbw4e" path="res://Scenes/path_generator.tscn" id="2_knkwr"]
+[ext_resource type="Script" uid="uid://p4bjlhkq17rn" path="res://Actors/shooter.gd" id="3_knkwr"]
+[ext_resource type="PackedScene" uid="uid://i27rnq6kmw26" path="res://Scenes/enemy_bullet.tscn" id="4_421tv"]
+
+[node name="bullet planes" type="Node2D" unique_id=1533168364]
+
+[node name="enemy plane" parent="." unique_id=465186032 node_paths=PackedStringArray("path_generator") instance=ExtResource("1_j60in")]
+path_generator = NodePath("../path generator")
+tracking_modifier = 0.25
+
+[node name="path generator" parent="." unique_id=482814776 node_paths=PackedStringArray("enemy_plane") instance=ExtResource("2_knkwr")]
+max_radius = 500.0
+enemy_plane = NodePath("../enemy plane")
+
+[node name="Shooter" type="Node2D" parent="." unique_id=1726170138 node_paths=PackedStringArray("enemy_plane")]
+script = ExtResource("3_knkwr")
+enemy_plane = NodePath("../enemy plane")
+bullet_scene = ExtResource("4_421tv")
+
+[connection signal="finished_path" from="enemy plane" to="Shooter" method="_on_enemy_plane_finished_path"]
