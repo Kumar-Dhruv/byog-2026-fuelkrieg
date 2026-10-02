@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bxkgrynxhesee"]
+
+[ext_resource type="Script" uid="uid://buxa1bctfo7ay" path="res://scripts/enemy_missile.gd" id="1_4ryg4"]
+[ext_resource type="Texture2D" uid="uid://b4p31t5e0hhif" path="res://tile_0000.png" id="2_4ryg4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nt4u1"]
+radius = 3.0
+height = 16.0
+
+[node name="enemy missile" type="CharacterBody2D" unique_id=42663217]
+script = ExtResource("1_4ryg4")
+
+[node name="time to explode" type="Timer" parent="." unique_id=1586892355]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1686415765]
+modulate = Color(0.9678063, 0.39736506, 0.2981977, 1)
+texture_filter = 1
+texture = ExtResource("2_4ryg4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1516163697]
+shape = SubResource("CapsuleShape2D_nt4u1")
+
+[connection signal="timeout" from="time to explode" to="." method="_on_time_to_explode_timeout"]
