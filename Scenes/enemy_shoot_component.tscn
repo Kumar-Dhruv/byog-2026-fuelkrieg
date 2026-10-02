@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://imynxh12ifwj"]
 
 [ext_resource type="Script" uid="uid://ijwhqeaxyvbl" path="res://Scenes/enemy_shoot_component.gd" id="1_5u1y8"]
+[ext_resource type="PackedScene" uid="uid://t4b4681wm8b0" path="res://Scenes/enemy_bullet.tscn" id="2_imu7j"]
+[ext_resource type="PackedScene" uid="uid://bxkgrynxhesee" path="res://Scenes/enemy_missile.tscn" id="3_0c5o4"]
 
 [node name="enemy shoot component" type="Node2D" unique_id=331890768]
 script = ExtResource("1_5u1y8")
+bullet_scene = ExtResource("2_imu7j")
+missile_scene = ExtResource("3_0c5o4")
