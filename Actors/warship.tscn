@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bd64053fn5i18"]
+
+[ext_resource type="Texture2D" uid="uid://dg32d8g80dnfo" path="res://icon.svg" id="1_s0xty"]
+
+[node name="warship" type="Node2D" unique_id=105833457]
+
+[node name="warship logic" type="Node2D" parent="." unique_id=92354417]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=583600095]
+scale = Vector2(3.59375, 1.4453125)
+texture = ExtResource("1_s0xty")
+
+[node name="d1" type="Marker2D" parent="." unique_id=339715995]
+position = Vector2(132, 91)
+
+[node name="d2" type="Marker2D" parent="." unique_id=2044889907]
+position = Vector2(-114, 90)
+
+[node name="u1" type="Marker2D" parent="." unique_id=1214757911]
+position = Vector2(107, -88)
+
+[node name="u2" type="Marker2D" parent="." unique_id=1131521541]
+position = Vector2(-118, -90)

@@ -1,17 +1,11 @@
 [gd_scene format=3 uid="uid://c7fybbhu6ka7r"]
 
-[ext_resource type="PackedScene" uid="uid://h5x5sv28gp4v" path="res://Actors/bullet_planes.tscn" id="2_37tse"]
+[ext_resource type="PackedScene" uid="uid://bxkgrynxhesee" path="res://Scenes/enemy_missile.tscn" id="2_37tse"]
 [ext_resource type="PackedScene" uid="uid://b63ul0dnxrj4a" path="res://Scenes/player.tscn" id="2_i7kxl"]
 
 [node name="enemy test world" type="Node2D" unique_id=891534995]
 
 [node name="Player" parent="." unique_id=1087157977 instance=ExtResource("2_i7kxl")]
 
-[node name="bullet planes" parent="." unique_id=1533168364 instance=ExtResource("2_37tse")]
-position = Vector2(-217, -283)
-
-[node name="bullet planes2" parent="." unique_id=451121253 instance=ExtResource("2_37tse")]
-position = Vector2(-217, -283)
-
-[node name="bullet planes3" parent="." unique_id=906936548 instance=ExtResource("2_37tse")]
-position = Vector2(-217, -283)
+[node name="enemy missile" parent="." unique_id=650863913 instance=ExtResource("2_37tse")]
+position = Vector2(-367, -542)

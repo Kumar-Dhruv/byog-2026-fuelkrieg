@@ -84,9 +84,6 @@ func follow_path():
 	global_position = curve_transform.get_origin()
 	rotation = curve_transform.get_rotation() + PI/2
 	
-
-
-	
 func new_path():
 	current_path = path_generator.generate_curve_resource(global_position)
 	path_length = current_path.get_baked_length()
