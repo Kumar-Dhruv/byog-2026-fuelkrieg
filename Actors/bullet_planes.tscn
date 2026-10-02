@@ -1,9 +1,10 @@
-[gd_scene format=3 uid="uid://bvuiowq0ha1ft"]
+[gd_scene format=3 uid="uid://h5x5sv28gp4v"]
 
 [ext_resource type="PackedScene" uid="uid://dvhkscwa8f0se" path="res://Actors/enemy_plane.tscn" id="1_j60in"]
 [ext_resource type="PackedScene" uid="uid://bme7ws4uvbw4e" path="res://Scenes/path_generator.tscn" id="2_knkwr"]
 [ext_resource type="Script" uid="uid://p4bjlhkq17rn" path="res://Actors/shooter.gd" id="3_knkwr"]
-[ext_resource type="PackedScene" uid="uid://i27rnq6kmw26" path="res://Scenes/enemy_bullet.tscn" id="4_421tv"]
+[ext_resource type="PackedScene" uid="uid://t4b4681wm8b0" path="res://Scenes/enemy_bullet.tscn" id="4_421tv"]
+[ext_resource type="PackedScene" uid="uid://imynxh12ifwj" path="res://Scenes/enemy_shoot_component.tscn" id="5_7cudj"]
 
 [node name="bullet planes" type="Node2D" unique_id=1533168364]
 
@@ -15,9 +16,13 @@ tracking_modifier = 0.25
 max_radius = 500.0
 enemy_plane = NodePath("../enemy plane")
 
-[node name="Shooter" type="Node2D" parent="." unique_id=1726170138 node_paths=PackedStringArray("enemy_plane")]
+[node name="Shooter" type="Node2D" parent="." unique_id=1726170138 node_paths=PackedStringArray("enemy_plane", "shooting_component")]
 script = ExtResource("3_knkwr")
 enemy_plane = NodePath("../enemy plane")
+shooting_component = NodePath("../enemy shoot component")
+
+[node name="enemy shoot component" parent="." unique_id=331890768 instance=ExtResource("5_7cudj")]
 bullet_scene = ExtResource("4_421tv")
 
 [connection signal="finished_path" from="enemy plane" to="Shooter" method="_on_enemy_plane_finished_path"]
+[connection signal="finished_shooting" from="enemy shoot component" to="Shooter" method="_on_enemy_shoot_component_finished_shooting"]
