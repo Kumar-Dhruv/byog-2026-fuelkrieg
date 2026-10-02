@@ -4,7 +4,7 @@ class_name EnemyPlane
 @onready var player : CharacterBody2D = Loader.player
 
 var current_path : Curve2D
-var plane_speed = 300.0
+var plane_speed = 200.0
 var current_distance = 0.0
 var path_length = 0.0
 var is_following_path = false

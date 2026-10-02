@@ -9,4 +9,10 @@
 position = Vector2(597, 316)
 
 [node name="enemy test" parent="." unique_id=381237455 instance=ExtResource("2_37tse")]
-position = Vector2(361, 255)
+position = Vector2(1063, 26)
+
+[node name="enemy test2" parent="." unique_id=1658957671 instance=ExtResource("2_37tse")]
+position = Vector2(100, -10)
+
+[node name="enemy test3" parent="." unique_id=1809836721 instance=ExtResource("2_37tse")]
+position = Vector2(258, 584)
