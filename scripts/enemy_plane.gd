@@ -15,7 +15,6 @@ var tracking
 var track_point : Vector2
 var plane_forward : Vector2 = Vector2.UP
 
-
 signal finished_path
 
 
