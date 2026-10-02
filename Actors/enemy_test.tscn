@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://clxdsxc0fbjtr"]
+
+[ext_resource type="Script" uid="uid://dmu6bkvc0ddff" path="res://Actors/enemy_test.gd" id="1_aotlr"]
+[ext_resource type="PackedScene" uid="uid://bme7ws4uvbw4e" path="res://Scenes/path_generator.tscn" id="1_hmo6y"]
+[ext_resource type="PackedScene" uid="uid://dvhkscwa8f0se" path="res://Actors/enemy_plane.tscn" id="2_x45o3"]
+[ext_resource type="Script" uid="uid://bmhxst0neynmi" path="res://scripts/enemy_plane.gd" id="3_x45o3"]
+
+[node name="enemy test" type="Node2D" unique_id=381237455]
+script = ExtResource("1_aotlr")
+
+[node name="path generator" parent="." unique_id=482814776 node_paths=PackedStringArray("enemy_plane") instance=ExtResource("1_hmo6y")]
+enemy_plane = NodePath("../enemy plane")
+
+[node name="enemy plane" parent="." unique_id=465186032 node_paths=PackedStringArray("path_generator") instance=ExtResource("2_x45o3")]
+script = ExtResource("3_x45o3")
+path_generator = NodePath("../path generator")

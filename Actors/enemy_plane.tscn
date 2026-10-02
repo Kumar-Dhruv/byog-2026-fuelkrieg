@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dvhkscwa8f0se"]
+
+[ext_resource type="Texture2D" uid="uid://cdy5nrnb76gw1" path="res://ship_0021.png" id="1_eifi6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt4u1"]
+size = Vector2(20, 15)
+
+[node name="enemy plane" type="CharacterBody2D" unique_id=465186032]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1006612737]
+texture_filter = 1
+texture = ExtResource("1_eifi6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2060622282]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_nt4u1")
