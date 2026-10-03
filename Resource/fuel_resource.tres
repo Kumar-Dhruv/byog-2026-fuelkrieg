@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FuelResource" format=3 uid="uid://d01yh237abh8l"]
+
+[ext_resource type="Script" uid="uid://cy18uhpbv5y7x" path="res://scripts/fuel.gd" id="1_76v0x"]
+
+[resource]
+script = ExtResource("1_76v0x")
+metadata/_custom_type_script = "uid://cy18uhpbv5y7x"
