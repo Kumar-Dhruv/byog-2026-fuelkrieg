@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://nsy7qnns5iwb"]
+
+[ext_resource type="Script" uid="uid://bdi4qq83va34q" path="res://scripts/boost_bar.gd" id="1_plwig"]
+[ext_resource type="Script" uid="uid://cv4ryqtib8gur" path="res://scripts/bullet_bar.gd" id="2_plwig"]
+[ext_resource type="Script" uid="uid://cqi2oyb6j0q0f" path="res://scripts/laser_bar.gd" id="3_hjuk4"]
+[ext_resource type="Script" uid="uid://dvddd1a6ie5di" path="res://scripts/body_bar.gd" id="4_me4qv"]
+
+[node name="FuelUI" type="Node2D" unique_id=1520855357]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=269738393]
+
+[node name="Body_bar" type="ProgressBar" parent="CanvasLayer" unique_id=1707192733]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -79.0
+offset_right = -3.0
+offset_bottom = -52.0
+grow_horizontal = 0
+grow_vertical = 2
+show_percentage = false
+script = ExtResource("4_me4qv")
+
+[node name="Label" type="Label" parent="CanvasLayer/Body_bar" unique_id=1928761019]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "body"
+
+[node name="Bullet_bar" type="ProgressBar" parent="CanvasLayer" unique_id=1845869404]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -48.0
+offset_right = -3.0
+offset_bottom = -20.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+show_percentage = false
+script = ExtResource("2_plwig")
+
+[node name="Label" type="Label" parent="CanvasLayer/Bullet_bar" unique_id=1084997338]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "bullet"
+
+[node name="Laser_bar" type="ProgressBar" parent="CanvasLayer" unique_id=922242333]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -16.0
+offset_right = -3.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+show_percentage = false
+script = ExtResource("3_hjuk4")
+
+[node name="Label" type="Label" parent="CanvasLayer/Laser_bar" unique_id=2038598162]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "laser"
+
+[node name="Boost_bar" type="ProgressBar" parent="CanvasLayer" unique_id=252304149]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = 16.0
+offset_right = -3.0
+offset_bottom = 43.0
+grow_horizontal = 0
+grow_vertical = 2
+show_percentage = false
+script = ExtResource("1_plwig")
+
+[node name="Label" type="Label" parent="CanvasLayer/Boost_bar" unique_id=513259942]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "boost"

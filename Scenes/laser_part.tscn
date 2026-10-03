@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cfjrsrsikbvnt"]
+
+[ext_resource type="Script" uid="uid://bfxts1ugxw04t" path="res://scripts/laser_part.gd" id="1_qklsy"]
+[ext_resource type="Texture2D" uid="uid://dg32d8g80dnfo" path="res://icon.svg" id="2_h6n86"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sg31y"]
+radius = 64.84597
+
+[node name="LaserPart" type="CharacterBody2D" unique_id=1167374107]
+script = ExtResource("1_qklsy")
+
+[node name="Laser" type="Sprite2D" parent="." unique_id=991497776]
+texture = ExtResource("2_h6n86")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=421587473]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2053331249]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_sg31y")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

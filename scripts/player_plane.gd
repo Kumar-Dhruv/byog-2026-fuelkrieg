@@ -21,6 +21,7 @@ var input_dir := Vector2(0, 0) # x = acc, y = rot
 var brake_dir : Vector2
 var boost_state : bool = false
 var boost_speed = 500.0
+var can_boost : bool = true
 var blink_tween : Tween
 
 func _ready() -> void:
@@ -39,6 +40,9 @@ func _physics_process(delta: float) -> void:
 	handle_movement()
 	
 	move_and_slide()
+	
+	#health label
+	$Label.text = str(health_component.Health)
 
 func handle_movement(stop_movement = false):
 	if stop_movement:
@@ -53,7 +57,7 @@ func handle_movement(stop_movement = false):
 	acceleration = max_acceleration * acc_velo_graph.sample(velocity.length() / top_speed)
 	#print(acceleration)
 	
-	if boost_state:
+	if boost_state and can_boost:
 		# 1. Ramp speed up to 300 smoothly so the camera doesn't jump instantly
 		var target_speed = move_toward(velocity.length(), boost_speed, 600.0 * get_physics_process_delta_time())
 		if target_speed < top_speed: 
@@ -91,7 +95,7 @@ func _input(event: InputEvent) -> void:
 	input_dir.x = Input.get_axis("ui_down", "ui_up")
 	input_dir.y = Input.get_axis("ui_left", "ui_right")
 	
-	if event.is_action_pressed("boost"):
+	if event.is_action_pressed("boost") and can_boost:
 		boost_state = true
 	elif event.is_action_released("boost"):
 		boost_state = false
