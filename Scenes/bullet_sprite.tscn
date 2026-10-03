@@ -4,16 +4,16 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3smsa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg31y"]
-size = Vector2(25.000284, 12.383159)
-
 [sub_resource type="CanvasTexture" id="CanvasTexture_sg31y"]
 specular_color = Color(0.8883688, 1, 0.82453054, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg31y"]
+size = Vector2(141.388, 12.383)
 
 [node name="BulletSprite" type="CharacterBody2D" unique_id=1426669871]
 z_index = -1
 collision_layer = 2
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("1_ahgvk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1826529138]
@@ -22,20 +22,13 @@ position = Vector2(-4, 0.002382755)
 scale = Vector2(1.6799972, 8.0047655)
 texture = SubResource("CanvasTexture_3smsa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1544349361]
-position = Vector2(-4, 0.002382636)
-rotation = -3.1415925
-scale = Vector2(0.06857906, -0.6460387)
-shape = SubResource("RectangleShape2D_sg31y")
-
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=546064415]
 modulate = Color(1, 1, 0.45882353, 1)
 position = Vector2(4, 0.002382755)
 scale = Vector2(1.6799972, 8.0047655)
 texture = SubResource("CanvasTexture_sg31y")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=545430150]
-position = Vector2(4, 0.002382636)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1544349361]
 rotation = -3.1415925
 scale = Vector2(0.06857906, -0.6460387)
 shape = SubResource("RectangleShape2D_sg31y")

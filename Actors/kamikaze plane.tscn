@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bme7ws4uvbw4e" path="res://Scenes/path_generator.tscn" id="1_hmo6y"]
 [ext_resource type="PackedScene" uid="uid://dvhkscwa8f0se" path="res://Actors/enemy_plane.tscn" id="2_x45o3"]
+[ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="3_vs058"]
 [ext_resource type="Script" uid="uid://2gwahnafcjnd" path="res://scripts/kamikaze.gd" id="4_aotlr"]
 
 [node name="kamikaze planes" type="Node2D" unique_id=381237455]
@@ -10,9 +11,15 @@
 max_radius = 500.0
 enemy_plane = NodePath("../enemy plane")
 
-[node name="enemy plane" parent="." unique_id=465186032 node_paths=PackedStringArray("path_generator") instance=ExtResource("2_x45o3")]
+[node name="enemy plane" parent="." unique_id=465186032 node_paths=PackedStringArray("path_generator") groups=["enemy"] instance=ExtResource("2_x45o3")]
+collision_layer = 4
+collision_mask = 3
 path_generator = NodePath("../path generator")
 plane_speed = 250.0
+
+[node name="HealthComponent" type="Node2D" parent="enemy plane" unique_id=1842498036]
+script = ExtResource("3_vs058")
+max_health = 2
 
 [node name="Kamikaze" type="Node2D" parent="." unique_id=2117540539 node_paths=PackedStringArray("enemy_plane")]
 script = ExtResource("4_aotlr")

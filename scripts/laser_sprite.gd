@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var colshape: CollisionShape2D = $CollisionShape2D
 var length_inc = 40
+@export var dmg = 2
 
 func _ready():
 	#prevent further collision shapes to have same position
@@ -16,3 +17,13 @@ func _physics_process(delta: float) -> void:
 	#resizing collision shape
 	colshape.shape.size.y += length_inc/2
 	colshape.position.y = -(colshape.shape.size.y/2)
+	var collided = move_and_slide()
+	
+	if collided:
+		var collision = get_last_slide_collision()
+		var collider = collision.get_collider() #get colliding body
+		
+		if collider.is_in_group("enemy"):
+			collider.health_component.damage(dmg)
+		
+		queue_free()
