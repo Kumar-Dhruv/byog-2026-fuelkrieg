@@ -49,3 +49,8 @@ func _on_enemy_shoot_component_finished_shooting() -> void:
 			is_multi_shot = false
 	else:
 		enemy_plane.set_new_follow_path()
+
+
+func _on_health_component_zero_health() -> void:
+	Loader.spawner.decrease_enemy_count()
+	get_parent().queue_free()

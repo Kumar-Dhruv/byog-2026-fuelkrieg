@@ -1,29 +1,11 @@
 [gd_scene format=3 uid="uid://c7fybbhu6ka7r"]
 
+[ext_resource type="PackedScene" uid="uid://dfad5a3moxo6q" path="res://Scenes/spawner.tscn" id="2_37tse"]
 [ext_resource type="PackedScene" uid="uid://b63ul0dnxrj4a" path="res://Scenes/player.tscn" id="2_i7kxl"]
-[ext_resource type="PackedScene" uid="uid://clxdsxc0fbjtr" path="res://Actors/kamikaze plane.tscn" id="3_0xt5t"]
-[ext_resource type="PackedScene" uid="uid://cba140p80h01b" path="res://Actors/missile_plane.tscn" id="4_0d8ns"]
-[ext_resource type="PackedScene" uid="uid://h5x5sv28gp4v" path="res://Actors/bullet_planes.tscn" id="4_edl5w"]
-[ext_resource type="PackedScene" uid="uid://bd64053fn5i18" path="res://Actors/warship.tscn" id="5_8aptv"]
 
 [node name="enemy test world" type="Node2D" unique_id=891534995]
 
 [node name="Player" parent="." unique_id=1087157977 instance=ExtResource("2_i7kxl")]
+position = Vector2(2.62, 0)
 
-[node name="bullet planes" parent="." unique_id=1533168364 instance=ExtResource("4_edl5w")]
-position = Vector2(860, -442)
-
-[node name="bullet planes2" parent="." unique_id=559883005 instance=ExtResource("4_edl5w")]
-position = Vector2(-556, -386)
-
-[node name="bullet planes3" parent="." unique_id=1189795467 instance=ExtResource("4_edl5w")]
-position = Vector2(776, 269)
-
-[node name="kamikaze planes" parent="." unique_id=381237455 instance=ExtResource("3_0xt5t")]
-position = Vector2(1030, -106)
-
-[node name="missile plane" parent="." unique_id=1266426368 instance=ExtResource("4_0d8ns")]
-position = Vector2(489, -394)
-
-[node name="warship" parent="." unique_id=105833457 instance=ExtResource("5_8aptv")]
-position = Vector2(0, -479)
+[node name="Spawner" parent="." unique_id=896869821 instance=ExtResource("2_37tse")]

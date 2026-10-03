@@ -30,4 +30,5 @@ shooting_component = NodePath("../enemy shoot component")
 [node name="enemy shoot component" parent="." unique_id=331890768 instance=ExtResource("5_7cudj")]
 
 [connection signal="finished_path" from="enemy plane" to="Shooter" method="_on_enemy_plane_finished_path"]
+[connection signal="zero_health" from="enemy plane/HealthComponent" to="Shooter" method="_on_health_component_zero_health"]
 [connection signal="finished_shooting" from="enemy shoot component" to="Shooter" method="_on_enemy_shoot_component_finished_shooting"]
