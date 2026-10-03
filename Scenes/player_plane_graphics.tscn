@@ -1,114 +1,204 @@
 [gd_scene format=3 uid="uid://pw1khoi3nxk7"]
 
-[ext_resource type="Texture2D" uid="uid://rkmdwbay6fyu" path="res://Art/still_a.png" id="1_rveu7"]
+[ext_resource type="Script" uid="uid://3kthnabo7s8x" path="res://scripts/player_plane_graphics.gd" id="1_qyeqc"]
+[ext_resource type="Script" uid="uid://bmo3ynyh5mfuv" path="res://scripts/trail effect.gd" id="3_64yb7"]
+[ext_resource type="Texture2D" uid="uid://llkw5lnofdvu" path="res://Art/player/parts/body_still_a.png" id="3_hppmn"]
+[ext_resource type="Texture2D" uid="uid://c25lbfu0xnw3" path="res://Art/player/parts/gun_under_p_a.png" id="4_64yb7"]
+[ext_resource type="Texture2D" uid="uid://74ajh5474n8m" path="res://Art/player/parts/laser_over_p_a.png" id="5_ji1a4"]
 
-[sub_resource type="Curve" id="Curve_nt4u1"]
-_limits = [0.0, 1.5, 0.0, 1.0]
-_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_qyeqc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_8j8bx"]
-offsets = PackedFloat32Array(0, 0.8652695)
-colors = PackedColorArray(1, 1, 1, 0.5921569, 1, 1, 1, 0)
+[sub_resource type="Gradient" id="Gradient_qyeqc"]
+colors = PackedColorArray(1, 1, 1, 0.5176471, 1, 1, 1, 0)
 
-[sub_resource type="Gradient" id="Gradient_rveu7"]
-offsets = PackedFloat32Array(0, 0.8652695)
-colors = PackedColorArray(1, 1, 1, 0.92941177, 1, 1, 1, 0)
+[sub_resource type="Curve" id="Curve_hppmn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hppmn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="Curve" id="Curve_8j8bx"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9916667, 0.20422542), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_beuep"]
-offsets = PackedFloat32Array(0, 0.50898206, 1)
-colors = PackedColorArray(1, 0.9098039, 0.7372549, 0.627451, 1, 0.83514404, 0.71484375, 1, 1, 1, 1, 0.5764706)
+colors = PackedColorArray(0.7529412, 0.7529412, 0.7529412, 1, 0.24705882, 0.24705882, 0.24705882, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qyht0"]
+load_path = "res://.godot/imported/boost_under_p_a.png-78884bcac0a6259f6adf7a79ece8308a.ctex"
 
 [node name="PlayerPlaneGraphics" type="Node2D" unique_id=939736569]
+script = ExtResource("1_qyeqc")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=204670754]
-offset_right = 1212.0
-offset_bottom = 672.0
-color = Color(0.5764706, 0.007843138, 0.06666667, 1)
-
-[node name="Node2D" type="Node2D" parent="." unique_id=1260109034]
-position = Vector2(171, 99)
-
-[node name="trailL" type="Line2D" parent="Node2D" unique_id=1065215523]
-position = Vector2(-25, -5)
-points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 527)
-width = 2.0
-width_curve = SubResource("Curve_nt4u1")
-default_color = Color(1, 1, 1, 0.16862746)
-gradient = SubResource("Gradient_8j8bx")
-
-[node name="trailL3" type="Line2D" parent="Node2D" unique_id=1114048710]
-position = Vector2(11, -7)
-points = PackedVector2Array(328, 185, 327.1943, 254.69382, 330, 375)
-width = 2.0
-width_curve = SubResource("Curve_nt4u1")
-default_color = Color(1, 1, 1, 0.16862746)
-gradient = SubResource("Gradient_8j8bx")
-
-[node name="trailR" type="Line2D" parent="Node2D" unique_id=1834614898]
-position = Vector2(195, -7)
-points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 516)
-width = 2.0
-width_curve = SubResource("Curve_nt4u1")
-default_color = Color(1, 1, 1, 0.16862746)
-gradient = SubResource("Gradient_8j8bx")
-
-[node name="trailR3" type="Line2D" parent="Node2D" unique_id=1034720655]
-position = Vector2(164, -8)
-points = PackedVector2Array(328, 185, 325, 376, 326, 237)
-width = 2.0
-width_curve = SubResource("Curve_nt4u1")
-default_color = Color(1, 1, 1, 0.16862746)
-gradient = SubResource("Gradient_8j8bx")
-
-[node name="trailL2" type="Line2D" parent="Node2D" unique_id=1387049765]
-visible = false
-position = Vector2(50, 135)
-points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 527)
-width = 2.0
-width_curve = SubResource("Curve_nt4u1")
-default_color = Color(1, 1, 1, 0.16862746)
-gradient = SubResource("Gradient_rveu7")
-
-[node name="trailR2" type="Line2D" parent="Node2D" unique_id=488076844]
-visible = false
-position = Vector2(113, 138)
-points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 516)
-width = 2.0
-width_curve = SubResource("Curve_nt4u1")
-default_color = Color(1, 1, 1, 0.16862746)
-gradient = SubResource("Gradient_rveu7")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D" unique_id=124139514]
-modulate = Color(0, 0, 0, 1)
+[node name="shadow" type="Sprite2D" parent="." unique_id=997560990]
+clip_children = 2
 texture_filter = 1
-position = Vector2(406, 224)
-texture = ExtResource("1_rveu7")
+position = Vector2(0, 6)
+texture = ExtResource("3_hppmn")
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="Node2D" unique_id=1665314024]
+[node name="overlay" type="ColorRect" parent="shadow" unique_id=15369504]
+offset_left = -173.0
+offset_top = -138.0
+offset_right = 138.0
+offset_bottom = 151.0
+color = Color(0.28125, 0.22888184, 0.12414551, 1)
+
+[node name="outer trails" type="Node2D" parent="." unique_id=1124589180]
 visible = false
-position = Vector2(410, 326)
-amount = 12
-lifetime = 0.35000000000000003
+
+[node name="Marker2D" type="Marker2D" parent="outer trails" unique_id=736064443]
+position = Vector2(-107, -29)
+
+[node name="Marker2D2" type="Marker2D" parent="outer trails" unique_id=306115354]
+position = Vector2(106, -29)
+
+[node name="Line2D" type="Line2D" parent="outer trails" unique_id=1119709546 node_paths=PackedStringArray("tracker")]
+top_level = true
+position = Vector2(3.545, 0)
+points = PackedVector2Array(-111, -32, -111, 200)
+width_curve = SubResource("Curve_qyeqc")
+gradient = SubResource("Gradient_qyeqc")
+script = ExtResource("3_64yb7")
+tracker = NodePath("../Marker2D")
+
+[node name="Line2D2" type="Line2D" parent="outer trails" unique_id=1342798869 node_paths=PackedStringArray("tracker")]
+top_level = true
+position = Vector2(217, 0)
+points = PackedVector2Array(-111, -32, -111, 200)
+width_curve = SubResource("Curve_hppmn")
+gradient = SubResource("Gradient_qyeqc")
+script = ExtResource("3_64yb7")
+tracker = NodePath("../Marker2D2")
+
+[node name="tail trails" type="Node2D" parent="." unique_id=1696958237]
+visible = false
+position = Vector2(0, 120)
+
+[node name="Marker2D" type="Marker2D" parent="tail trails" unique_id=1209301126]
+position = Vector2(-26, -16)
+
+[node name="Marker2D2" type="Marker2D" parent="tail trails" unique_id=1870685906]
+position = Vector2(25, -17)
+
+[node name="Line2D" type="Line2D" parent="tail trails" unique_id=1721225810 node_paths=PackedStringArray("tracker")]
+top_level = true
+position = Vector2(85, 136)
+points = PackedVector2Array(-111, -32, -111, 383)
+width_curve = SubResource("Curve_qyeqc")
+gradient = SubResource("Gradient_hppmn")
+script = ExtResource("3_64yb7")
+tracker = NodePath("../Marker2D")
+
+[node name="Line2D2" type="Line2D" parent="tail trails" unique_id=1212505818 node_paths=PackedStringArray("tracker")]
+top_level = true
+position = Vector2(136, 137)
+points = PackedVector2Array(-111, -32, -111, 357)
+width_curve = SubResource("Curve_hppmn")
+gradient = SubResource("Gradient_hppmn")
+script = ExtResource("3_64yb7")
+tracker = NodePath("../Marker2D2")
+
+[node name="inner trails" type="Node2D" parent="." unique_id=315470706]
+visible = false
+
+[node name="Marker2D" type="Marker2D" parent="inner trails" unique_id=60716696]
+position = Vector2(-76, -28)
+
+[node name="Marker2D2" type="Marker2D" parent="inner trails" unique_id=1730542647]
+position = Vector2(69, -29)
+
+[node name="Line2D" type="Line2D" parent="inner trails" unique_id=259562433 node_paths=PackedStringArray("tracker")]
+top_level = true
+position = Vector2(36, 0)
+points = PackedVector2Array(-111, -32, -111, 92)
+width_curve = SubResource("Curve_qyeqc")
+gradient = SubResource("Gradient_qyeqc")
+script = ExtResource("3_64yb7")
+tracker = NodePath("../Marker2D")
+
+[node name="Line2D2" type="Line2D" parent="inner trails" unique_id=1156413661 node_paths=PackedStringArray("tracker")]
+top_level = true
+position = Vector2(180, 0)
+points = PackedVector2Array(-111, -32, -111, 98)
+width_curve = SubResource("Curve_hppmn")
+gradient = SubResource("Gradient_qyeqc")
+script = ExtResource("3_64yb7")
+tracker = NodePath("../Marker2D2")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="." unique_id=1665314024]
+position = Vector2(0, 31)
+emitting = false
+amount = 20
+lifetime = 0.7
 fixed_fps = 30
 draw_order = 1
-emission_shape = 3
-emission_rect_extents = Vector2(19.43, 1)
 direction = Vector2(0, 1)
-spread = 19.97
+spread = 60.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 300.0
 initial_velocity_max = 300.0
 scale_amount_min = 10.0
 scale_amount_max = 15.0
 scale_amount_curve = SubResource("Curve_8j8bx")
+color = Color(0.90588236, 0.73333335, 0.3882353, 0.5254902)
 color_initial_ramp = SubResource("Gradient_beuep")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1337842851]
+[node name="parts" type="Node2D" parent="." unique_id=2134506041]
+
+[node name="Sprite2D" type="Sprite2D" parent="parts" unique_id=1726983222]
+clip_children = 2
+z_index = 2
 texture_filter = 1
-position = Vector2(413, 216)
-texture = ExtResource("1_rveu7")
+texture = ExtResource("4_64yb7")
+
+[node name="overlay" type="ColorRect" parent="parts/Sprite2D" unique_id=88918623]
+offset_left = -171.0
+offset_top = -138.0
+offset_right = 140.0
+offset_bottom = 151.0
+color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="parts" unique_id=669364377]
+clip_children = 2
+z_index = 2
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_qyht0")
+
+[node name="overlay" type="ColorRect" parent="parts/Sprite2D2" unique_id=960666232]
+offset_left = -171.0
+offset_top = -138.0
+offset_right = 140.0
+offset_bottom = 151.0
+color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D4" type="Sprite2D" parent="parts" unique_id=1337842851]
+clip_children = 2
+z_index = 2
+texture_filter = 1
+texture = ExtResource("3_hppmn")
+
+[node name="overlay" type="ColorRect" parent="parts/Sprite2D4" unique_id=1997396817]
+offset_left = -171.0
+offset_top = -138.0
+offset_right = 140.0
+offset_bottom = 151.0
+color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="parts" unique_id=1401735458]
+clip_children = 2
+z_index = 2
+texture_filter = 1
+texture = ExtResource("5_ji1a4")
+
+[node name="overlay" type="ColorRect" parent="parts/Sprite2D3" unique_id=877871384]
+offset_left = -171.0
+offset_top = -138.0
+offset_right = 140.0
+offset_bottom = 151.0
+color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
