@@ -95,7 +95,7 @@ func new_path():
 func _physics_process(delta: float) -> void:
 	if health_component.Health<=0:
 		queue_free()
-		print("Delete")
+
 	
 	var collided = move_and_slide()
 	
