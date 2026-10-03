@@ -30,4 +30,5 @@ wait_time = 3.0
 one_shot = true
 
 [connection signal="finished_path" from="enemy plane" to="Kamikaze" method="_on_enemy_plane_finished_path"]
+[connection signal="zero_health" from="enemy plane/HealthComponent" to="Kamikaze" method="_on_health_component_zero_health"]
 [connection signal="timeout" from="Kamikaze/max player follow time" to="Kamikaze" method="_on_max_player_follow_time_timeout"]

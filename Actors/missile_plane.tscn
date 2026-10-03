@@ -47,4 +47,5 @@ script = ExtResource("6_l8map")
 [node name="attack timer" type="Timer" parent="." unique_id=1948651519]
 
 [connection signal="finished_path" from="plane" to="missile plane logic" method="_on_plane_finished_path"]
+[connection signal="zero_health" from="plane/HealthComponent" to="missile plane logic" method="_on_health_component_zero_health"]
 [connection signal="timeout" from="attack timer" to="missile plane logic" method="_on_attack_timer_timeout"]

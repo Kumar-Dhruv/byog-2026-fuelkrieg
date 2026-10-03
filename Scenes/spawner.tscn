@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dfad5a3moxo6q"]
+
+[ext_resource type="Script" uid="uid://bys7de6pcra1c" path="res://scripts/spawner.gd" id="1_2bop2"]
+[ext_resource type="PackedScene" uid="uid://clxdsxc0fbjtr" path="res://Actors/kamikaze plane.tscn" id="2_2ydn3"]
+[ext_resource type="PackedScene" uid="uid://h5x5sv28gp4v" path="res://Actors/bullet_planes.tscn" id="3_f333s"]
+[ext_resource type="PackedScene" uid="uid://cba140p80h01b" path="res://Actors/missile_plane.tscn" id="4_t512v"]
+
+[node name="Spawner" type="Node2D" unique_id=896869821]
+script = ExtResource("1_2bop2")
+kamikaze = ExtResource("2_2ydn3")
+bullet = ExtResource("3_f333s")
+missile = ExtResource("4_t512v")
+
+[node name="Timer" type="Timer" parent="." unique_id=413544507]
+wait_time = 45.0
+one_shot = true
+autostart = true
+
+[node name="kamikaze" type="Timer" parent="." unique_id=589869661]
+
+[node name="bullet" type="Timer" parent="." unique_id=1554854665]
+
+[node name="missile" type="Timer" parent="." unique_id=877918516]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="kamikaze" to="." method="_on_kamikaze_timeout"]
+[connection signal="timeout" from="bullet" to="." method="_on_bullet_timeout"]
+[connection signal="timeout" from="missile" to="." method="_on_missile_timeout"]

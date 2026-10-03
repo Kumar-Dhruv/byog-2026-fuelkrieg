@@ -19,3 +19,8 @@ func _on_enemy_plane_finished_path() -> void:
 
 func _on_max_player_follow_time_timeout() -> void:
 	enemy_plane.set_new_follow_path()
+
+
+func _on_health_component_zero_health() -> void:
+	Loader.spawner.decrease_enemy_count()
+	get_parent().queue_free()

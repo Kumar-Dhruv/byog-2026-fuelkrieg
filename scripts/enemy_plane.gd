@@ -18,6 +18,7 @@ var track_point : Vector2
 var plane_forward : Vector2 = Vector2.UP
 
 signal finished_path
+signal collided_with_player
 
 @export var body_damage = 2
 @export var self_damage = 3
@@ -93,9 +94,9 @@ func new_path():
 	current_distance = 0.0
 
 func _physics_process(delta: float) -> void:
-	if health_component.Health<=0:
-		queue_free()
-		print("Delete")
+	#if health_component.Health<=0:
+		#queue_free()
+		#print("Delete")
 	
 	var collided = move_and_slide()
 	
@@ -105,7 +106,7 @@ func _physics_process(delta: float) -> void:
 		
 		if collider is Player and not collider.is_invincible:
 			collider.health_component.damage(body_damage)
-			collider.invincible()
-		health_component.damage(self_damage)
+			#collider.invincible()
+			collided_with_player.emit()
+			health_component.damage(self_damage)
 		
-		queue_free()

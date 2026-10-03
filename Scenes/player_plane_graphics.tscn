@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://pw1khoi3nxk7"]
+
+[ext_resource type="Texture2D" uid="uid://rkmdwbay6fyu" path="res://Art/still_a.png" id="1_rveu7"]
+
+[sub_resource type="Curve" id="Curve_nt4u1"]
+_limits = [0.0, 1.5, 0.0, 1.0]
+_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8j8bx"]
+offsets = PackedFloat32Array(0, 0.8652695)
+colors = PackedColorArray(1, 1, 1, 0.5921569, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_rveu7"]
+offsets = PackedFloat32Array(0, 0.8652695)
+colors = PackedColorArray(1, 1, 1, 0.92941177, 1, 1, 1, 0)
+
+[sub_resource type="Curve" id="Curve_8j8bx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9916667, 0.20422542), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_beuep"]
+offsets = PackedFloat32Array(0, 0.50898206, 1)
+colors = PackedColorArray(1, 0.9098039, 0.7372549, 0.627451, 1, 0.83514404, 0.71484375, 1, 1, 1, 1, 0.5764706)
+
+[node name="PlayerPlaneGraphics" type="Node2D" unique_id=939736569]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=204670754]
+offset_right = 1212.0
+offset_bottom = 672.0
+color = Color(0.5764706, 0.007843138, 0.06666667, 1)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1260109034]
+position = Vector2(171, 99)
+
+[node name="trailL" type="Line2D" parent="Node2D" unique_id=1065215523]
+position = Vector2(-25, -5)
+points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 527)
+width = 2.0
+width_curve = SubResource("Curve_nt4u1")
+default_color = Color(1, 1, 1, 0.16862746)
+gradient = SubResource("Gradient_8j8bx")
+
+[node name="trailL3" type="Line2D" parent="Node2D" unique_id=1114048710]
+position = Vector2(11, -7)
+points = PackedVector2Array(328, 185, 327.1943, 254.69382, 330, 375)
+width = 2.0
+width_curve = SubResource("Curve_nt4u1")
+default_color = Color(1, 1, 1, 0.16862746)
+gradient = SubResource("Gradient_8j8bx")
+
+[node name="trailR" type="Line2D" parent="Node2D" unique_id=1834614898]
+position = Vector2(195, -7)
+points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 516)
+width = 2.0
+width_curve = SubResource("Curve_nt4u1")
+default_color = Color(1, 1, 1, 0.16862746)
+gradient = SubResource("Gradient_8j8bx")
+
+[node name="trailR3" type="Line2D" parent="Node2D" unique_id=1034720655]
+position = Vector2(164, -8)
+points = PackedVector2Array(328, 185, 325, 376, 326, 237)
+width = 2.0
+width_curve = SubResource("Curve_nt4u1")
+default_color = Color(1, 1, 1, 0.16862746)
+gradient = SubResource("Gradient_8j8bx")
+
+[node name="trailL2" type="Line2D" parent="Node2D" unique_id=1387049765]
+visible = false
+position = Vector2(50, 135)
+points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 527)
+width = 2.0
+width_curve = SubResource("Curve_nt4u1")
+default_color = Color(1, 1, 1, 0.16862746)
+gradient = SubResource("Gradient_rveu7")
+
+[node name="trailR2" type="Line2D" parent="Node2D" unique_id=488076844]
+visible = false
+position = Vector2(113, 138)
+points = PackedVector2Array(328, 185, 327.1943, 254.69382, 326, 516)
+width = 2.0
+width_curve = SubResource("Curve_nt4u1")
+default_color = Color(1, 1, 1, 0.16862746)
+gradient = SubResource("Gradient_rveu7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D" unique_id=124139514]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+position = Vector2(406, 224)
+texture = ExtResource("1_rveu7")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="Node2D" unique_id=1665314024]
+visible = false
+position = Vector2(410, 326)
+amount = 12
+lifetime = 0.35000000000000003
+fixed_fps = 30
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(19.43, 1)
+direction = Vector2(0, 1)
+spread = 19.97
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_8j8bx")
+color_initial_ramp = SubResource("Gradient_beuep")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1337842851]
+texture_filter = 1
+position = Vector2(413, 216)
+texture = ExtResource("1_rveu7")

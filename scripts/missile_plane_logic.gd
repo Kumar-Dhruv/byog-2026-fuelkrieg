@@ -28,3 +28,8 @@ func _on_attack_timer_timeout() -> void:
 			shooting_component.missile_shot(enemy_plane.global_position)
 		else:
 			shooting_component.single_shoot((player.global_position - enemy_plane.global_position).normalized(), enemy_plane.global_position)
+
+
+func _on_health_component_zero_health() -> void:
+	Loader.spawner.decrease_enemy_count()
+	get_parent().queue_free()
