@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name EnemyPlane
 @export var path_generator : PathGenerator
 @onready var player : CharacterBody2D = Loader.player
+@onready var health_component: Node2D = $HealthComponent
+
 
 var current_path : Curve2D
 @export var plane_speed = 200.0
@@ -17,6 +19,8 @@ var plane_forward : Vector2 = Vector2.UP
 
 signal finished_path
 
+@export var body_damage = 2
+@export var self_damage = 3
 
 #0 - idle
 #1 = path follow
@@ -87,3 +91,21 @@ func new_path():
 	current_path = path_generator.generate_curve_resource(global_position)
 	path_length = current_path.get_baked_length()
 	current_distance = 0.0
+
+func _physics_process(delta: float) -> void:
+	if health_component.Health<=0:
+		queue_free()
+		print("Delete")
+	
+	var collided = move_and_slide()
+	
+	if collided:
+		var collision = get_last_slide_collision()
+		var collider = collision.get_collider() #get colliding body
+		
+		if collider is Player and not collider.is_invincible:
+			collider.health_component.damage(body_damage)
+			collider.invincible()
+		health_component.damage(self_damage)
+		
+		queue_free()

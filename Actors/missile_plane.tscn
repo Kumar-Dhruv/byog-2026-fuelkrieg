@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cfjapwrmpc55n" path="res://scripts/missile_plane_logic.gd" id="4_2v5e1"]
 [ext_resource type="Texture2D" uid="uid://cwyck76r7r67e" path="res://ship_0000.png" id="4_y6mt3"]
 [ext_resource type="Script" uid="uid://bmhxst0neynmi" path="res://scripts/enemy_plane.gd" id="5_y6mt3"]
+[ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="6_l8map"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j8bx"]
 radius = 27.5
@@ -24,7 +25,9 @@ enemy_plane = NodePath("../plane")
 attack_timer = NodePath("../attack timer")
 shooting_component = NodePath("../enemy shoot component")
 
-[node name="plane" type="CharacterBody2D" parent="." unique_id=716023927 node_paths=PackedStringArray("path_generator")]
+[node name="plane" type="CharacterBody2D" parent="." unique_id=716023927 node_paths=PackedStringArray("path_generator") groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("5_y6mt3")
 path_generator = NodePath("../path generator")
 plane_speed = 150.0
@@ -37,6 +40,9 @@ texture = ExtResource("4_y6mt3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plane" unique_id=1899064819]
 position = Vector2(-1, -1)
 shape = SubResource("CircleShape2D_8j8bx")
+
+[node name="HealthComponent" type="Node2D" parent="plane" unique_id=1246463600]
+script = ExtResource("6_l8map")
 
 [node name="attack timer" type="Timer" parent="." unique_id=1948651519]
 

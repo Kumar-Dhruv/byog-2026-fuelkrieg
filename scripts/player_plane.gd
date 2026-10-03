@@ -1,10 +1,15 @@
 extends CharacterBody2D
-
+class_name  Player
 @export var top_speed = 200.0
 @export var acc_velo_graph : Curve
+@export var is_invincible : bool = false
 
 @onready var plane_forward = Vector2(0, -1) #we adjust this via keyboard
 @onready var plane_normal = Vector2(1, 0)  #normal
+@onready var health_component: Node2D = $"../HealthComponent"
+@onready var sprite: Sprite2D = $Sprite2D
+
+
 #var angular_acceleration = 1.0
 var turn_speed = 3.0
 var acceleration = 150.0
@@ -16,6 +21,7 @@ var input_dir := Vector2(0, 0) # x = acc, y = rot
 var brake_dir : Vector2
 var boost_state : bool = false
 var boost_speed = 500.0
+var blink_tween : Tween
 
 func _ready() -> void:
 	
@@ -89,3 +95,25 @@ func _input(event: InputEvent) -> void:
 		boost_state = true
 	elif event.is_action_released("boost"):
 		boost_state = false
+
+func invincible():
+	if is_invincible: return
+	
+	is_invincible = true
+	
+	#looping tween to alternate the opacity
+	blink_tween = create_tween().set_loops()
+	blink_tween.tween_property(sprite, "modulate:a", 0.2, 0.15)
+	blink_tween.tween_property(sprite, "modulate:a", 1.0, 0.15)
+
+	await get_tree().create_timer(3).timeout
+	
+	# Safety check in case the player died
+	if not is_inside_tree() or not is_instance_valid(sprite):
+		return
+
+	is_invincible = false
+	if blink_tween:
+		blink_tween.kill()
+		
+	sprite.modulate.a = 1.0 

@@ -10,7 +10,7 @@ size = Vector2(8, 58)
 [node name="LaserSprite" type="CharacterBody2D" unique_id=482403806]
 z_index = -1
 collision_layer = 2
-collision_mask = 2
+collision_mask = 4
 script = ExtResource("1_r1bh0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=635216801]

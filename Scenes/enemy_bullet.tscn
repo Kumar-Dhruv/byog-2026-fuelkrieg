@@ -7,6 +7,7 @@
 radius = 6.0
 
 [node name="enemy bullet" type="CharacterBody2D" unique_id=576096238]
+collision_layer = 8
 script = ExtResource("1_54jiv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2060949089]
@@ -15,4 +16,3 @@ texture = ExtResource("1_tcvu8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=548073920]
 shape = SubResource("CircleShape2D_nt4u1")
-disabled = true
