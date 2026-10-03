@@ -1,18 +1,35 @@
 [gd_scene format=3 uid="uid://i27rnq6kmw26"]
 
 [ext_resource type="Script" uid="uid://b3arla20wf3g7" path="res://Scenes/enemy_bullet.gd" id="1_54jiv"]
-[ext_resource type="Texture2D" uid="uid://b5i5io3655dgi" path="res://tile_0005.png" id="1_tcvu8"]
+[ext_resource type="Script" uid="uid://cm5wfoiewjc4i" path="res://scripts/despawn.gd" id="3_b6yqb"]
+[ext_resource type="Texture2D" uid="uid://dgooi4xcscf00" path="res://Art/ammo/bullet_a_op1.png" id="4_mrehe"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nt4u1"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i3yy"]
+size = Vector2(4, 16)
 
 [node name="enemy bullet" type="CharacterBody2D" unique_id=576096238]
 collision_layer = 8
 script = ExtResource("1_54jiv")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2060949089]
-texture_filter = 1
-texture = ExtResource("1_tcvu8")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=548073920]
-shape = SubResource("CircleShape2D_nt4u1")
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_0i3yy")
+
+[node name="despawn" type="Node2D" parent="." unique_id=502633591 node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_b6yqb")
+despawn_distance = 1000
+enemy = NodePath("..")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=524662913]
+clip_children = 2
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_mrehe")
+
+[node name="overlay" type="ColorRect" parent="Sprite2D" unique_id=705052151]
+offset_left = -171.0
+offset_top = -138.0
+offset_right = 140.0
+offset_bottom = 151.0
+color = Color(0.28235295, 0.22745098, 0.1254902, 1)
+metadata/_edit_use_anchors_ = true

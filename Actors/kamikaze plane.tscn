@@ -4,6 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dvhkscwa8f0se" path="res://Actors/enemy_plane.tscn" id="2_x45o3"]
 [ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="3_vs058"]
 [ext_resource type="Script" uid="uid://2gwahnafcjnd" path="res://scripts/kamikaze.gd" id="4_aotlr"]
+[ext_resource type="Script" uid="uid://b6kia0d7ckl76" path="res://Actors/enemy_plane_graphics.gd" id="4_logv7"]
+[ext_resource type="Script" uid="uid://cm5wfoiewjc4i" path="res://scripts/despawn.gd" id="5_o2x1l"]
+[ext_resource type="Texture2D" uid="uid://dmlrnd16muond" path="res://Art/1kamikae/1_still_a.png" id="6_0x6yf"]
+[ext_resource type="PackedScene" uid="uid://c5h6xuifowuvx" path="res://Scenes/death fx.tscn" id="7_53mws"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt4u1"]
+size = Vector2(22, 38)
 
 [node name="kamikaze planes" type="Node2D" unique_id=381237455]
 
@@ -21,14 +28,55 @@ plane_speed = 250.0
 script = ExtResource("3_vs058")
 max_health = 2
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy plane" unique_id=1383405024]
+position = Vector2(-1, 3)
+shape = SubResource("RectangleShape2D_nt4u1")
+
+[node name="enemy plane graphics" type="Node2D" parent="enemy plane" unique_id=1118721804]
+script = ExtResource("4_logv7")
+
+[node name="shadow" type="Sprite2D" parent="enemy plane/enemy plane graphics" unique_id=414305994]
+clip_children = 2
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_0x6yf")
+
+[node name="overlay" type="ColorRect" parent="enemy plane/enemy plane graphics/shadow" unique_id=260576157]
+offset_left = -173.0
+offset_top = -138.0
+offset_right = 138.0
+offset_bottom = 151.0
+color = Color(0.28125, 0.22888184, 0.12414551, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy plane/enemy plane graphics" unique_id=665796181]
+clip_children = 2
+texture_filter = 1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_0x6yf")
+
+[node name="overlay" type="ColorRect" parent="enemy plane/enemy plane graphics/Sprite2D" unique_id=1409734713]
+offset_left = -171.0
+offset_top = -138.0
+offset_right = 140.0
+offset_bottom = 151.0
+color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
+metadata/_edit_use_anchors_ = true
+
 [node name="Kamikaze" type="Node2D" parent="." unique_id=2117540539 node_paths=PackedStringArray("enemy_plane")]
 script = ExtResource("4_aotlr")
 enemy_plane = NodePath("../enemy plane")
+death_fx = ExtResource("7_53mws")
 
 [node name="max player follow time" type="Timer" parent="Kamikaze" unique_id=1372750187]
 wait_time = 3.0
 one_shot = true
 
+[node name="despawn" type="Node2D" parent="." unique_id=1791129269 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_o2x1l")
+enemy = NodePath("../enemy plane")
+
 [connection signal="finished_path" from="enemy plane" to="Kamikaze" method="_on_enemy_plane_finished_path"]
 [connection signal="zero_health" from="enemy plane/HealthComponent" to="Kamikaze" method="_on_health_component_zero_health"]
 [connection signal="timeout" from="Kamikaze/max player follow time" to="Kamikaze" method="_on_max_player_follow_time_timeout"]
+[connection signal="despawn" from="despawn" to="Kamikaze" method="_on_despawn_despawn"]

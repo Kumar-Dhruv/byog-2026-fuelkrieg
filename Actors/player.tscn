@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://b63ul0dnxrj4a"]
+
+[ext_resource type="Script" uid="uid://b7a725i32mltt" path="res://scripts/player.gd" id="1_6yncu"]
+[ext_resource type="PackedScene" uid="uid://c8b4tpi0vutm" path="res://Actors/player_plane.tscn" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://dti0nkuwnj1aj" path="res://scripts/camera.gd" id="2_cvnsp"]
+[ext_resource type="Script" uid="uid://civ7khx336yy2" path="res://scripts/bullets.gd" id="4_vgqql"]
+[ext_resource type="Script" uid="uid://cgo7sdcs8iwla" path="res://scripts/laser.gd" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://bedhpgumtivye" path="res://scripts/fuel_component.gd" id="7_8erm5"]
+[ext_resource type="Script" uid="uid://cy18uhpbv5y7x" path="res://scripts/fuel.gd" id="8_f1ek2"]
+[ext_resource type="PackedScene" uid="uid://nsy7qnns5iwb" path="res://Scenes/fuel_ui.tscn" id="9_f1ek2"]
+[ext_resource type="PackedScene" uid="uid://kblkpgdh358q" path="res://Scenes/boost_sprite.tscn" id="10_6kbgh"]
+[ext_resource type="PackedScene" uid="uid://j1omdggmfuo5" path="res://Scenes/gun_sprite.tscn" id="11_3sj5c"]
+[ext_resource type="PackedScene" uid="uid://cfjrsrsikbvnt" path="res://Scenes/laser_part.tscn" id="12_6yncu"]
+[ext_resource type="PackedScene" uid="uid://pw1khoi3nxk7" path="res://Scenes/player_plane_graphics.tscn" id="13_3sj5c"]
+[ext_resource type="Texture2D" uid="uid://mbxiwlpf6814" path="res://Art/clouds/Cloud 18.png" id="13_6yncu"]
+
+[sub_resource type="Resource" id="Resource_67cu3"]
+script = ExtResource("8_f1ek2")
+metadata/_custom_type_script = "uid://cy18uhpbv5y7x"
+
+[node name="Player" type="Node2D" unique_id=1087157977]
+script = ExtResource("1_6yncu")
+
+[node name="PlayerPlane" parent="." unique_id=402383368 instance=ExtResource("1_v0iea")]
+texture_filter = 1
+collision_mask = 12
+
+[node name="Label" type="Label" parent="PlayerPlane" unique_id=729183776]
+visible = false
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 19.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 32
+text = "10"
+
+[node name="FuelComponent" type="Node2D" parent="." unique_id=1474663744]
+script = ExtResource("7_8erm5")
+fuel_main = SubResource("Resource_67cu3")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1611694088]
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 2.0
+script = ExtResource("2_cvnsp")
+
+[node name="Bullets" type="Node2D" parent="." unique_id=1385782686]
+script = ExtResource("4_vgqql")
+
+[node name="Laser" type="Node2D" parent="." unique_id=945687462 node_paths=PackedStringArray("marker")]
+script = ExtResource("5_fkybt")
+marker = NodePath("../PlayerPlaneGraphics/Marker2D")
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=1110079462]
+script = ExtResource("6_x3wgy")
+max_health = 10
+
+[node name="BoostSprite" parent="." unique_id=1167374107 node_paths=PackedStringArray("fuel_component", "health_component", "parts_manager") instance=ExtResource("10_6kbgh")]
+position = Vector2(0, 10)
+scale = Vector2(0.05, 0.05)
+fuel_component = NodePath("../FuelComponent")
+health_component = NodePath("../HealthComponent")
+parts_manager = NodePath("../PlayerPlaneGraphics")
+
+[node name="GunSprite" parent="." unique_id=89631178 node_paths=PackedStringArray("fuel_component", "health_component", "parts_manager") instance=ExtResource("11_3sj5c")]
+position = Vector2(0, -11.999999)
+scale = Vector2(0.05, 0.05)
+fuel_component = NodePath("../FuelComponent")
+health_component = NodePath("../HealthComponent")
+parts_manager = NodePath("../PlayerPlaneGraphics")
+
+[node name="LaserPart" parent="." unique_id=288216006 node_paths=PackedStringArray("fuel_component", "health_component", "parts_manager") instance=ExtResource("12_6yncu")]
+position = Vector2(10.999999, -5.9999995)
+scale = Vector2(0.05, 0.05)
+fuel_component = NodePath("../FuelComponent")
+health_component = NodePath("../HealthComponent")
+parts_manager = NodePath("../PlayerPlaneGraphics")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=256484270]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1552573047]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95686275, 0.89411765, 0.7607843, 1)
+
+[node name="FuelUI" parent="CanvasLayer" unique_id=1520855357 instance=ExtResource("9_f1ek2")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayerPlaneGraphics" parent="." unique_id=939736569 instance=ExtResource("13_3sj5c")]
+
+[node name="Marker2D" type="Marker2D" parent="PlayerPlaneGraphics" unique_id=1914921744]
+position = Vector2(27.705, -31)
+scale = Vector2(2.2222223, 2.2222223)
+
+[node name="Cloud1" type="Sprite2D" parent="." unique_id=952833339]
+modulate = Color(1, 1, 1, 0.27450982)
+clip_children = 2
+texture_filter = 1
+position = Vector2(553, 337)
+scale = Vector2(3, 3)
+texture = ExtResource("13_6yncu")
+
+[node name="ColorRect" type="ColorRect" parent="Cloud1" unique_id=1573368978]
+offset_left = -73.0
+offset_top = -42.0
+offset_right = 69.0
+offset_bottom = 46.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]

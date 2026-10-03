@@ -1,5 +1,5 @@
 extends ProgressBar
-@onready var fuel_component = $"../../../PlayerPlane/FuelComponent"
+@onready var fuel_component = Loader.fuel_component
 
 
 var fill_style

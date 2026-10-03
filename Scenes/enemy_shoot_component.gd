@@ -14,10 +14,11 @@ var time_between_each_shot = 0.3
 
 signal finished_shooting
 
-func single_shoot(dir, pos):
+func single_shoot(dir : Vector2, pos):
 	#await get_tree().create_timer(time_between_each_shot).timeout
 	var b : CharacterBody2D = bullet_scene.instantiate()
 	b.global_position = pos
+	b.global_rotation = dir.angle() + PI/2
 	b.velocity = dir * bullet_speed
 	get_tree().root.add_child(b)
 	finished_shooting.emit()
@@ -28,12 +29,15 @@ func pattern_shot(dir, pos):
 	var b2 : CharacterBody2D = bullet_scene.instantiate()
 	var b3 : CharacterBody2D = bullet_scene.instantiate()
 	b1.global_position = pos
+	b1.global_rotation = dir.angle() + PI/2
 	b1.velocity = dir * bullet_speed
 	get_tree().root.add_child(b1)
 	b2.global_position = pos
+	b2.global_rotation = dir.angle() + PI/2
 	b2.velocity = dir.rotated(deg_to_rad(5)).normalized() * bullet_speed
 	get_tree().root.add_child(b2)
 	b3.global_position = pos
+	b3.global_rotation = dir.angle() + PI/2
 	b3.velocity = dir.rotated(deg_to_rad(-5)).normalized() * bullet_speed
 	get_tree().root.add_child(b3)
 	finished_shooting.emit()

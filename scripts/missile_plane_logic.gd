@@ -29,7 +29,19 @@ func _on_attack_timer_timeout() -> void:
 		else:
 			shooting_component.single_shoot((player.global_position - enemy_plane.global_position).normalized(), enemy_plane.global_position)
 
+@export var death_fx : PackedScene
 
 func _on_health_component_zero_health() -> void:
 	Loader.spawner.decrease_enemy_count()
+	
+	for i in range(3):
+		var d : Node2D = death_fx.instantiate()
+		get_tree().root.add_child(d)
+		d.start_explosion(enemy_plane.global_position, 10.0, 2)
+		await get_tree().create_timer(0.2).timeout 
+	
 	get_parent().queue_free()
+
+
+func _on_despawn_despawn() -> void:
+	Loader.spawner.decrease_enemy_count()

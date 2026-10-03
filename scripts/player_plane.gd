@@ -7,7 +7,7 @@ class_name  Player
 @onready var plane_forward = Vector2(0, -1) #we adjust this via keyboard
 @onready var plane_normal = Vector2(1, 0)  #normal
 @onready var health_component: Node2D = $"../HealthComponent"
-@onready var sprite: Sprite2D = $Sprite2D
+#@onready var sprite: Sprite2D = $PlaneBody
 
 
 #var angular_acceleration = 1.0
@@ -101,23 +101,4 @@ func _input(event: InputEvent) -> void:
 		boost_state = false
 
 func invincible():
-	if is_invincible: return
-	
-	is_invincible = true
-	
-	#looping tween to alternate the opacity
-	blink_tween = create_tween().set_loops()
-	blink_tween.tween_property(sprite, "modulate:a", 0.2, 0.15)
-	blink_tween.tween_property(sprite, "modulate:a", 1.0, 0.15)
-
-	await get_tree().create_timer(3).timeout
-	
-	# Safety check in case the player died
-	if not is_inside_tree() or not is_instance_valid(sprite):
-		return
-
-	is_invincible = false
-	if blink_tween:
-		blink_tween.kill()
-		
-	sprite.modulate.a = 1.0 
+	pass

@@ -1,6 +1,6 @@
 extends Node2D
 @export var fuel_main : FuelResource
-@onready var player_plane: Player = $".."
+@onready var player_plane: Player = Loader.player
 var bullet_eject : bool = false
 var laser_eject : bool = false
 var boost_eject : bool = false
@@ -13,6 +13,7 @@ var laser_destroy = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Loader.fuel_component = self
 	fuel_main.body_fuel = 100.0
 	fuel_main.boost_fuel = 100.0
 	fuel_main.laser_fuel = 100.0

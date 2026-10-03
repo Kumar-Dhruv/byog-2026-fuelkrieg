@@ -2,7 +2,8 @@ extends Node2D
 var laser_scene : PackedScene = preload("res://Scenes/laser.tscn")
 @onready var player_plane: CharacterBody2D = $"../PlayerPlane"
 var laser = null
-@onready var fuel_component: Node2D = $"../PlayerPlane/FuelComponent"
+@onready var fuel_component = Loader.fuel_component
+@export var marker : Marker2D
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("laser") :
@@ -13,7 +14,7 @@ func _process(delta: float) -> void:
 	
 	#update with player every frame
 	if laser != null :
-		laser.global_position = player_plane.global_position
+		laser.global_position = marker.global_position
 		laser.rotation = player_plane.rotation
 	
 	if fuel_component.fuel_main.laser_fuel<=0 : stop_shooting()
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 func shoot():
 	if laser == null and fuel_component.fuel_main.laser_fuel>0:
 		laser = laser_scene.instantiate()
-		laser.global_position = player_plane.global_position
+		laser.global_position = marker.global_position
 		laser.rotation = player_plane.rotation
 		get_tree().current_scene.add_child(laser)
 

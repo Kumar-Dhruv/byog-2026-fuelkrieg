@@ -3,7 +3,7 @@ var bullet_sprite : PackedScene = preload("res://Scenes/bullet_sprite.tscn")
 @onready var player_plane: CharacterBody2D = $"../PlayerPlane"
 var SPEED = 800
 var can_shoot : bool = true
-@onready var fuel_component: Node2D = $"../PlayerPlane/FuelComponent"
+@onready var fuel_component = Loader.fuel_component
 
 
 # Called when the node enters the scene tree for the first time.

@@ -9,6 +9,10 @@ var initial_dir : Vector2
 var move_dir : Vector2 
 var dmg = 2
 
+var color_palette = [
+	Color("483a2081")
+]
+
 func _ready() -> void:
 	move_dir = (player.global_position - global_position)
 	
@@ -27,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		if collider is Player and not collider.is_invincible:
 			collider.health_component.damage(dmg)
 		
-		queue_free()
+		_on_time_to_explode_timeout()
 	
 func follow_player():
 	var player_dir = (player.global_position - global_position).normalized()
@@ -35,7 +39,15 @@ func follow_player():
 	if abs(player_dir.angle_to(move_dir)) <= PI/2:
 		move_dir = move_dir.lerp(player_dir, get_physics_process_delta_time() * track_speed).normalized()
 	velocity = move_dir * missile_speed
-	rotation = move_dir.angle() - PI/2
+	rotation = move_dir.angle() + PI/2
+
+@export var death_fx : PackedScene
 
 func _on_time_to_explode_timeout() -> void:
+	var d : Node2D = death_fx.instantiate()
+	get_tree().root.add_child(d)
+	d.start_explosion(global_position, 50.0, 1)
 	queue_free()
+
+func change_color_palette(i):
+	$MissileA2/overlay.color = color_palette[i]
