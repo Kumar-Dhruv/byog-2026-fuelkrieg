@@ -4,12 +4,19 @@
 [ext_resource type="PackedScene" uid="uid://bme7ws4uvbw4e" path="res://Scenes/path_generator.tscn" id="2_knkwr"]
 [ext_resource type="Script" uid="uid://p4bjlhkq17rn" path="res://Actors/shooter.gd" id="3_knkwr"]
 [ext_resource type="PackedScene" uid="uid://imynxh12ifwj" path="res://Scenes/enemy_shoot_component.tscn" id="5_7cudj"]
+[ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="5_hu16o"]
 
 [node name="bullet planes" type="Node2D" unique_id=1533168364]
 
-[node name="enemy plane" parent="." unique_id=465186032 node_paths=PackedStringArray("path_generator") instance=ExtResource("1_j60in")]
+[node name="enemy plane" parent="." unique_id=465186032 node_paths=PackedStringArray("path_generator") groups=["enemy"] instance=ExtResource("1_j60in")]
+collision_layer = 4
+collision_mask = 3
 path_generator = NodePath("../path generator")
 tracking_modifier = 0.25
+
+[node name="HealthComponent" type="Node2D" parent="enemy plane" unique_id=1167393325]
+script = ExtResource("5_hu16o")
+max_health = 3
 
 [node name="path generator" parent="." unique_id=482814776 node_paths=PackedStringArray("enemy_plane") instance=ExtResource("2_knkwr")]
 max_radius = 500.0
@@ -21,8 +28,6 @@ enemy_plane = NodePath("../enemy plane")
 shooting_component = NodePath("../enemy shoot component")
 
 [node name="enemy shoot component" parent="." unique_id=331890768 instance=ExtResource("5_7cudj")]
-
-[node name="HealthComponent" type="Node2D" parent="." unique_id=1167393325]
 
 [connection signal="finished_path" from="enemy plane" to="Shooter" method="_on_enemy_plane_finished_path"]
 [connection signal="finished_shooting" from="enemy shoot component" to="Shooter" method="_on_enemy_shoot_component_finished_shooting"]

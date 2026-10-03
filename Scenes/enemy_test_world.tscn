@@ -11,16 +11,19 @@
 [node name="Player" parent="." unique_id=1087157977 instance=ExtResource("2_i7kxl")]
 
 [node name="bullet planes" parent="." unique_id=1533168364 instance=ExtResource("4_edl5w")]
-position = Vector2(349, -448)
+position = Vector2(860, -442)
 
 [node name="bullet planes2" parent="." unique_id=559883005 instance=ExtResource("4_edl5w")]
-position = Vector2(349, -448)
+position = Vector2(-556, -386)
 
 [node name="bullet planes3" parent="." unique_id=1189795467 instance=ExtResource("4_edl5w")]
-position = Vector2(349, -448)
+position = Vector2(776, 269)
 
 [node name="kamikaze planes" parent="." unique_id=381237455 instance=ExtResource("3_0xt5t")]
+position = Vector2(1030, -106)
 
 [node name="missile plane" parent="." unique_id=1266426368 instance=ExtResource("4_0d8ns")]
+position = Vector2(489, -394)
 
 [node name="warship" parent="." unique_id=105833457 instance=ExtResource("5_8aptv")]
+position = Vector2(0, -479)

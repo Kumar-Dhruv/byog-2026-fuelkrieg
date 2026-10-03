@@ -11,10 +11,11 @@ func _ready() -> void:
 	enemy_plane.set_new_follow_path()
 	
 func _process(delta: float) -> void:
-	if enemy_plane.global_position.distance_to(player.global_position) >= activation_distance:
-		attack_timer.stop()
-	elif attack_timer.is_stopped():
-		attack_timer.start()
+	if enemy_plane :
+		if enemy_plane.global_position.distance_to(player.global_position) >= activation_distance:
+			attack_timer.stop()
+		elif attack_timer.is_stopped():
+			attack_timer.start()
 
 func _on_plane_finished_path() -> void:
 	enemy_plane.set_new_follow_path()
@@ -22,7 +23,8 @@ func _on_plane_finished_path() -> void:
 
 func _on_attack_timer_timeout() -> void:
 	var r = randf()
-	if r <= missile_chance:
-		shooting_component.missile_shot(enemy_plane.global_position)
-	else:
-		shooting_component.single_shoot((player.global_position - enemy_plane.global_position).normalized(), enemy_plane.global_position)
+	if enemy_plane :
+		if r <= missile_chance:
+			shooting_component.missile_shot(enemy_plane.global_position)
+		else:
+			shooting_component.single_shoot((player.global_position - enemy_plane.global_position).normalized(), enemy_plane.global_position)

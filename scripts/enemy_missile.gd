@@ -6,7 +6,8 @@ extends CharacterBody2D
 @export var missile_speed = 400.0
 
 var initial_dir : Vector2
-var move_dir : Vector2
+var move_dir : Vector2 
+var dmg = 2
 
 func _ready() -> void:
 	move_dir = (player.global_position - global_position)
@@ -16,7 +17,17 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	follow_player()
-	move_and_slide()
+	var collided = move_and_slide()
+	
+	
+	if collided:
+		var collision = get_last_slide_collision()
+		var collider = collision.get_collider() #get colliding body
+		
+		if collider is Player and not collider.is_invincible:
+			collider.health_component.damage(dmg)
+		
+		queue_free()
 	
 func follow_player():
 	var player_dir = (player.global_position - global_position).normalized()
