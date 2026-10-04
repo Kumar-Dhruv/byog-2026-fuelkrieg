@@ -30,6 +30,8 @@ AudioManager="*uid://b31penr5703ei"
 window/size/viewport_width=800
 window/size/mode=2
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://sy4cwauvqqo"
 
 [editor_plugins]
 
@@ -71,4 +73,5 @@ common/physics_interpolation=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
