@@ -24,6 +24,7 @@ Loader="*uid://621ms0o62iw"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://sy4cwauvqqo"
 
 [editor_plugins]
 
@@ -65,4 +66,5 @@ common/physics_interpolation=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

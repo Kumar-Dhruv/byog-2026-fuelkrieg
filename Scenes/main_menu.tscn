@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://bkaekwxvsrn5j"]
+
+[ext_resource type="Script" uid="uid://dcoaf5i6edw5b" path="res://scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://ldljquvov75t" path="res://Art/MenuUI/PLAY button.png" id="2_1ehe0"]
+[ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="2_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://bqd4tnjc6j5sf" path="res://Art/MenuUI/HELP button.png" id="3_ce3w2"]
+[ext_resource type="Script" uid="uid://by1e1qu0xqhpv" path="res://scripts/play_button.gd" id="3_n45e2"]
+[ext_resource type="Texture2D" uid="uid://dd2dkuv8rwqmq" path="res://Art/MenuUI/Cursors_v2/Light/Hands/Hand2.png" id="4_opfnp"]
+[ext_resource type="Script" uid="uid://dn1xrusaw5adj" path="res://scripts/help_button.gd" id="5_n45e2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_67cu3"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 350, 1)
+direction = Vector3(-1, 0.1, 0)
+spread = 7.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+color = Color(1, 0.8823829, 0.86183965, 0.9480001)
+
+[sub_resource type="Gradient" id="Gradient_67cu3"]
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0.84300005)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sg31y"]
+gradient = SubResource("Gradient_67cu3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="MainMenu" type="Control" unique_id=628923429]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28flt")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=560899938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7058824, 0.015686275, 0.08627451, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ColorRect" unique_id=540394866]
+texture_filter = 1
+position = Vector2(1161, 330)
+amount = 30
+lifetime = 5.0
+trail_lifetime = 0.2
+trail_sections = 2
+trail_section_subdivisions = 1
+process_material = SubResource("ParticleProcessMaterial_67cu3")
+
+[node name="cloud spawner" parent="." unique_id=825755951 instance=ExtResource("2_cp0ys")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1280411292]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Play" type="TextureButton" parent="VBoxContainer" unique_id=1707021808]
+texture_filter = 1
+custom_minimum_size = Vector2(105, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("2_1ehe0")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_n45e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Play" unique_id=1594729963]
+visible = false
+position = Vector2(-18, 25)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_opfnp")
+
+[node name="Help" type="TextureButton" parent="VBoxContainer" unique_id=1191736589]
+texture_filter = 1
+custom_minimum_size = Vector2(210, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("3_ce3w2")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_n45e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Help" unique_id=1406801084]
+visible = false
+position = Vector2(-18, 25)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_opfnp")
+
+[node name="ColorRect2" type="TextureRect" parent="." unique_id=1664109780]
+modulate = Color(0.061369143, 0.06136909, 0.06136907, 0.467)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_sg31y")
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]
