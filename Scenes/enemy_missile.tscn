@@ -1,27 +1,69 @@
 [gd_scene format=3 uid="uid://bxkgrynxhesee"]
 
 [ext_resource type="Script" uid="uid://buxa1bctfo7ay" path="res://scripts/enemy_missile.gd" id="1_4ryg4"]
-[ext_resource type="Texture2D" uid="uid://b4p31t5e0hhif" path="res://tile_0000.png" id="2_4ryg4"]
+[ext_resource type="PackedScene" uid="uid://c5h6xuifowuvx" path="res://Scenes/death fx.tscn" id="2_uc3hv"]
+[ext_resource type="Texture2D" uid="uid://crg27bit61vyg" path="res://Art/ammo/missile_a_2.png" id="3_dg0q4"]
+[ext_resource type="Script" uid="uid://cm5wfoiewjc4i" path="res://scripts/despawn.gd" id="3_wckcq"]
+[ext_resource type="Script" uid="uid://bmo3ynyh5mfuv" path="res://scripts/trail effect.gd" id="4_dg0q4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nt4u1"]
-radius = 3.0
-height = 16.0
+radius = 5.0
+height = 38.0
+
+[sub_resource type="Curve" id="Curve_uc3hv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ijd3t"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.5176471)
 
 [node name="enemy missile" type="CharacterBody2D" unique_id=42663217]
 collision_layer = 8
 script = ExtResource("1_4ryg4")
+death_fx = ExtResource("2_uc3hv")
 
 [node name="time to explode" type="Timer" parent="." unique_id=1586892355]
 wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1686415765]
-modulate = Color(0.9678063, 0.39736506, 0.2981977, 1)
-texture_filter = 1
-texture = ExtResource("2_4ryg4")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1516163697]
+position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_nt4u1")
 
+[node name="despawn" type="Node2D" parent="." unique_id=272424623 node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_wckcq")
+despawn_distance = 1000
+enemy = NodePath("..")
+
+[node name="MissileA2" type="Sprite2D" parent="." unique_id=742408225]
+clip_children = 2
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_dg0q4")
+
+[node name="overlay" type="ColorRect" parent="MissileA2" unique_id=36395741]
+offset_left = -171.0
+offset_top = -138.0
+offset_right = 140.0
+offset_bottom = 151.0
+color = Color(0.28235295, 0.22745098, 0.1254902, 0.5058824)
+metadata/_edit_use_anchors_ = true
+
+[node name="Line2D2" type="Line2D" parent="MissileA2" unique_id=705302777 node_paths=PackedStringArray("tracker")]
+top_level = true
+position = Vector2(111, -186)
+points = PackedVector2Array(-111, -32, -111, 200)
+width = 2.0
+width_curve = SubResource("Curve_uc3hv")
+gradient = SubResource("Gradient_ijd3t")
+joint_mode = 2
+script = ExtResource("4_dg0q4")
+tracker = NodePath("../../Marker2D")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1200305584]
+position = Vector2(0, 8)
+scale = Vector2(0.5, 0.5)
+
 [connection signal="timeout" from="time to explode" to="." method="_on_time_to_explode_timeout"]
+[connection signal="despawn" from="despawn" to="." method="_on_time_to_explode_timeout"]

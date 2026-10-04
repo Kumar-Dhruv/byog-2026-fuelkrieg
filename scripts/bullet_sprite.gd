@@ -4,6 +4,10 @@ extends CharacterBody2D
 var Velocity : Vector2 = Vector2.ZERO
 @export var dmg = 1
 
+var color_palette = [
+	Color("e7bb63"), Color.WHITE
+]
+
 func _physics_process(delta: float) -> void:
 	global_position += Velocity * delta
 	var collided = move_and_slide()
@@ -19,3 +23,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() :
 	queue_free()
+	
+func change_color_palette(i):
+	$Node2D.modulate = color_palette[i]

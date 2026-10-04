@@ -14,24 +14,32 @@ var color_palette = [
 @onready var player : Player = Loader.player
 
 func _process(delta: float) -> void:
+	
+	global_position = player.global_position
+	global_rotation = player.global_rotation
+	
 	if player.boost_state and not tail_trails_on:
 		tail_trails_on = true
 		toggle_tail_trails(true)
+		toggle_inner_trails(true)
 	elif not player.boost_state and tail_trails_on:
 		tail_trails_on = false
 		toggle_tail_trails(false)
+		toggle_inner_trails(false)
 		
 	if player.input_dir.x and not outer_trails_on:
 		outer_trails_on = true
 		toggle_outer_trails(true)
-	elif not player.input_dir.x and not outer_trails_on:
+		print("trails on")
+	elif not player.input_dir.x and outer_trails_on:
 		outer_trails_on = false
 		toggle_outer_trails(false)
+		print("trails off")
 		
-	if player.velocity.length() >= player.top_speed and not inner_trails_on:
-		toggle_inner_trails(true)
-	elif not player.velocity.length() >= player.top_speed and inner_trails_on:
-		toggle_inner_trails(false)
+	#if player.velocity.length() >= player.top_speed and not inner_trails_on:
+		#toggle_inner_trails(true)
+	#elif not player.velocity.length() >= player.top_speed and inner_trails_on:
+		#toggle_inner_trails(false)
 		
 
 func change_color_palette(i):
@@ -48,22 +56,25 @@ func toggle_outer_trails(x):
 	var c = Color.WHITE
 	if not x:
 		c = Color.TRANSPARENT
-	tween.tween_property($"outer trails", "modulate", c, visible_time)
+	tween.tween_property($"outer trails/Line2D", "modulate", c, visible_time)
+	tween.parallel().tween_property($"outer trails/Line2D2", "modulate", c, visible_time)
 	
 func toggle_inner_trails(x):
 	var tween : Tween = create_tween()
 	var c = Color.WHITE
 	if not x:
 		c = Color.TRANSPARENT
-	tween.tween_property($"inner trails", "modulate", c, visible_time)
+	tween.tween_property($"inner trails/Line2D", "modulate", c, visible_time)
+	tween.parallel().tween_property($"inner trails/Line2D2", "modulate", c, visible_time)
 
 func toggle_tail_trails(x):
 	var tween : Tween = create_tween()
-	$GPUParticles2D.emitting = false
+	$GPUParticles2D.emitting = x
 	var c = Color.WHITE
 	if not x:
 		c = Color.TRANSPARENT
-	tween.tween_property($"tail trails", "modulate", c, 0.2)
+	tween.tween_property($"tail trails/Line2D", "modulate", c, visible_time)
+	tween.parallel().tween_property($"tail trails/Line2D2", "modulate", c, visible_time)
 
 func remove_part(i):
 	match i:
@@ -72,4 +83,4 @@ func remove_part(i):
 		2:#boost
 			$parts/Sprite2D2.visible = false
 		3:#laser
-			$parts/Sprite2D4.visible = false
+			$parts/Sprite2D3.visible = false

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://whsuyc84v4qe"]
+
+[ext_resource type="Script" uid="uid://mrbac5h62fob" path="res://Scenes/cloud_spawner.gd" id="1_olnnr"]
+[ext_resource type="Texture2D" uid="uid://1mhjahd1cq7f" path="res://Art/clouds/Cloud 1.png" id="2_5hwca"]
+[ext_resource type="Texture2D" uid="uid://tnwew7065mxq" path="res://Art/clouds/Cloud 2.png" id="3_o7isc"]
+[ext_resource type="Texture2D" uid="uid://bjyyob87qs75t" path="res://Art/clouds/Cloud 6.png" id="4_g4ml1"]
+[ext_resource type="Texture2D" uid="uid://cwpbpllnq1oq1" path="res://Art/clouds/Cloud 11.png" id="5_lr262"]
+[ext_resource type="Texture2D" uid="uid://du54df3yuljof" path="res://Art/clouds/Cloud 14.png" id="6_04hto"]
+[ext_resource type="Texture2D" uid="uid://bvljca331au8e" path="res://Art/clouds/Cloud 15.png" id="7_8ipmb"]
+[ext_resource type="Texture2D" uid="uid://b835cv63tguvh" path="res://Art/clouds/Cloud 16.png" id="8_tw0vn"]
+[ext_resource type="Texture2D" uid="uid://be8vome86xkky" path="res://Art/clouds/Cloud 17.png" id="9_nw7nw"]
+[ext_resource type="Texture2D" uid="uid://mbxiwlpf6814" path="res://Art/clouds/Cloud 18.png" id="10_hp7xt"]
+[ext_resource type="Texture2D" uid="uid://c2t6m4iyttlyn" path="res://Art/clouds/Cloud 19.png" id="11_jqsri"]
+[ext_resource type="Texture2D" uid="uid://xps8fvrjpxru" path="res://Art/clouds/Cloud 20.png" id="12_q631d"]
+[ext_resource type="PackedScene" uid="uid://k1vaesaar1oy" path="res://Scenes/cloud.tscn" id="13_o7isc"]
+
+[node name="cloud spawner" type="Node2D" unique_id=825755951]
+script = ExtResource("1_olnnr")
+cloud_sprites = Array[Resource]([ExtResource("2_5hwca"), ExtResource("3_o7isc"), ExtResource("4_g4ml1"), ExtResource("5_lr262"), ExtResource("6_04hto"), ExtResource("7_8ipmb"), ExtResource("8_tw0vn"), ExtResource("9_nw7nw"), ExtResource("10_hp7xt"), ExtResource("11_jqsri"), ExtResource("12_q631d")])
+cloud_scene = ExtResource("13_o7isc")

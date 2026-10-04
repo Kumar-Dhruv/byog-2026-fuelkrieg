@@ -1,9 +1,13 @@
 extends CharacterBody2D
-@onready var player_plane: Player = $".."
-@onready var fuel_component: Node2D = $"../FuelComponent"
-@onready var health_component: Node2D = $"../../HealthComponent"
+@onready var player_plane: Player = Loader.player
+@export var fuel_component: Node2D 
+@export var health_component: Node2D 
+@export var parts_manager : Node2D
 
 var is_ejected : bool = false
+
+func _ready() -> void:
+	$Gun.visible = false
 
 func _physics_process(delta: float) -> void:
 	if fuel_component.gun_destroy : 
@@ -20,8 +24,12 @@ func _physics_process(delta: float) -> void:
 			
 func eject():
 	var dir = player_plane.velocity.normalized()
+	global_position = player_plane.global_position
 	velocity += dir * 500
 	is_ejected = true
+	$Gun.visible = true
+	parts_manager.remove_part(1)
+	#top_level = true
 	fuel_component.gun_is_out = true
 
 func _on_visible_on_screen_notifier_2d_screen_exited() :

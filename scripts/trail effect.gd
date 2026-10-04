@@ -1,6 +1,6 @@
 extends Line2D
 
-@export var max_points: int = 20
+@export var max_points: int = 200
 @export var tracker : Marker2D
 
 func _process(delta: float) -> void:

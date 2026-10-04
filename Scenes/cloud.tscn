@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://k1vaesaar1oy"]
+
+[ext_resource type="Texture2D" uid="uid://b835cv63tguvh" path="res://Art/clouds/Cloud 16.png" id="1_sm7h7"]
+
+[node name="cloud" type="Sprite2D" unique_id=1672289232]
+clip_children = 2
+texture_filter = 1
+texture = ExtResource("1_sm7h7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=360207817]
+offset_left = -131.0
+offset_top = -96.0
+offset_right = 123.0
+offset_bottom = 90.0
+color = Color(0, 0, 0, 1)

@@ -4,6 +4,10 @@ extends CharacterBody2D
 var length_inc = 40
 @export var dmg = 2
 
+var color_palette = [
+	Color("e7bb63"), Color.WHITE
+]
+
 func _ready():
 	#prevent further collision shapes to have same position
 	colshape.shape = colshape.shape.duplicate()
@@ -27,3 +31,6 @@ func _physics_process(delta: float) -> void:
 			collider.health_component.damage(dmg)
 		
 		queue_free()
+
+func change_color_palette(i):
+	$Sprite2D.modulate = color_palette[i]

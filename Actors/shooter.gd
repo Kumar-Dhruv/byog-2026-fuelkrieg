@@ -50,7 +50,17 @@ func _on_enemy_shoot_component_finished_shooting() -> void:
 	else:
 		enemy_plane.set_new_follow_path()
 
+@export var death_fx : PackedScene
 
 func _on_health_component_zero_health() -> void:
 	Loader.spawner.decrease_enemy_count()
+	
+	var d : Node2D = death_fx.instantiate()
+	get_tree().root.add_child(d)
+	d.start_explosion(enemy_plane.global_position,0, 1.5)
+	
 	get_parent().queue_free()
+
+
+func _on_despawn_despawn() -> void:
+	Loader.spawner.decrease_enemy_count()
