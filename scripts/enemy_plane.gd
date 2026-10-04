@@ -108,5 +108,7 @@ func _physics_process(delta: float) -> void:
 			collider.health_component.damage(body_damage)
 			#collider.invincible()
 			collided_with_player.emit()
+			
+			collider.collided_with_another_plane.emit()
 			health_component.damage(self_damage)
 		

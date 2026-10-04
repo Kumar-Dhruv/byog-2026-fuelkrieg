@@ -59,6 +59,7 @@ width_curve = SubResource("Curve_uc3hv")
 gradient = SubResource("Gradient_ijd3t")
 joint_mode = 2
 script = ExtResource("4_dg0q4")
+max_points = 400
 tracker = NodePath("../../Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1200305584]

@@ -3,7 +3,7 @@ extends ProgressBar
 
 
 var fill_style
-
+var play_sfx = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	fill_style = StyleBoxFlat.new()
@@ -16,14 +16,26 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if fuel_component.boost_is_out :
 		value = 0.0
+		if play_sfx:
+			AudioManager.stop("low fuel")
+		queue_free()
 	
 	else:
 		if fuel_component.boost_eject :
 			add_theme_stylebox_override("fill", fill_style)
-			value += 10 * delta
+			value -= 10 * delta
 			max_value = 100.0
+			$Label.visible = false
+			$Label2.visible = true
+			
+			if not play_sfx:
+				play_sfx = true
+				AudioManager.play("low fuel")
 		else : 
-			value = fuel_component.fuel_main.boost_fuel
+			value = max_value - fuel_component.fuel_main.boost_fuel
 		
-		if value == 100 and fuel_component.boost_eject:
+		if value == max_value - 100 and fuel_component.boost_eject:
+			if play_sfx:
+				AudioManager.stop("low fuel")
+				print("stopped")
 			fuel_component.destroy_boost()

@@ -11,6 +11,10 @@ var boost_destroy = false
 var gun_destroy = false
 var laser_destroy = false
 
+var body_destroed = false
+
+signal body_fuel_empty 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Loader.fuel_component = self
@@ -27,6 +31,11 @@ func _process(delta: float) -> void:
 	fuel_main.boost_fuel -= 0.2  *  delta
 	fuel_main.laser_fuel -= 0.2  *  delta
 	fuel_main.bullet_fuel -= 0.2  *  delta
+	
+	if fuel_main.body_fuel <= 0 and not body_destroed:
+		body_destroed = true
+		body_fuel_empty.emit()
+	
 
 func boost_fuel_val(delta = get_physics_process_delta_time()):
 	if player_plane.boost_state:

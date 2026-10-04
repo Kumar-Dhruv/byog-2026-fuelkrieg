@@ -4,8 +4,12 @@ var dmg = 1
 
 var color_palette = [
 	Color("483a20"),
+	Color("5c3761"),
 	Color.BLACK
 ]
+func _ready() -> void:
+	change_color_palette(Loader.current_palette)
+
 
 func _physics_process(delta: float) -> void:
 	var collided = move_and_slide()

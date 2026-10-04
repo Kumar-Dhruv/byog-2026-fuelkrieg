@@ -10,12 +10,14 @@ var move_dir : Vector2
 var dmg = 2
 
 var color_palette = [
-	Color("483a2081")
+	Color("483a2081"), Color("dd9ee464"),Color.BLACK
 ]
 
 func _ready() -> void:
 	move_dir = (player.global_position - global_position)
+	change_color_palette(Loader.current_palette)
 	
+
 
 
 
@@ -30,6 +32,7 @@ func _physics_process(delta: float) -> void:
 		
 		if collider is Player and not collider.is_invincible:
 			collider.health_component.damage(dmg)
+			collider.collided_with_another_plane.emit()
 		
 		_on_time_to_explode_timeout()
 	
@@ -46,7 +49,7 @@ func follow_player():
 func _on_time_to_explode_timeout() -> void:
 	var d : Node2D = death_fx.instantiate()
 	get_tree().root.add_child(d)
-	d.start_explosion(global_position, 50.0, 1)
+	d.start_explosion(global_position, 0.0, 1)
 	queue_free()
 
 func change_color_palette(i):

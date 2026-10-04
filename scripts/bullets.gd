@@ -8,7 +8,7 @@ var can_shoot : bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Loader.player_died.connect(disable)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,3 +31,6 @@ func shoot():
 	
 	await get_tree().create_timer(0.2).timeout
 	can_shoot = true
+	
+func disable():
+	can_shoot = false

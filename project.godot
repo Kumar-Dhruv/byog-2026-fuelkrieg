@@ -15,15 +15,21 @@ run/main_scene="uid://dsdb1ny846x1k"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://c61ysog4bawf2"
+
 [autoload]
 
 DebugDraw2D="*uid://d3nwgutr2evvr"
 Loader="*uid://621ms0o62iw"
+AudioManager="*uid://b31penr5703ei"
 
 [display]
 
+window/size/viewport_width=800
+window/size/mode=2
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 

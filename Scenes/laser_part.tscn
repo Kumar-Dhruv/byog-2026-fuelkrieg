@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfjrsrsikbvnt"]
 
 [ext_resource type="Script" uid="uid://bfxts1ugxw04t" path="res://scripts/laser_part.gd" id="1_qklsy"]
-[ext_resource type="Texture2D" uid="uid://dg32d8g80dnfo" path="res://icon.svg" id="2_h6n86"]
+[ext_resource type="Texture2D" uid="uid://74ajh5474n8m" path="res://Art/player/parts/laser_over_p_a.png" id="2_qklsy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sg31y"]
 radius = 64.84597
@@ -10,7 +10,10 @@ radius = 64.84597
 script = ExtResource("1_qklsy")
 
 [node name="Laser" type="Sprite2D" parent="." unique_id=991497776]
-texture = ExtResource("2_h6n86")
+visible = false
+texture_filter = 1
+position = Vector2(-55, 42)
+texture = ExtResource("2_qklsy")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=421587473]
 

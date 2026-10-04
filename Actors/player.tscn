@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7a725i32mltt" path="res://scripts/player.gd" id="1_6yncu"]
 [ext_resource type="PackedScene" uid="uid://c8b4tpi0vutm" path="res://Actors/player_plane.tscn" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://dti0nkuwnj1aj" path="res://scripts/camera.gd" id="2_cvnsp"]
+[ext_resource type="PackedScene" uid="uid://c5h6xuifowuvx" path="res://Scenes/death fx.tscn" id="2_rr1ak"]
 [ext_resource type="Script" uid="uid://civ7khx336yy2" path="res://scripts/bullets.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://cgo7sdcs8iwla" path="res://scripts/laser.gd" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="6_x3wgy"]
@@ -13,14 +14,44 @@
 [ext_resource type="PackedScene" uid="uid://j1omdggmfuo5" path="res://Scenes/gun_sprite.tscn" id="11_3sj5c"]
 [ext_resource type="PackedScene" uid="uid://cfjrsrsikbvnt" path="res://Scenes/laser_part.tscn" id="12_6yncu"]
 [ext_resource type="PackedScene" uid="uid://pw1khoi3nxk7" path="res://Scenes/player_plane_graphics.tscn" id="13_3sj5c"]
-[ext_resource type="Texture2D" uid="uid://mbxiwlpf6814" path="res://Art/clouds/Cloud 18.png" id="13_6yncu"]
+[ext_resource type="PackedScene" uid="uid://bfrooycwt4o2g" path="res://Scenes/sky.tscn" id="14_6yncu"]
+[ext_resource type="FontFile" uid="uid://dmp540r6gmfvx" path="res://Art/UI/upheavtt.ttf" id="16_3drua"]
+[ext_resource type="Script" uid="uid://bcq8pk5brlolr" path="res://scripts/health_bar.gd" id="16_tdpfr"]
+[ext_resource type="Script" uid="uid://dtjp6vu8xywkm" path="res://scripts/death_screen.gd" id="18_g3vyt"]
 
 [sub_resource type="Resource" id="Resource_67cu3"]
 script = ExtResource("8_f1ek2")
 metadata/_custom_type_script = "uid://cy18uhpbv5y7x"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rr1ak"]
+bg_color = Color(0.6, 0.6, 0.6, 0.61960787)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_nt4u1"]
+font = ExtResource("16_3drua")
+font_color = Color(0, 0, 0, 0.67058825)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8j8bx"]
+font = ExtResource("16_3drua")
+font_size = 50
+font_color = Color(0, 0, 0, 0.7764706)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tdpfr"]
+font = ExtResource("16_3drua")
+font_size = 112
+font_color = Color(0, 0, 0, 0.7764706)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3vyt"]
+font = ExtResource("16_3drua")
+font_size = 36
+font_color = Color(0, 0, 0, 0.7764706)
+
 [node name="Player" type="Node2D" unique_id=1087157977]
 script = ExtResource("1_6yncu")
+death_fx = ExtResource("2_rr1ak")
 
 [node name="PlayerPlane" parent="." unique_id=402383368 instance=ExtResource("1_v0iea")]
 texture_filter = 1
@@ -66,40 +97,19 @@ script = ExtResource("6_x3wgy")
 max_health = 10
 
 [node name="BoostSprite" parent="." unique_id=1167374107 node_paths=PackedStringArray("fuel_component", "health_component", "parts_manager") instance=ExtResource("10_6kbgh")]
-position = Vector2(0, 10)
-scale = Vector2(0.05, 0.05)
 fuel_component = NodePath("../FuelComponent")
 health_component = NodePath("../HealthComponent")
 parts_manager = NodePath("../PlayerPlaneGraphics")
 
 [node name="GunSprite" parent="." unique_id=89631178 node_paths=PackedStringArray("fuel_component", "health_component", "parts_manager") instance=ExtResource("11_3sj5c")]
-position = Vector2(0, -11.999999)
-scale = Vector2(0.05, 0.05)
 fuel_component = NodePath("../FuelComponent")
 health_component = NodePath("../HealthComponent")
 parts_manager = NodePath("../PlayerPlaneGraphics")
 
 [node name="LaserPart" parent="." unique_id=288216006 node_paths=PackedStringArray("fuel_component", "health_component", "parts_manager") instance=ExtResource("12_6yncu")]
-position = Vector2(10.999999, -5.9999995)
-scale = Vector2(0.05, 0.05)
 fuel_component = NodePath("../FuelComponent")
 health_component = NodePath("../HealthComponent")
 parts_manager = NodePath("../PlayerPlaneGraphics")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=256484270]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1552573047]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.95686275, 0.89411765, 0.7607843, 1)
-
-[node name="FuelUI" parent="CanvasLayer" unique_id=1520855357 instance=ExtResource("9_f1ek2")]
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="PlayerPlaneGraphics" parent="." unique_id=939736569 instance=ExtResource("13_3sj5c")]
 
@@ -107,19 +117,124 @@ size_flags_vertical = 3
 position = Vector2(27.705, -31)
 scale = Vector2(2.2222223, 2.2222223)
 
-[node name="Cloud1" type="Sprite2D" parent="." unique_id=952833339]
-modulate = Color(1, 1, 1, 0.27450982)
-clip_children = 2
-texture_filter = 1
-position = Vector2(553, 337)
-scale = Vector2(3, 3)
-texture = ExtResource("13_6yncu")
+[node name="sky" parent="." unique_id=1543013408 instance=ExtResource("14_6yncu")]
 
-[node name="ColorRect" type="ColorRect" parent="Cloud1" unique_id=1573368978]
-offset_left = -73.0
-offset_top = -42.0
-offset_right = 69.0
-offset_bottom = 46.0
-color = Color(0, 0, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=256484270]
+layer = -1
 
+[node name="FuelUI" parent="CanvasLayer" unique_id=1520855357 instance=ExtResource("9_f1ek2")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -91.999985
+offset_right = -159.0
+offset_bottom = -91.999985
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(2.5, 2.5)
+size_flags_horizontal = 3
+
+[node name="health bar" type="ProgressBar" parent="CanvasLayer" unique_id=1619885552 node_paths=PackedStringArray("health_component")]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(400, 0)
+offset_left = 29.0
+offset_top = 22.0
+offset_right = 33.0
+offset_bottom = 49.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_rr1ak")
+value = 91.2
+show_percentage = false
+script = ExtResource("16_tdpfr")
+health_component = NodePath("../../HealthComponent")
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=31192534]
+offset_left = 31.0
+offset_top = 49.0
+offset_right = 71.0
+offset_bottom = 82.0
+text = "HP
+"
+label_settings = SubResource("LabelSettings_nt4u1")
+
+[node name="death" type="Control" parent="CanvasLayer" unique_id=1528253699]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_g3vyt")
+
+[node name="Label" type="Label" parent="CanvasLayer/death" unique_id=1837296191]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -84.0
+offset_right = 114.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU DIED"
+label_settings = SubResource("LabelSettings_8j8bx")
+
+[node name="Label2" type="Label" parent="CanvasLayer/death" unique_id=1025447120]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -23.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "S"
+label_settings = SubResource("LabelSettings_tdpfr")
+
+[node name="Label3" type="Label" parent="CanvasLayer/death" unique_id=1741015108]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = 50.0
+offset_right = 17.0
+offset_bottom = 151.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1200"
+label_settings = SubResource("LabelSettings_g3vyt")
+
+[node name="Label4" type="Label" parent="CanvasLayer/death" unique_id=248532304]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = 114.0
+offset_right = 158.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press R to restart"
+label_settings = SubResource("LabelSettings_g3vyt")
+
+[connection signal="collided_with_another_plane" from="PlayerPlane" to="Camera" method="_on_player_plane_collided_with_another_plane"]
+[connection signal="body_fuel_empty" from="FuelComponent" to="PlayerPlane" method="_on_fuel_component_body_fuel_empty"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
+[connection signal="zero_health" from="HealthComponent" to="Camera" method="_on_health_component_zero_health"]

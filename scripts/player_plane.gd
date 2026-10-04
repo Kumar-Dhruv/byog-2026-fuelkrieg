@@ -9,9 +9,10 @@ class_name  Player
 @onready var health_component: Node2D = $"../HealthComponent"
 #@onready var sprite: Sprite2D = $PlaneBody
 
+signal collided_with_another_plane
 
 #var angular_acceleration = 1.0
-var turn_speed = 3.0
+var turn_speed = 4.5
 var acceleration = 150.0
 var max_acceleration = 300.0
 var accleration_modifier_when_turning = 1.5
@@ -23,11 +24,12 @@ var boost_state : bool = false
 var boost_speed = 500.0
 var can_boost : bool = true
 var blink_tween : Tween
+var stop_movement = false
 
 func _ready() -> void:
 	
 	Loader.player = self
-	
+	Loader.player_died.connect(disable)
 	global_rotation = plane_forward.angle_to(Vector2.UP)
 	plane_normal = plane_forward.rotated(PI/2)
 
@@ -44,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	#health label
 	$Label.text = str(health_component.Health)
 
-func handle_movement(stop_movement = false):
+func handle_movement():
 	if stop_movement:
 		return
 	
@@ -102,3 +104,13 @@ func _input(event: InputEvent) -> void:
 
 func invincible():
 	pass
+
+
+func disable():
+	stop_movement = true
+	velocity = Vector2.ZERO
+
+
+func _on_fuel_component_body_fuel_empty() -> void:
+	turn_speed *= 0.7
+	top_speed *= 0.5

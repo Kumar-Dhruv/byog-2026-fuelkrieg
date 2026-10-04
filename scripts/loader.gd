@@ -6,3 +6,7 @@ var fuel_component
 
 var palette_change_time = 1
 signal change_palette(i)
+signal player_died
+var current_palette = 0
+
+var score = 0.0

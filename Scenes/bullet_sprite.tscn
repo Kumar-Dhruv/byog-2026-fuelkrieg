@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://07h7eu3orf08" path="res://scripts/bullet_sprite.gd" id="1_ahgvk"]
 [ext_resource type="Script" uid="uid://cm5wfoiewjc4i" path="res://scripts/despawn.gd" id="2_b563u"]
 [ext_resource type="Texture2D" uid="uid://cq7rsuyyw8rt4" path="res://Art/ammo/bullet_a_op2.png" id="2_jag8v"]
+[ext_resource type="Texture2D" uid="uid://b5jxsca37fcbu" path="res://Art/player/still_a.png" id="4_jag8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg31y"]
-size = Vector2(947.8111, 47.98474)
+size = Vector2(116.65369, 23.218437)
 
 [node name="BulletSprite" type="CharacterBody2D" unique_id=1426669871]
 z_index = -1
@@ -14,7 +15,14 @@ collision_mask = 4
 script = ExtResource("1_ahgvk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1544349361]
-position = Vector2(-0.4999979, -78.5)
+position = Vector2(-14, -40)
+rotation = -3.1415925
+scale = Vector2(0.06857906, -0.6460387)
+shape = SubResource("RectangleShape2D_sg31y")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1439304420]
+position = Vector2(14, -40)
 rotation = -3.1415925
 scale = Vector2(0.06857906, -0.6460387)
 shape = SubResource("RectangleShape2D_sg31y")
@@ -27,13 +35,21 @@ enemy = NodePath("..")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1670805059]
 modulate = Color(0.90588236, 0.73333335, 0.3882353, 1)
+position = Vector2(0, 34.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=1826529138]
 texture_filter = 1
-position = Vector2(-28, -71)
+position = Vector2(-14, -71)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_jag8v")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Node2D" unique_id=546064415]
 texture_filter = 1
-position = Vector2(28, -71)
+position = Vector2(14, -71)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_jag8v")
+
+[node name="BodyStillA" type="Sprite2D" parent="." unique_id=217165722]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_jag8v")

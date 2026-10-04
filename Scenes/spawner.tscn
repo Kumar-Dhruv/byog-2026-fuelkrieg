@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://clxdsxc0fbjtr" path="res://Actors/kamikaze plane.tscn" id="2_2ydn3"]
 [ext_resource type="PackedScene" uid="uid://h5x5sv28gp4v" path="res://Actors/bullet_planes.tscn" id="3_f333s"]
 [ext_resource type="PackedScene" uid="uid://cba140p80h01b" path="res://Actors/missile_plane.tscn" id="4_t512v"]
+[ext_resource type="PackedScene" uid="uid://bd64053fn5i18" path="res://Actors/warship.tscn" id="5_f333s"]
 
 [node name="Spawner" type="Node2D" unique_id=896869821]
 script = ExtResource("1_2bop2")
 kamikaze = ExtResource("2_2ydn3")
 bullet = ExtResource("3_f333s")
 missile = ExtResource("4_t512v")
+warship = ExtResource("5_f333s")
 
 [node name="Timer" type="Timer" parent="." unique_id=413544507]
 wait_time = 45.0
@@ -20,9 +22,12 @@ autostart = true
 
 [node name="bullet" type="Timer" parent="." unique_id=1554854665]
 
+[node name="warship" type="Timer" parent="." unique_id=3372550]
+
 [node name="missile" type="Timer" parent="." unique_id=877918516]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="kamikaze" to="." method="_on_kamikaze_timeout"]
 [connection signal="timeout" from="bullet" to="." method="_on_bullet_timeout"]
+[connection signal="timeout" from="warship" to="." method="_on_warship_timeout"]
 [connection signal="timeout" from="missile" to="." method="_on_missile_timeout"]

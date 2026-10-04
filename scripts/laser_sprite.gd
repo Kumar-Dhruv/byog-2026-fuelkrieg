@@ -5,13 +5,14 @@ var length_inc = 40
 @export var dmg = 2
 
 var color_palette = [
-	Color("e7bb63"), Color.WHITE
+	Color("e7bb63"), Color("dd9ee4"),Color.WHITE
 ]
 
 func _ready():
 	#prevent further collision shapes to have same position
 	colshape.shape = colshape.shape.duplicate()
 	colshape.position.y = -(colshape.shape.size.y / 2.0)
+	change_color_palette(Loader.current_palette)
 
 func _physics_process(delta: float) -> void:
 	#resizing the sprite
