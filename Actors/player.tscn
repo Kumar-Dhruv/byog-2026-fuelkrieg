@@ -72,6 +72,7 @@ text = "10"
 [node name="FuelComponent" type="Node2D" parent="." unique_id=1474663744]
 script = ExtResource("7_8erm5")
 fuel_main = SubResource("Resource_67cu3")
+death_fx = ExtResource("2_rr1ak")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1611694088]
 position_smoothing_enabled = true
@@ -115,7 +116,7 @@ scale = Vector2(2.2222223, 2.2222223)
 [node name="sky" parent="." unique_id=1543013408 instance=ExtResource("14_6yncu")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=256484270]
-layer = -1
+layer = 5
 
 [node name="FuelUI" parent="CanvasLayer" unique_id=1520855357 instance=ExtResource("9_f1ek2")]
 anchors_preset = 6

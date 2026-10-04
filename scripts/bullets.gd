@@ -27,6 +27,8 @@ func shoot():
 		var facing_dir = Vector2.UP.rotated(player_plane.rotation)
 		bullet.Velocity = facing_dir * SPEED
 		
+		AudioManager.play("shoot")
+		
 		get_tree().current_scene.add_child(bullet)
 	
 	await get_tree().create_timer(0.2).timeout
