@@ -19,8 +19,10 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("laser"):
 		toggle_laser_turning.emit(true)
+		AudioManager.play("laser")
 	elif Input.is_action_just_released("laser"):
 		toggle_laser_turning.emit(false)
+		AudioManager.stop("laser")
 	
 	#update with player every frame
 	if laser != null :

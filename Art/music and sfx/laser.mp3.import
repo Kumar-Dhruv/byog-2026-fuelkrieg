@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cykpj42eotxrn"
+path="res://.godot/imported/laser.mp3-19f21edf704514c60a47c4407cee0da6.mp3str"
+
+[deps]
+
+source_file="res://Art/music and sfx/laser.mp3"
+dest_files=["res://.godot/imported/laser.mp3-19f21edf704514c60a47c4407cee0da6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

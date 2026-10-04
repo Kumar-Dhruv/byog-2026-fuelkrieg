@@ -15,13 +15,15 @@ var body_destroed = false
 
 signal body_fuel_empty 
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Loader.fuel_component = self
-	#fuel_main.body_fuel = 100.0
-	#fuel_main.boost_fuel = 100.0
-	#fuel_main.laser_fuel = 100.0
-	#fuel_main.bullet_fuel = 100.0
+	fuel_main.body_fuel = fuel_main.max_body_fuel
+	fuel_main.boost_fuel = fuel_main.max_boost_fuel
+	fuel_main.laser_fuel = fuel_main.max_laser_fuel
+	fuel_main.bullet_fuel = fuel_main.max_bullet_fuel
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,9 +70,20 @@ func laser_fuel_val(x):
 			fuel_main.body_fuel -= 20
 			laser_eject = true
 
+@export var death_fx : PackedScene
+
 func destroy_boost():
 	boost_destroy = true
+	var d : Node2D = death_fx.instantiate()
+	get_tree().root.add_child(d)
+	d.start_explosion(player_plane.global_position, 0, 1)
 func destroy_gun():
 	gun_destroy = true
+	var d : Node2D = death_fx.instantiate()
+	get_tree().root.add_child(d)
+	d.start_explosion(player_plane.global_position, 0, 1)
 func destroy_laser():
 	laser_destroy = true
+	var d : Node2D = death_fx.instantiate()
+	get_tree().root.add_child(d)
+	d.start_explosion(player_plane.global_position, 0, 1)

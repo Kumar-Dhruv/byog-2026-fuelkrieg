@@ -19,14 +19,14 @@ func _process(delta: float) -> void:
 	if fuel_component.gun_is_out :
 		if play_sfx:
 			AudioManager.stop("low fuel")
-			print("stopped")
+			print("not ejected")
 		queue_free()
 	
 	else:
 		
 		if fuel_component.bullet_eject:
 			add_theme_stylebox_override("fill", fill_style)
-			value -= 10 * delta
+			value -= 50 * delta
 			max_value = 100.0
 			$Label.visible = false
 			$Label2.visible = true
@@ -42,5 +42,6 @@ func _process(delta: float) -> void:
 		if value == max_value - 100 and fuel_component.bullet_eject:
 			if play_sfx:
 				AudioManager.stop("low fuel")
-				print("stopped")
+				print("not jeected")
 			fuel_component.destroy_gun()
+			queue_free()

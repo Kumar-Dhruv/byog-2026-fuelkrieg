@@ -10,7 +10,9 @@ extends Node
 # Dictionary mapping String IDs directly to AudioStream files
 @onready var sounds: Dictionary = {
 	"explosion" : preload("uid://cwapgsahw2yd2"),
-	"low fuel" : preload("uid://cn1sj58jh6w4d")
+	"low fuel" : preload("uid://cn1sj58jh6w4d"),
+	"laser" : preload("uid://cykpj42eotxrn"),
+	"shoot" : preload("uid://rf76key6yffx")
 }
 
 func play(id: String) -> void:
@@ -23,6 +25,9 @@ func play(id: String) -> void:
 	
 	var random_vol = randf_range(-volume_variance, volume_variance)
 	player.volume_db = base_volume + random_vol
+	
+	if id == "laser":
+		player.volume_db = -30.0
 	
 	var random_pitch = randf_range(-pitch_variance, pitch_variance)
 	player.pitch_scale = base_pitch + random_pitch

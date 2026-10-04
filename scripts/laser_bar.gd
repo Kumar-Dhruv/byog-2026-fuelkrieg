@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	else:
 		if fuel_component.laser_eject :
 			add_theme_stylebox_override("fill", fill_style)
-			value -= 10 * delta
+			value -= 50 * delta
 			max_value = 100.0
 			$Label.visible = false
 			$Label2.visible = true
@@ -40,3 +40,4 @@ func _process(delta: float) -> void:
 				AudioManager.stop("low fuel")
 				print("stopped")
 			fuel_component.destroy_laser()
+			queue_free()
