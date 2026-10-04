@@ -12,7 +12,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if fuel_component.gun_destroy : 
 		queue_free()
-		health_component.damage(3)
+		health_component.damage(10)
 	
 	if is_ejected:
 		velocity += get_gravity() * delta

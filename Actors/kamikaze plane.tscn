@@ -30,7 +30,7 @@ enemy_plane = NodePath("../enemy plane")
 collision_layer = 4
 collision_mask = 3
 path_generator = NodePath("../path generator")
-plane_speed = 250.0
+plane_speed = 400.0
 
 [node name="HealthComponent" type="Node2D" parent="enemy plane" unique_id=1842498036]
 script = ExtResource("3_vs058")

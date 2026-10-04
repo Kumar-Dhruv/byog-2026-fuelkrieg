@@ -1,7 +1,7 @@
 extends Node2D
 var bullet_sprite : PackedScene = preload("res://Scenes/bullet_sprite.tscn")
 @onready var player_plane: CharacterBody2D = $"../PlayerPlane"
-var SPEED = 800
+var SPEED = 1200
 var can_shoot : bool = true
 @onready var fuel_component = Loader.fuel_component
 

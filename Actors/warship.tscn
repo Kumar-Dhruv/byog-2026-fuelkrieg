@@ -80,7 +80,7 @@ color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1260108262]
 script = ExtResource("5_t1j1h")
-max_health = 3
+max_health = 50
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2004899424 node_paths=PackedStringArray("health_component") groups=["enemy"]]
 collision_layer = 4
@@ -108,9 +108,8 @@ position = Vector2(-11, -2)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_8j8bx")
 
-[node name="despawn" type="Node2D" parent="." unique_id=1424516743 node_paths=PackedStringArray("enemy")]
+[node name="despawn" type="Node2D" parent="." unique_id=1424516743]
 script = ExtResource("6_yx0oi")
-enemy = NodePath("")
 
 [connection signal="timeout" from="bullet timer" to="warship logic" method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="missile timer" to="warship logic" method="_on_missile_timer_timeout"]

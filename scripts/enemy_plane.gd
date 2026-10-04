@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	
 	plane_forward = plane_forward.rotated(rotation - plane_forward.angle() - PI/2)
 	
-	DebugDraw2D.arrow_vector(global_position, plane_forward * 50)
+	#	DebugDraw2D.arrow_vector(global_position, plane_forward * 50)
 	
 	if is_following_path:
 		follow_path()
@@ -68,7 +68,7 @@ func start_player_follow():
 
 func follow_player():
 	track_point = track_point.lerp(player.global_position, get_process_delta_time() * tracking)
-	DebugDraw2D.circle(track_point)
+	#DebugDraw2D.circle(track_point)
 	if global_position.distance_to(track_point) <= 2:
 		track_point = player.global_position
 	global_position += (track_point - global_position).normalized() * plane_speed * get_process_delta_time()

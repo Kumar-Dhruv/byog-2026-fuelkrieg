@@ -11,6 +11,7 @@ size = Vector2(17, 20)
 
 [node name="PlayerPlane" type="CharacterBody2D" unique_id=402383368]
 script = ExtResource("1_3egua")
+top_speed = 400.0
 acc_velo_graph = SubResource("Curve_3egua")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2036732075]

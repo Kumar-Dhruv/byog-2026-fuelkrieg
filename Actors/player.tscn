@@ -34,19 +34,14 @@ corner_radius_bottom_left = 6
 font = ExtResource("16_3drua")
 font_color = Color(0, 0, 0, 0.67058825)
 
-[sub_resource type="LabelSettings" id="LabelSettings_8j8bx"]
-font = ExtResource("16_3drua")
-font_size = 50
-font_color = Color(0, 0, 0, 0.7764706)
-
-[sub_resource type="LabelSettings" id="LabelSettings_tdpfr"]
-font = ExtResource("16_3drua")
-font_size = 112
-font_color = Color(0, 0, 0, 0.7764706)
-
 [sub_resource type="LabelSettings" id="LabelSettings_g3vyt"]
 font = ExtResource("16_3drua")
 font_size = 36
+font_color = Color(0, 0, 0, 0.7764706)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8j8bx"]
+font = ExtResource("16_3drua")
+font_size = 50
 font_color = Color(0, 0, 0, 0.7764706)
 
 [node name="Player" type="Node2D" unique_id=1087157977]
@@ -94,7 +89,7 @@ marker = NodePath("../PlayerPlaneGraphics/Marker2D")
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1110079462]
 script = ExtResource("6_x3wgy")
-max_health = 10
+max_health = 65
 
 [node name="BoostSprite" parent="." unique_id=1167374107 node_paths=PackedStringArray("fuel_component", "health_component", "parts_manager") instance=ExtResource("10_6kbgh")]
 fuel_component = NodePath("../FuelComponent")
@@ -175,6 +170,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("18_g3vyt")
 
+[node name="Label5" type="Label" parent="CanvasLayer/death" unique_id=515495477]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -17.0
+offset_right = -8.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCore:"
+label_settings = SubResource("LabelSettings_g3vyt")
+
 [node name="Label" type="Label" parent="CanvasLayer/death" unique_id=1837296191]
 layout_mode = 1
 anchors_preset = 8
@@ -191,29 +201,16 @@ grow_vertical = 2
 text = "YOU DIED"
 label_settings = SubResource("LabelSettings_8j8bx")
 
-[node name="Label2" type="Label" parent="CanvasLayer/death" unique_id=1025447120]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -23.0
-offset_bottom = 23.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "S"
-label_settings = SubResource("LabelSettings_tdpfr")
-
 [node name="Label3" type="Label" parent="CanvasLayer/death" unique_id=1741015108]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -17.0
-offset_top = 50.0
-offset_right = 17.0
-offset_bottom = 151.0
+offset_left = 58.0
+offset_top = -17.0
+offset_right = 92.0
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "1200"
@@ -226,9 +223,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -158.0
-offset_top = 114.0
+offset_top = 46.0
 offset_right = 158.0
-offset_bottom = 215.0
+offset_bottom = 147.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Press R to restart"
@@ -236,5 +233,6 @@ label_settings = SubResource("LabelSettings_g3vyt")
 
 [connection signal="collided_with_another_plane" from="PlayerPlane" to="Camera" method="_on_player_plane_collided_with_another_plane"]
 [connection signal="body_fuel_empty" from="FuelComponent" to="PlayerPlane" method="_on_fuel_component_body_fuel_empty"]
+[connection signal="toggle_laser_turning" from="Laser" to="PlayerPlane" method="_on_laser_toggle_laser_turning"]
 [connection signal="zero_health" from="HealthComponent" to="." method="_on_health_component_zero_health"]
 [connection signal="zero_health" from="HealthComponent" to="Camera" method="_on_health_component_zero_health"]

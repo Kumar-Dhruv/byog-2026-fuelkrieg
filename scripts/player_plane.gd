@@ -15,8 +15,8 @@ signal collided_with_another_plane
 var turn_speed = 4.5
 var acceleration = 150.0
 var max_acceleration = 300.0
-var accleration_modifier_when_turning = 1.5
-var brake_strength = 200.0
+var accleration_modifier_when_turning = 2.5
+var brake_strength = 650.0
 var gravity = 10.0
 var input_dir := Vector2(0, 0) # x = acc, y = rot
 var brake_dir : Vector2
@@ -34,10 +34,10 @@ func _ready() -> void:
 	plane_normal = plane_forward.rotated(PI/2)
 
 func _physics_process(delta: float) -> void:
-	DebugDraw2D.arrow_vector(global_position, plane_forward * 100, Color.RED)
-	DebugDraw2D.arrow_vector(global_position, plane_normal * 100, Color.BLUE)
-	
-	DebugDraw2D.arrow_vector(global_position, velocity, Color.YELLOW)
+	#DebugDraw2D.arrow_vector(global_position, plane_forward * 100, Color.RED)
+	#DebugDraw2D.arrow_vector(global_position, plane_normal * 100, Color.BLUE)
+	#
+	#DebugDraw2D.arrow_vector(global_position, velocity, Color.YELLOW)
 	
 	handle_movement()
 	
@@ -95,6 +95,7 @@ func handle_movement():
 
 func _input(event: InputEvent) -> void:
 	input_dir.x = Input.get_axis("ui_down", "ui_up")
+	input_dir.x = clampf(input_dir.x, 0, 1.0)
 	input_dir.y = Input.get_axis("ui_left", "ui_right")
 	
 	if event.is_action_pressed("boost") and can_boost:
@@ -114,3 +115,11 @@ func disable():
 func _on_fuel_component_body_fuel_empty() -> void:
 	turn_speed *= 0.7
 	top_speed *= 0.5
+
+var y = 4
+func _on_laser_toggle_laser_turning(x: Variant) -> void:
+	if x:
+		y = turn_speed
+		turn_speed = 0.7
+	else:
+		turn_speed = y

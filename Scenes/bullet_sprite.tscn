@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sg31y"]
 size = Vector2(116.65369, 23.218437)
 
-[node name="BulletSprite" type="CharacterBody2D" unique_id=1426669871]
+[node name="BulletSprite" type="CharacterBody2D" unique_id=1426669871 groups=["bullets"]]
 z_index = -1
 collision_layer = 2
 collision_mask = 4

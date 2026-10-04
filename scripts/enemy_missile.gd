@@ -16,9 +16,6 @@ var color_palette = [
 func _ready() -> void:
 	move_dir = (player.global_position - global_position)
 	change_color_palette(Loader.current_palette)
-	
-
-
 
 
 func _physics_process(delta: float) -> void:
