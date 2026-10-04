@@ -3,6 +3,9 @@ extends Line2D
 @export var max_points: int = 200
 @export var tracker : Marker2D
 
+func _ready() -> void:
+	clear_points()
+
 func _process(delta: float) -> void:
 	global_position = Vector2.ZERO # Since top_level is true
 	global_rotation = 0.0

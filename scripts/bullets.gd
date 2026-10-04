@@ -1,14 +1,14 @@
 extends Node2D
 var bullet_sprite : PackedScene = preload("res://Scenes/bullet_sprite.tscn")
 @onready var player_plane: CharacterBody2D = $"../PlayerPlane"
-var SPEED = 800
+var SPEED = 1200
 var can_shoot : bool = true
 @onready var fuel_component = Loader.fuel_component
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Loader.player_died.connect(disable)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,3 +31,6 @@ func shoot():
 	
 	await get_tree().create_timer(0.2).timeout
 	can_shoot = true
+	
+func disable():
+	can_shoot = false

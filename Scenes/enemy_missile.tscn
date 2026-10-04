@@ -17,7 +17,7 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_ijd3t"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.5176471)
 
-[node name="enemy missile" type="CharacterBody2D" unique_id=42663217]
+[node name="enemy missile" type="CharacterBody2D" unique_id=42663217 groups=["bullets"]]
 collision_layer = 8
 script = ExtResource("1_4ryg4")
 death_fx = ExtResource("2_uc3hv")
@@ -59,6 +59,7 @@ width_curve = SubResource("Curve_uc3hv")
 gradient = SubResource("Gradient_ijd3t")
 joint_mode = 2
 script = ExtResource("4_dg0q4")
+max_points = 400
 tracker = NodePath("../../Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1200305584]

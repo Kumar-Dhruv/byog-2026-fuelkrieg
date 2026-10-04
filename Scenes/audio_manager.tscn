@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b31penr5703ei"]
+
+[ext_resource type="Script" uid="uid://cymwefw77sk4o" path="res://scripts/audio_manager.gd" id="1_sm2tf"]
+[ext_resource type="AudioStream" uid="uid://q0wqhwisbnef" path="res://Art/music and sfx/WWWW.mp3" id="2_4tj6f"]
+
+[node name="AudioManager" type="Node" unique_id=1713001750]
+script = ExtResource("1_sm2tf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=156593723]
+stream = ExtResource("2_4tj6f")
+autoplay = true
+bus = &"Music"

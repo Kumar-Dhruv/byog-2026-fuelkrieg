@@ -190,7 +190,6 @@ offset_top = -138.0
 offset_right = 140.0
 offset_bottom = 151.0
 color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
-metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D4" type="Sprite2D" parent="parts" unique_id=1337842851]
 clip_children = 2
@@ -205,7 +204,6 @@ offset_top = -138.0
 offset_right = 140.0
 offset_bottom = 151.0
 color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
-metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D3" type="Sprite2D" parent="parts" unique_id=1401735458]
 clip_children = 2

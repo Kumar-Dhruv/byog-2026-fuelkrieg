@@ -27,11 +27,11 @@ size = Vector2(32, 53)
 collision_layer = 4
 collision_mask = 3
 path_generator = NodePath("../path generator")
+plane_speed = 300.0
 tracking_modifier = 0.25
 
 [node name="HealthComponent" type="Node2D" parent="enemy plane" unique_id=1167393325]
 script = ExtResource("5_hu16o")
-max_health = 3
 
 [node name="enemy plane graphics" type="Node2D" parent="enemy plane" unique_id=457906989]
 script = ExtResource("3_ylvyh")
@@ -74,7 +74,6 @@ default_color = Color(0.76171875, 0, 0, 1)
 gradient = SubResource("Gradient_yvraw")
 joint_mode = 2
 script = ExtResource("5_x12x3")
-max_points = 100
 tracker = NodePath("../../Marker2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy plane" unique_id=1965385341]

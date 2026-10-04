@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://c7fybbhu6ka7r"]
 
+[ext_resource type="Script" uid="uid://b2a8jhrsrf5uj" path="res://scripts/enemy_test_world.gd" id="1_0xt5t"]
 [ext_resource type="PackedScene" uid="uid://dfad5a3moxo6q" path="res://Scenes/spawner.tscn" id="2_37tse"]
 [ext_resource type="PackedScene" uid="uid://b63ul0dnxrj4a" path="res://Actors/player.tscn" id="2_i7kxl"]
 [ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="3_37tse"]
 
 [node name="enemy test world" type="Node2D" unique_id=891534995]
+script = ExtResource("1_0xt5t")
 
 [node name="Player" parent="." unique_id=1087157977 instance=ExtResource("2_i7kxl")]
 position = Vector2(2.62, 0)

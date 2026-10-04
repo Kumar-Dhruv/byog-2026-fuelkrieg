@@ -48,9 +48,12 @@ trail_section_subdivisions = 1
 process_material = SubResource("ParticleProcessMaterial_cv7bn")
 
 [node name="cloud spawner" parent="." unique_id=825755951 instance=ExtResource("6_i0xi1")]
+position = Vector2(-26, 16)
+scale = Vector2(0.775, 0.775)
 
 [node name="Arrows" type="Node2D" parent="." unique_id=207193225]
-position = Vector2(91, 70)
+position = Vector2(65, 85.99999)
+scale = Vector2(0.775, 0.775)
 
 [node name="UP" type="Sprite2D" parent="Arrows" unique_id=1628247584]
 texture_filter = 1
@@ -96,7 +99,8 @@ text = "- USE [color=#00F5FF]ARROWS[/color] TO MOVE"
 metadata/_edit_use_anchors_ = true
 
 [node name="Shoot" type="Node2D" parent="." unique_id=1734018097]
-position = Vector2(91, 148)
+position = Vector2(65, 164)
+scale = Vector2(0.775, 0.775)
 
 [node name="Q" type="Sprite2D" parent="Shoot" unique_id=1082995635]
 scale = Vector2(3, 3)
@@ -117,7 +121,8 @@ scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Laser" type="Node2D" parent="." unique_id=18311785]
-position = Vector2(91, 213)
+position = Vector2(65, 229)
+scale = Vector2(0.775, 0.775)
 
 [node name="E" type="Sprite2D" parent="Laser" unique_id=1795318067]
 scale = Vector2(3, 3)
@@ -138,7 +143,8 @@ scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Boost" type="Node2D" parent="." unique_id=2028648545]
-position = Vector2(91, 282)
+position = Vector2(65, 298)
+scale = Vector2(0.775, 0.775)
 
 [node name="W" type="Sprite2D" parent="Boost" unique_id=1862620142]
 scale = Vector2(3, 3)
@@ -159,7 +165,8 @@ scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Fuel" type="Node2D" parent="." unique_id=1676619183]
-position = Vector2(91, 356)
+position = Vector2(65, 372)
+scale = Vector2(0.775, 0.775)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fuel" unique_id=674058247]
 texture_filter = 1
@@ -190,9 +197,11 @@ scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Exit" type="Node2D" parent="." unique_id=2065009431]
-position = Vector2(1034, 39)
+position = Vector2(722, 45)
+scale = Vector2(0.775, 0.775)
 
 [node name="Esc" type="Sprite2D" parent="Exit" unique_id=51361842]
+texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("1_hl01w")
 region_enabled = true

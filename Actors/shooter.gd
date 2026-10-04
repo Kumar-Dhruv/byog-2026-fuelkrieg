@@ -58,7 +58,7 @@ func _on_health_component_zero_health() -> void:
 	var d : Node2D = death_fx.instantiate()
 	get_tree().root.add_child(d)
 	d.start_explosion(enemy_plane.global_position,0, 1.5)
-	
+	Loader.score += 150
 	get_parent().queue_free()
 
 

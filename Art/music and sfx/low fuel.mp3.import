@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cn1sj58jh6w4d"
+path="res://.godot/imported/low fuel.mp3-34eba9274806ad3076be179d2e182755.mp3str"
+
+[deps]
+
+source_file="res://Art/music and sfx/low fuel.mp3"
+dest_files=["res://.godot/imported/low fuel.mp3-34eba9274806ad3076be179d2e182755.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

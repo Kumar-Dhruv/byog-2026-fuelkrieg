@@ -1,136 +1,213 @@
 [gd_scene format=3 uid="uid://nsy7qnns5iwb"]
 
+[ext_resource type="Texture2D" uid="uid://dij31o7potf8" path="res://Art/UI/bullet.png" id="1_haoht"]
 [ext_resource type="Script" uid="uid://bdi4qq83va34q" path="res://scripts/boost_bar.gd" id="1_plwig"]
+[ext_resource type="Texture2D" uid="uid://b2b7crfsb3i8q" path="res://Art/UI/laser.png" id="2_pct7s"]
 [ext_resource type="Script" uid="uid://cv4ryqtib8gur" path="res://scripts/bullet_bar.gd" id="2_plwig"]
 [ext_resource type="Script" uid="uid://cqi2oyb6j0q0f" path="res://scripts/laser_bar.gd" id="3_hjuk4"]
+[ext_resource type="Texture2D" uid="uid://cw5401le6x4ka" path="res://Art/UI/boost.png" id="3_nhih6"]
 [ext_resource type="Script" uid="uid://dvddd1a6ie5di" path="res://scripts/body_bar.gd" id="4_me4qv"]
+[ext_resource type="FontFile" uid="uid://dmp540r6gmfvx" path="res://Art/UI/upheavtt.ttf" id="8_pct7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_haoht"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pct7s"]
+bg_color = Color(0, 0, 0, 0.49411765)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p7pbo"]
+load_path = "res://.godot/imported/body.png-f42aa1d92ae2a540c6d1bc60d55f2c4d.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_r3f7r"]
+font = ExtResource("8_pct7s")
+font_color = Color(0, 0, 0, 0.60784316)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pct7s"]
+font = ExtResource("8_pct7s")
+font_color = Color(0.91796875, 0, 0, 0.60784316)
 
 [node name="FuelUI" type="Control" unique_id=197737203]
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Body_bar" type="ProgressBar" parent="." unique_id=1707192733]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1081.0
-offset_top = 245.0
-offset_right = 1149.0
-offset_bottom = 272.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Body_bar" type="ProgressBar" parent="." unique_id=1707192733 node_paths=PackedStringArray("overlay")]
+layout_mode = 0
+offset_left = 19.0
+offset_right = 50.0
+offset_bottom = 19.0
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_haoht")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pct7s")
+fill_mode = 2
 show_percentage = false
 script = ExtResource("4_me4qv")
+overlay = NodePath("../ColorRect")
 
-[node name="Label" type="Label" parent="Body_bar" unique_id=1928761019]
+[node name="TextureRect" type="TextureRect" parent="Body_bar" unique_id=993910091]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "body"
+offset_left = -4.0
+offset_top = -10.0
+offset_right = 36.0
+offset_bottom = 30.0
+texture = SubResource("CompressedTexture2D_p7pbo")
+expand_mode = 1
 
 [node name="Bullet_bar" type="ProgressBar" parent="." unique_id=1845869404]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1081.0
-offset_top = 276.0
-offset_right = 1149.0
-offset_bottom = 303.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 19.0
+offset_top = 23.0
+offset_right = 51.0
+offset_bottom = 41.0
 size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_haoht")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pct7s")
+value = 29.01
+fill_mode = 2
 show_percentage = false
 script = ExtResource("2_plwig")
 
-[node name="Label" type="Label" parent="Bullet_bar" unique_id=1084997338]
+[node name="TextureRect2" type="TextureRect" parent="Bullet_bar" unique_id=1070142066]
+z_index = -1
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "bullet"
+offset_left = -4.0
+offset_top = -11.0
+offset_right = 36.0
+offset_bottom = 29.0
+texture = ExtResource("1_haoht")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Bullet_bar" unique_id=176519323]
+texture_filter = 1
+layout_mode = 0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 24.0
+text = "Q"
+label_settings = SubResource("LabelSettings_r3f7r")
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Bullet_bar" unique_id=1012989928]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 24.0
+text = "EJECT"
+label_settings = SubResource("LabelSettings_pct7s")
+horizontal_alignment = 2
 
 [node name="Laser_bar" type="ProgressBar" parent="." unique_id=922242333]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1081.0
-offset_top = 308.0
-offset_right = 1149.0
-offset_bottom = 335.5
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 19.0
+offset_top = 45.0
+offset_right = 51.0
+offset_bottom = 63.0
 size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_haoht")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pct7s")
+fill_mode = 2
 show_percentage = false
 script = ExtResource("3_hjuk4")
 
-[node name="Label" type="Label" parent="Laser_bar" unique_id=2038598162]
+[node name="TextureRect3" type="TextureRect" parent="Laser_bar" unique_id=414305786]
+z_index = -1
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "laser"
+offset_left = -4.0
+offset_top = -11.0
+offset_right = 36.0
+offset_bottom = 29.0
+texture = ExtResource("2_pct7s")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Laser_bar" unique_id=849128473]
+texture_filter = 1
+layout_mode = 0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 24.0
+text = "E"
+label_settings = SubResource("LabelSettings_r3f7r")
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Laser_bar" unique_id=906816887]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 24.0
+text = "EJECT"
+label_settings = SubResource("LabelSettings_pct7s")
+horizontal_alignment = 2
 
 [node name="Boost_bar" type="ProgressBar" parent="." unique_id=252304149]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 1081.0
-offset_top = 340.0
-offset_right = 1149.0
-offset_bottom = 367.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_left = 19.0
+offset_top = 67.0
+offset_right = 51.0
+offset_bottom = 85.0
+theme_override_styles/background = SubResource("StyleBoxFlat_haoht")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pct7s")
+fill_mode = 2
 show_percentage = false
 script = ExtResource("1_plwig")
 
-[node name="Label" type="Label" parent="Boost_bar" unique_id=513259942]
+[node name="TextureRect4" type="TextureRect" parent="Boost_bar" unique_id=902553265]
+z_index = -1
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "boost"
+offset_left = -4.0
+offset_top = -11.0
+offset_right = 36.0
+offset_bottom = 29.0
+texture = ExtResource("3_nhih6")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Boost_bar" unique_id=1663989604]
+texture_filter = 1
+layout_mode = 0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 24.0
+text = "w"
+label_settings = SubResource("LabelSettings_r3f7r")
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Boost_bar" unique_id=654813487]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = -4.0
+offset_bottom = 24.0
+text = "EJECT"
+label_settings = SubResource("LabelSettings_pct7s")
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="." unique_id=1621593196]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = -16.0
+offset_right = 57.0
+offset_bottom = 7.0
+text = "FUEL"
+label_settings = SubResource("LabelSettings_r3f7r")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=760455036]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -1.0
+offset_right = 52.0
+offset_bottom = 88.0
+color = Color(0.89411765, 0.7411765, 0.41568628, 0.18039216)

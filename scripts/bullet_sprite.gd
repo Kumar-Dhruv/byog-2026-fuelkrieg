@@ -5,8 +5,12 @@ var Velocity : Vector2 = Vector2.ZERO
 @export var dmg = 1
 
 var color_palette = [
-	Color("e7bb63"), Color.WHITE
+	Color("e7bb63"), Color("dd9ee4"),Color.WHITE
 ]
+
+func _ready() -> void:
+	change_color_palette(Loader.current_palette)
+
 
 func _physics_process(delta: float) -> void:
 	global_position += Velocity * delta

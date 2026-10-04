@@ -12,8 +12,8 @@ class_name PathGenerator
 
 @onready var player : CharacterBody2D = Loader.player
 
-func _process(delta: float) -> void:
-	DebugDraw2D.circle(player.global_position, max_radius)
+#func _process(delta: float) -> void:
+	#DebugDraw2D.circle(player.global_position, max_radius)
 
 func generate_curve_resource(start = enemy_plane.global_position) -> Curve2D:
 	var d = start.distance_to(player.global_position)

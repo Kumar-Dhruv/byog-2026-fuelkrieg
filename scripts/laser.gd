@@ -5,12 +5,22 @@ var laser = null
 @onready var fuel_component = Loader.fuel_component
 @export var marker : Marker2D
 
+signal toggle_laser_turning(x)
+
+func _ready() -> void:
+	Loader.player_died.connect(disable)
+
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("laser") :
 		shoot()
 		fuel_component.laser_fuel_val(15 * delta)
 	else :
 		stop_shooting()
+		
+	if Input.is_action_just_pressed("laser"):
+		toggle_laser_turning.emit(true)
+	elif Input.is_action_just_released("laser"):
+		toggle_laser_turning.emit(false)
 	
 	#update with player every frame
 	if laser != null :
@@ -29,3 +39,6 @@ func shoot():
 func stop_shooting():
 	if laser != null:
 		laser.queue_free()
+		
+func disable():
+	laser = null

@@ -8,10 +8,15 @@ var inner_trails_on = false
 # (overlay, shadow)
 var color_palette = [
 	[Color("e7bb6386"), Color("483a20")],
+	[Color("dd9ee464"), Color("291f48")],
 	[Color.TRANSPARENT, Color.BLACK],
 ]
 
 @onready var player : Player = Loader.player
+
+func _ready() -> void:
+	Loader.change_palette.connect(change_color_palette)
+	Loader.player_died.connect(disable)
 
 func _process(delta: float) -> void:
 	
@@ -45,11 +50,11 @@ func _process(delta: float) -> void:
 func change_color_palette(i):
 	var tween : Tween = create_tween()
 	tween.tween_property($parts/Sprite2D/overlay, "color", color_palette[i][0], Loader.palette_change_time)
-	tween.tween_property($parts/Sprite2D2/overlay, "color", color_palette[i][0], Loader.palette_change_time)
-	tween.tween_property($parts/Sprite2D3/overlay, "color", color_palette[i][0], Loader.palette_change_time)
-	tween.tween_property($parts/Sprite2D4/overlay, "color", color_palette[i][0], Loader.palette_change_time)
-	tween.tween_property($shadow/overlay, "color", color_palette[i][1], Loader.palette_change_time)
-	$GPUParticles2D.color = color_palette[i][0] 
+	tween.parallel().tween_property($parts/Sprite2D2/overlay, "color", color_palette[i][0], Loader.palette_change_time)
+	tween.parallel().tween_property($parts/Sprite2D4/overlay, "color", color_palette[i][0], Loader.palette_change_time)
+	tween.parallel().tween_property($parts/Sprite2D3/overlay, "color", color_palette[i][0], Loader.palette_change_time)
+	tween.parallel().tween_property($shadow/overlay, "color", color_palette[i][1], Loader.palette_change_time)
+	$GPUParticles2D.color = color_palette[i][1] 
 
 func toggle_outer_trails(x):
 	var tween : Tween = create_tween()
@@ -84,3 +89,7 @@ func remove_part(i):
 			$parts/Sprite2D2.visible = false
 		3:#laser
 			$parts/Sprite2D3.visible = false
+
+
+func disable():
+	visible = false

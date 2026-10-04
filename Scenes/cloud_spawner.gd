@@ -38,7 +38,7 @@ func spawn_cloud(is_initial: bool):
 	var cloud : Sprite2D = cloud_scene.instantiate()
 	cloud.texture = cloud_sprites.pick_random()
 	cloud.scale = Vector2(1, 1) * randi_range(2, 3.5)
-	cloud.modulate.a = [0.15, 0.25, 0.3].pick_random()
+	cloud.modulate.a = [0.25, 0.4, 0.5].pick_random()
 	
 	
 	var cam_pos = global_position

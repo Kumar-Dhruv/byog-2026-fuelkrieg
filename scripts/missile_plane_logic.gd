@@ -40,6 +40,7 @@ func _on_health_component_zero_health() -> void:
 		d.start_explosion(enemy_plane.global_position, 10.0, 2)
 		await get_tree().create_timer(0.2).timeout 
 	
+	Loader.score += 250
 	get_parent().queue_free()
 
 

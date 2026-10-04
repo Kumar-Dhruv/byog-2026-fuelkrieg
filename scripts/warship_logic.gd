@@ -82,3 +82,21 @@ func _on_bullet_timer_timeout() -> void:
 	
 	
 	bullet_timer.start()
+
+@export var death_fx : PackedScene
+
+func _on_health_component_zero_health() -> void:
+	Loader.spawner.decrease_enemy_count()
+	
+	for i in range(5):
+		var d : Node2D = death_fx.instantiate()
+		get_tree().root.add_child(d)
+		d.start_explosion(global_position, 50.0, 4)
+		await get_tree().create_timer(0.2).timeout 
+	
+	Loader.score += 500
+	get_parent().queue_free()
+
+
+func _on_despawn_despawn() -> void:
+	Loader.spawner.decrease_enemy_count() # Replace with function body.

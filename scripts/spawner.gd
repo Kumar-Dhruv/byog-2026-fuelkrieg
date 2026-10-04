@@ -3,6 +3,7 @@ class_name EnemySpawner
 @export var kamikaze : PackedScene
 @export var bullet : PackedScene
 @export var missile : PackedScene
+@export var warship : PackedScene
 
 var total_enemy_cap = 5
 @export var spawn_radius = 1000.0
@@ -11,8 +12,8 @@ var total_enemy_cap = 5
 var enemy_count = 0.0
 var in_late_game = false
 
-var early_game_spawn_rate = [5, 8, 15]
-var late_game_spawn_rate = [3, 7, 12]
+var early_game_spawn_rate = [5, 8, 15, 40]
+var late_game_spawn_rate = [3, 7, 12, 20]
 
 func _ready() -> void:
 	Loader.spawner = self
@@ -22,6 +23,9 @@ func _ready() -> void:
 	$bullet.start()
 	$missile.wait_time = early_game_spawn_rate[2]
 	$missile.start()
+	$warship.wait_time = early_game_spawn_rate[3]
+	$warship.start()
+	
 	
 
 func decrease_enemy_count():
@@ -36,6 +40,7 @@ func _on_timer_timeout() -> void:
 	$kamikaze.wait_time = late_game_spawn_rate[0]
 	$bullet.wait_time = late_game_spawn_rate[1]
 	$missile.wait_time = late_game_spawn_rate[2]
+	$warship.wait_time = late_game_spawn_rate[3]
 	total_enemy_cap += 2
 	print("late game")
 
@@ -61,3 +66,7 @@ func _on_bullet_timeout() -> void:
 
 func _on_missile_timeout() -> void:
 	spawn_plane(missile)
+
+
+func _on_warship_timeout() -> void:
+	spawn_plane(warship)

@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://bd64053fn5i18"]
 
 [ext_resource type="Script" uid="uid://b2as2eccw5icw" path="res://scripts/warship_logic.gd" id="1_fcxi3"]
-[ext_resource type="Texture2D" uid="uid://dg32d8g80dnfo" path="res://icon.svg" id="1_s0xty"]
+[ext_resource type="PackedScene" uid="uid://c5h6xuifowuvx" path="res://Scenes/death fx.tscn" id="2_tvbpx"]
 [ext_resource type="PackedScene" uid="uid://imynxh12ifwj" path="res://Scenes/enemy_shoot_component.tscn" id="3_va2wd"]
+[ext_resource type="Script" uid="uid://b6kia0d7ckl76" path="res://Actors/enemy_plane_graphics.gd" id="3_yx0oi"]
+[ext_resource type="Texture2D" uid="uid://e75bts1n2o15" path="res://Art/4warship/blimp ref.png" id="4_k2q5f"]
+[ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="5_t1j1h"]
+[ext_resource type="Script" uid="uid://cm5wfoiewjc4i" path="res://scripts/despawn.gd" id="6_yx0oi"]
+[ext_resource type="Script" uid="uid://d5buad7qn704" path="res://scripts/warship bullet collisions.gd" id="7_cw5v5"]
+[ext_resource type="Script" uid="uid://capuyblpsddqp" path="res://scripts/warship collisions.gd" id="7_k2q5f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8j8bx"]
+radius = 160.0
+height = 626.0
 
 [node name="warship" type="Node2D" unique_id=105833457]
 
@@ -14,22 +24,19 @@ bullet_shooter = NodePath("../bullet")
 missile_shooter = NodePath("../missile")
 bullet_timer = NodePath("../bullet timer")
 missile_timer = NodePath("../missile timer")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=583600095]
-scale = Vector2(3.59375, 1.4453125)
-texture = ExtResource("1_s0xty")
+death_fx = ExtResource("2_tvbpx")
 
 [node name="d1" type="Marker2D" parent="." unique_id=339715995]
-position = Vector2(132, 91)
+position = Vector2(186, 195)
 
 [node name="d2" type="Marker2D" parent="." unique_id=2044889907]
-position = Vector2(-114, 90)
+position = Vector2(-161, 155)
 
 [node name="u1" type="Marker2D" parent="." unique_id=1214757911]
-position = Vector2(107, -88)
+position = Vector2(183, -193)
 
 [node name="u2" type="Marker2D" parent="." unique_id=1131521541]
-position = Vector2(-118, -90)
+position = Vector2(-159, -157)
 
 [node name="bullet" parent="." unique_id=331890768 instance=ExtResource("3_va2wd")]
 
@@ -41,5 +48,71 @@ wait_time = 5.0
 [node name="missile timer" type="Timer" parent="." unique_id=1450525769]
 wait_time = 7.0
 
+[node name="enemy plane graphics" type="Node2D" parent="." unique_id=37926828]
+script = ExtResource("3_yx0oi")
+
+[node name="shadow" type="Sprite2D" parent="enemy plane graphics" unique_id=1541101262]
+clip_children = 2
+texture_filter = 1
+position = Vector2(0, 4)
+scale = Vector2(2, 2)
+texture = ExtResource("4_k2q5f")
+
+[node name="overlay" type="ColorRect" parent="enemy plane graphics/shadow" unique_id=496167641]
+offset_left = -173.0
+offset_top = -138.0
+offset_right = 172.0
+offset_bottom = 151.0
+color = Color(0.28125, 0.22888184, 0.12414551, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy plane graphics" unique_id=450632457]
+clip_children = 2
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_k2q5f")
+
+[node name="overlay" type="ColorRect" parent="enemy plane graphics/Sprite2D" unique_id=1790183072]
+offset_left = -212.0
+offset_top = -138.0
+offset_right = 210.66669
+offset_bottom = 151.0
+color = Color(0.90625, 0.733968, 0.3894043, 0.5254902)
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=1260108262]
+script = ExtResource("5_t1j1h")
+max_health = 50
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2004899424 node_paths=PackedStringArray("health_component") groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("7_k2q5f")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=822193053]
+light_mask = 2
+visibility_layer = 5
+position = Vector2(-11, -2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8j8bx")
+
+[node name="StaticBody" type="StaticBody2D" parent="." unique_id=1701624663 node_paths=PackedStringArray("health_component") groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("7_cw5v5")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody" unique_id=1512254740]
+light_mask = 2
+visibility_layer = 5
+position = Vector2(-11, -2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_8j8bx")
+
+[node name="despawn" type="Node2D" parent="." unique_id=1424516743]
+script = ExtResource("6_yx0oi")
+
 [connection signal="timeout" from="bullet timer" to="warship logic" method="_on_bullet_timer_timeout"]
 [connection signal="timeout" from="missile timer" to="warship logic" method="_on_missile_timer_timeout"]
+[connection signal="zero_health" from="HealthComponent" to="warship logic" method="_on_health_component_zero_health"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="despawn" from="despawn" to="warship logic" method="_on_despawn_despawn"]

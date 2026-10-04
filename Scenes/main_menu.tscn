@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://by1e1qu0xqhpv" path="res://scripts/play_button.gd" id="3_n45e2"]
 [ext_resource type="Texture2D" uid="uid://dd2dkuv8rwqmq" path="res://Art/MenuUI/Cursors_v2/Light/Hands/Hand2.png" id="4_opfnp"]
 [ext_resource type="Script" uid="uid://dn1xrusaw5adj" path="res://scripts/help_button.gd" id="5_n45e2"]
+[ext_resource type="Texture2D" uid="uid://w4h8cdmcnbe1" path="res://Art/name.png" id="8_yhxw7"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_67cu3"]
 particle_flag_disable_z = true
@@ -65,10 +66,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -105.0
+offset_top = 74.0
+offset_right = 105.0
+offset_bottom = 194.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -120,6 +121,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_sg31y")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1043242658]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = -32.0
+offset_right = 240.0
+offset_bottom = 448.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("8_yhxw7")
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]

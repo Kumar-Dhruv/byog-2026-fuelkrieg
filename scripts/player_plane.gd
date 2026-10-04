@@ -9,13 +9,14 @@ class_name  Player
 @onready var health_component: Node2D = $"../HealthComponent"
 #@onready var sprite: Sprite2D = $PlaneBody
 
+signal collided_with_another_plane
 
 #var angular_acceleration = 1.0
-var turn_speed = 3.0
+var turn_speed = 4.5
 var acceleration = 150.0
 var max_acceleration = 300.0
-var accleration_modifier_when_turning = 1.5
-var brake_strength = 200.0
+var accleration_modifier_when_turning = 2.5
+var brake_strength = 650.0
 var gravity = 10.0
 var input_dir := Vector2(0, 0) # x = acc, y = rot
 var brake_dir : Vector2
@@ -23,19 +24,20 @@ var boost_state : bool = false
 var boost_speed = 500.0
 var can_boost : bool = true
 var blink_tween : Tween
+var stop_movement = false
 
 func _ready() -> void:
 	
 	Loader.player = self
-	
+	Loader.player_died.connect(disable)
 	global_rotation = plane_forward.angle_to(Vector2.UP)
 	plane_normal = plane_forward.rotated(PI/2)
 
 func _physics_process(delta: float) -> void:
-	DebugDraw2D.arrow_vector(global_position, plane_forward * 100, Color.RED)
-	DebugDraw2D.arrow_vector(global_position, plane_normal * 100, Color.BLUE)
-	
-	DebugDraw2D.arrow_vector(global_position, velocity, Color.YELLOW)
+	#DebugDraw2D.arrow_vector(global_position, plane_forward * 100, Color.RED)
+	#DebugDraw2D.arrow_vector(global_position, plane_normal * 100, Color.BLUE)
+	#
+	#DebugDraw2D.arrow_vector(global_position, velocity, Color.YELLOW)
 	
 	handle_movement()
 	
@@ -44,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	#health label
 	$Label.text = str(health_component.Health)
 
-func handle_movement(stop_movement = false):
+func handle_movement():
 	if stop_movement:
 		return
 	
@@ -93,6 +95,7 @@ func handle_movement(stop_movement = false):
 
 func _input(event: InputEvent) -> void:
 	input_dir.x = Input.get_axis("ui_down", "ui_up")
+	input_dir.x = clampf(input_dir.x, 0, 1.0)
 	input_dir.y = Input.get_axis("ui_left", "ui_right")
 	
 	if event.is_action_pressed("boost") and can_boost:
@@ -102,3 +105,21 @@ func _input(event: InputEvent) -> void:
 
 func invincible():
 	pass
+
+
+func disable():
+	stop_movement = true
+	velocity = Vector2.ZERO
+
+
+func _on_fuel_component_body_fuel_empty() -> void:
+	turn_speed *= 0.7
+	top_speed *= 0.5
+
+var y = 4
+func _on_laser_toggle_laser_turning(x: Variant) -> void:
+	if x:
+		y = turn_speed
+		turn_speed = 0.7
+	else:
+		turn_speed = y
