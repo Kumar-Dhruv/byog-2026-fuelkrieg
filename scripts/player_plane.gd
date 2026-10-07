@@ -96,7 +96,7 @@ func handle_movement():
 func _input(event: InputEvent) -> void:
 	input_dir.x = Input.get_axis("ui_down", "ui_up")
 	input_dir.x = clampf(input_dir.x, 0, 1.0)
-	input_dir.y = Input.get_axis("ui_left", "ui_right")
+	input_dir.y = (Input.get_axis("ui_left", "ui_right"))
 	
 	if event.is_action_pressed("boost") and can_boost:
 		boost_state = true

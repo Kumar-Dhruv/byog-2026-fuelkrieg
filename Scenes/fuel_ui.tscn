@@ -26,6 +26,9 @@ font_color = Color(0, 0, 0, 0.60784316)
 font = ExtResource("8_pct7s")
 font_color = Color(0.91796875, 0, 0, 0.60784316)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pct7s"]
+size = Vector2(28.56, 19.09)
+
 [node name="FuelUI" type="Control" unique_id=197737203]
 layout_mode = 3
 anchors_preset = 0
@@ -44,8 +47,9 @@ script = ExtResource("4_me4qv")
 overlay = NodePath("../ColorRect")
 
 [node name="TextureRect" type="TextureRect" parent="Body_bar" unique_id=993910091]
+z_index = -1
 texture_filter = 1
-layout_mode = 1
+layout_mode = 0
 offset_left = -4.0
 offset_top = -10.0
 offset_right = 36.0
@@ -79,6 +83,7 @@ texture = ExtResource("1_haoht")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Bullet_bar" unique_id=176519323]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -52.0
@@ -100,6 +105,11 @@ offset_bottom = 24.0
 text = "EJECT"
 label_settings = SubResource("LabelSettings_pct7s")
 horizontal_alignment = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Bullet_bar" unique_id=728612261]
+position = Vector2(16, 10)
+shape = SubResource("RectangleShape2D_pct7s")
+action = "shoot"
 
 [node name="Laser_bar" type="ProgressBar" parent="." unique_id=922242333]
 layout_mode = 1
@@ -126,6 +136,7 @@ texture = ExtResource("2_pct7s")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Laser_bar" unique_id=849128473]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -52.0
@@ -147,6 +158,11 @@ offset_bottom = 24.0
 text = "EJECT"
 label_settings = SubResource("LabelSettings_pct7s")
 horizontal_alignment = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Laser_bar" unique_id=1925406074]
+position = Vector2(16, 10)
+shape = SubResource("RectangleShape2D_pct7s")
+action = "laser"
 
 [node name="Boost_bar" type="ProgressBar" parent="." unique_id=252304149]
 layout_mode = 1
@@ -172,6 +188,7 @@ texture = ExtResource("3_nhih6")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Boost_bar" unique_id=1663989604]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = -52.0
@@ -193,6 +210,11 @@ offset_bottom = 24.0
 text = "EJECT"
 label_settings = SubResource("LabelSettings_pct7s")
 horizontal_alignment = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Boost_bar" unique_id=435254183]
+position = Vector2(16, 10)
+shape = SubResource("RectangleShape2D_pct7s")
+action = "boost"
 
 [node name="Label4" type="Label" parent="." unique_id=1621593196]
 texture_filter = 1

@@ -21,6 +21,12 @@ gravity = Vector3(0, 0, 0)
 scale_max = 2.0
 color = Color(1, 0.8823829, 0.86183965, 0.9480001)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt4u1"]
+size = Vector2(103.005, 47.335)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhxw7"]
+size = Vector2(207.555, 47.335)
+
 [sub_resource type="Gradient" id="Gradient_67cu3"]
 colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0.84300005)
 
@@ -93,6 +99,10 @@ rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_opfnp")
 
+[node name="TouchScreenButton" type="TouchScreenButton" parent="VBoxContainer/Play" unique_id=1311987974]
+position = Vector2(53, 23)
+shape = SubResource("RectangleShape2D_nt4u1")
+
 [node name="Help" type="TextureButton" parent="VBoxContainer" unique_id=1191736589]
 texture_filter = 1
 custom_minimum_size = Vector2(210, 50)
@@ -110,6 +120,10 @@ position = Vector2(-18, 25)
 rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_opfnp")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="VBoxContainer/Help" unique_id=669400825]
+position = Vector2(105, 26)
+shape = SubResource("RectangleShape2D_yhxw7")
 
 [node name="ColorRect2" type="TextureRect" parent="." unique_id=1664109780]
 modulate = Color(0.061369143, 0.06136909, 0.06136907, 0.467)
@@ -136,4 +150,6 @@ mouse_filter = 2
 texture = ExtResource("8_yhxw7")
 
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Play/TouchScreenButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="VBoxContainer/Help/TouchScreenButton" to="." method="_on_help_pressed"]
