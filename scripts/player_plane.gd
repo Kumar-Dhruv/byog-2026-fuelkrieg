@@ -39,8 +39,8 @@ func _physics_process(delta: float) -> void:
 	#
 	#DebugDraw2D.arrow_vector(global_position, velocity, Color.YELLOW)
 	
-	handle_movement()
 	
+	handle_movement()
 	move_and_slide()
 	
 	#health label
@@ -86,14 +86,15 @@ func handle_movement():
 			velocity += plane_forward * input_dir.x * (acceleration if (!input_dir.y) else acceleration * accleration_modifier_when_turning) * get_physics_process_delta_time()
 			brake_dir = Vector2.ZERO
 			
-		elif velocity.length() >= 0.0:
+		elif velocity.length_squared() >= 0.0:
 			
 			brake_dir = -velocity.normalized()
 			velocity += brake_dir * brake_strength * get_physics_process_delta_time()
 			
 		
-		if velocity.length() >= top_speed:
-			velocity = velocity.normalized() * top_speed
+		velocity = velocity.limit_length(top_speed)
+		#if velocity.length() >= top_speed:
+			#velocity = velocity.normalized() * top_speed
 		
 		
 		#velocity += plane_normal * (-input_dir.y) * angular_acceleration * get_physics_process_delta_time()
