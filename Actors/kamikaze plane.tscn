@@ -30,11 +30,13 @@ enemy_plane = NodePath("../enemy plane")
 collision_layer = 4
 collision_mask = 3
 path_generator = NodePath("../path generator")
-plane_speed = 400.0
+plane_speed = 300.0
+tracking_modifier = 0.35
+body_damage = 5
 
 [node name="HealthComponent" type="Node2D" parent="enemy plane" unique_id=1842498036]
 script = ExtResource("3_vs058")
-max_health = 2
+max_health = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy plane" unique_id=1383405024]
 position = Vector2(-1, 3)

@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 var initial_dir : Vector2
 var move_dir : Vector2 
-var dmg = 2
+var dmg = 7
 
 var color_palette = [
 	Color("483a2081"), Color("dd9ee464"),Color.BLACK
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 func follow_player():
 	var player_dir = (player.global_position - global_position).normalized()
 	
-	if abs(player_dir.angle_to(move_dir)) <= PI/2:
+	if abs(player_dir.angle_to(move_dir)) <= (PI/2 - deg_to_rad(10)):
 		move_dir = move_dir.lerp(player_dir, get_physics_process_delta_time() * track_speed).normalized()
 	velocity = move_dir * missile_speed
 	rotation = move_dir.angle() + PI/2

@@ -42,7 +42,7 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("5_y6mt3")
 path_generator = NodePath("../path generator")
-plane_speed = 250.0
+plane_speed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plane" unique_id=1899064819]
 position = Vector2(-0.5, 11)
@@ -50,7 +50,7 @@ shape = SubResource("RectangleShape2D_buexf")
 
 [node name="HealthComponent" type="Node2D" parent="plane" unique_id=1246463600]
 script = ExtResource("6_l8map")
-max_health = 45
+max_health = 15
 
 [node name="enemy plane graphics" type="Node2D" parent="plane" unique_id=731919998]
 script = ExtResource("6_8y2mj")

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8b4tpi0vutm" path="res://Actors/player_plane.tscn" id="1_v0iea"]
 [ext_resource type="Script" uid="uid://dti0nkuwnj1aj" path="res://scripts/camera.gd" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://c5h6xuifowuvx" path="res://Scenes/death fx.tscn" id="2_rr1ak"]
+[ext_resource type="Script" uid="uid://br02mh06oubdt" path="res://scripts/player_plane.gd" id="4_qbwnc"]
 [ext_resource type="Script" uid="uid://civ7khx336yy2" path="res://scripts/bullets.gd" id="4_vgqql"]
 [ext_resource type="Script" uid="uid://cgo7sdcs8iwla" path="res://scripts/laser.gd" id="5_fkybt"]
 [ext_resource type="Script" uid="uid://cqhkhvjdiwj7j" path="res://scripts/health_component.gd" id="6_x3wgy"]
@@ -60,6 +61,7 @@ death_fx = ExtResource("2_rr1ak")
 [node name="PlayerPlane" parent="." unique_id=402383368 instance=ExtResource("1_v0iea")]
 texture_filter = 1
 collision_mask = 12
+script = ExtResource("4_qbwnc")
 
 [node name="Label" type="Label" parent="PlayerPlane" unique_id=729183776]
 visible = false
@@ -122,8 +124,6 @@ parts_manager = NodePath("../PlayerPlaneGraphics")
 position = Vector2(27.705, -31)
 scale = Vector2(2.2222223, 2.2222223)
 
-[node name="sky" parent="." unique_id=1543013408 instance=ExtResource("14_6yncu")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=256484270]
 layer = 5
 
@@ -135,6 +135,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("15_qbwnc")
+
+[node name="sky" parent="CanvasLayer/MarginContainer" unique_id=1543013408 instance=ExtResource("14_6yncu")]
 
 [node name="Control" type="Control" parent="CanvasLayer/MarginContainer" unique_id=1882079064]
 layout_mode = 2

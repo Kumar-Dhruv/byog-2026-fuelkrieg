@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		else : 
 			value = max_value - fuel_component.fuel_main.boost_fuel
 		
-		if value == max_value - 100 and fuel_component.boost_eject:
+		if value <= max_value - 100 and fuel_component.boost_eject:
 			if play_sfx:
 				AudioManager.stop("low fuel")
 			fuel_component.destroy_boost()
