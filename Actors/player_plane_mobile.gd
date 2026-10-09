@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name  Player
+#class_name Player
 @export var top_speed = 200.0
 @export var acc_velo_graph : Curve
 @export var is_invincible : bool = false
@@ -14,8 +14,9 @@ signal collided_with_another_plane
 #var angular_acceleration = 1.0
 var turn_speed = 4.5
 var acceleration = 150.0
-var max_acceleration = 300.0
+var max_acceleration = 2000.0
 var accleration_modifier_when_turning = 2.5
+var acc_dir : Vector2 = Vector2.ZERO
 var brake_strength = 650.0
 var gravity = 10.0
 var input_dir := Vector2(0, 0) # x = acc, y = rot
@@ -25,6 +26,10 @@ var boost_speed = 500.0
 var can_boost : bool = true
 var blink_tween : Tween
 var stop_movement = false
+
+
+
+const ROTATION_THRESHOLD = 10.0
 
 func _ready() -> void:
 	
@@ -39,8 +44,8 @@ func _physics_process(delta: float) -> void:
 	#
 	#DebugDraw2D.arrow_vector(global_position, velocity, Color.YELLOW)
 	
-	
 	handle_movement()
+	
 	move_and_slide()
 	
 	#health label
@@ -49,20 +54,30 @@ func _physics_process(delta: float) -> void:
 func handle_movement():
 	if stop_movement:
 		return
-	
-	global_rotation = -plane_forward.angle_to(Vector2.UP)
-	plane_normal = plane_forward.rotated(PI/2)
-	
-	#adding
-	var t = turn_speed
-	if not boost_state:
-		if input_dir.x <= 0:
-			t *= 1.35
-	else:
-		t *= 0.35
-	plane_forward = plane_forward.rotated((input_dir.y) * t * get_physics_process_delta_time())
-	
+		
 	acceleration = max_acceleration * acc_velo_graph.sample(velocity.length() / top_speed)
+	
+	if acc_dir != Vector2.ZERO:
+		acc_dir = acc_dir.slerp(Vector2(input_dir.y, -input_dir.x), turn_speed * get_physics_process_delta_time())
+	else:
+		acc_dir = Vector2(input_dir.y, -input_dir.x).normalized()
+	DebugDraw2D.arrow_vector(global_position, acc_dir * 50)
+	
+	
+	
+	#global_rotation = -plane_forward.angle_to(Vector2.UP)
+	#plane_normal = plane_forward.rotated(PI/2)
+	#
+	##adding
+	#var t = turn_speed
+	#if not boost_state:
+		#if input_dir.x <= 0:
+			#t *= 1.35
+	#else:
+		#t *= 0.35
+	#plane_forward = plane_forward.rotated((input_dir.y) * t * get_physics_process_delta_time())
+	
+	
 	#print(acceleration)
 	
 	if boost_state and can_boost:
@@ -70,29 +85,40 @@ func handle_movement():
 		var target_speed = move_toward(velocity.length(), boost_speed, 600.0 * get_physics_process_delta_time())
 		if target_speed < top_speed: 
 			target_speed = boost_speed # Ensure immediate high speed if starting from rest
-			
-		# 2. Get current flight direction
+			#
+		## 2. Get current flight direction
 		var flight_dir = velocity.normalized() if velocity.length() > 0 else plane_forward
-		
-		# 3. Smoothly rotate flight_dir toward plane_forward along an arc (preserves turning momentum)
+		#
+		## 3. Smoothly rotate flight_dir toward plane_forward along an arc (preserves turning momentum)
 		var arc_dir = flight_dir.slerp(plane_forward,4.0 * get_physics_process_delta_time()).normalized()
 		
 		# 4. Set velocity maintaining locked boost speed with smooth turning
 		velocity = arc_dir * target_speed
-	
-	else :
-		# linear
-		if input_dir.x != 0.0:
-			velocity += plane_forward * input_dir.x * (acceleration if (!input_dir.y) else acceleration * accleration_modifier_when_turning) * get_physics_process_delta_time()
+	#
+	else:
+		if Vector2(input_dir.y, -input_dir.x) != Vector2.ZERO:
+			velocity += acc_dir * acceleration * get_physics_process_delta_time()
 			brake_dir = Vector2.ZERO
-			
-		elif velocity.length_squared() >= 0.0:
-			
+		else:
 			brake_dir = -velocity.normalized()
 			velocity += brake_dir * brake_strength * get_physics_process_delta_time()
-			
 		
-		velocity = velocity.limit_length(top_speed)
+		if velocity.length_squared() > ROTATION_THRESHOLD * ROTATION_THRESHOLD:
+			global_rotation = -velocity.angle_to(Vector2.UP)
+			
+		if velocity.length() >= top_speed:
+			velocity = velocity.normalized() * top_speed
+		## linear
+		#if input_dir.x != 0.0:
+			#velocity += plane_forward * input_dir.x * (acceleration if (!input_dir.y) else acceleration * accleration_modifier_when_turning) * get_physics_process_delta_time()
+			#brake_dir = Vector2.ZERO
+			#
+		#elif velocity.length() >= 0.0:
+			#
+			#brake_dir = -velocity.normalized()
+			#velocity += brake_dir * brake_strength * get_physics_process_delta_time()
+			#
+		#
 		#if velocity.length() >= top_speed:
 			#velocity = velocity.normalized() * top_speed
 		
@@ -102,7 +128,7 @@ func handle_movement():
 
 func _input(event: InputEvent) -> void:
 	input_dir.x = Input.get_axis("ui_down", "ui_up")
-	input_dir.x = clampf(input_dir.x, 0, 1.0)
+	#input_dir.x = clampf(input_dir.x, 0, 1.0)
 	input_dir.y = (Input.get_axis("ui_left", "ui_right"))
 	
 	if event.is_action_pressed("boost") and can_boost:
