@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://dturux8um6xt6" path="res://scripts/how_to_play.gd" id="1_7d32w"]
 [ext_resource type="Texture2D" uid="uid://ban8ahdg40u5c" path="res://Art/HowToPlay/Controllers and Keyboard/Controllers and Keyboard/kb_dark_symbols.png" id="1_hl01w"]
 [ext_resource type="FontFile" uid="uid://nm6w7w07wjj3" path="res://Art/Font/BoldPixels.ttf" id="2_dlnx3"]
-[ext_resource type="Texture2D" uid="uid://3lxxbpv3kibf" path="res://Art/HowToPlay/Controllers and Keyboard/Controllers and Keyboard/kb_dark_alphanumeric.png" id="3_lonyb"]
+[ext_resource type="Texture2D" uid="uid://pnajrabh36ve" path="res://Art/HowToPlay/Screenshot 2026-10-10 235949.png" id="3_spxys"]
 [ext_resource type="Texture2D" uid="uid://dvw8tpglvwb5c" path="res://Art/HowToPlay/WhatsApp Image 2026-10-04 at 3.36.09 PM.jpeg" id="4_lonyb"]
+[ext_resource type="Texture2D" uid="uid://dij31o7potf8" path="res://Art/UI/bullet.png" id="5_fvnpy"]
 [ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="6_i0xi1"]
+[ext_resource type="Texture2D" uid="uid://b2b7crfsb3i8q" path="res://Art/UI/laser.png" id="6_spxys"]
+[ext_resource type="Texture2D" uid="uid://cw5401le6x4ka" path="res://Art/UI/boost.png" id="7_27c06"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cv7bn"]
 particle_flag_disable_z = true
@@ -58,47 +61,26 @@ scale = Vector2(0.775, 0.775)
 position = Vector2(65, 85.99999)
 scale = Vector2(0.775, 0.775)
 
-[node name="UP" type="Sprite2D" parent="Arrows" unique_id=1628247584]
+[node name="JOYSTICK" type="Sprite2D" parent="Arrows" unique_id=1628247584]
 texture_filter = 1
-position = Vector2(0.5, -31.5)
-scale = Vector2(3, 3)
-texture = ExtResource("1_hl01w")
-region_enabled = true
+position = Vector2(38.70968, -7.741928)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_spxys")
 region_rect = Rect2(82, 193, 11, 13)
 
-[node name="DOWN" type="Sprite2D" parent="Arrows" unique_id=1011232646]
-texture_filter = 1
-position = Vector2(0.5, 11.5)
-scale = Vector2(3, 3)
-texture = ExtResource("1_hl01w")
-region_enabled = true
-region_rect = Rect2(82, 225, 11, 13)
-
-[node name="RIGHT" type="Sprite2D" parent="Arrows" unique_id=1747055161]
-texture_filter = 1
-position = Vector2(38.5, 11.5)
-scale = Vector2(3, 3)
-texture = ExtResource("1_hl01w")
-region_enabled = true
-region_rect = Rect2(82, 241, 11, 13)
-
-[node name="LEFT" type="Sprite2D" parent="Arrows" unique_id=575376973]
-texture_filter = 1
-position = Vector2(-37.5, 11.5)
-scale = Vector2(3, 3)
-texture = ExtResource("1_hl01w")
-region_enabled = true
-region_rect = Rect2(82, 209, 11, 13)
-
 [node name="Label" type="RichTextLabel" parent="Arrows" unique_id=2016143611]
-offset_left = 80.0
-offset_top = -15.0
-offset_right = 392.0
-offset_bottom = 12.0
+texture_filter = 1
+offset_left = 109.677414
+offset_top = -23.225796
+offset_right = 629.6774
+offset_bottom = 3.7742043
 theme_override_fonts/normal_font = ExtResource("2_dlnx3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "- USE [color=#00F5FF]ARROWS[/color] TO MOVE"
+text = "- USE THE [color=#00F5FF]JOYSTICK[/color] TO MOVE AROUND"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Shoot" type="Node2D" parent="." unique_id=1734018097]
@@ -106,21 +88,25 @@ position = Vector2(65, 164)
 scale = Vector2(0.775, 0.775)
 
 [node name="Q" type="Sprite2D" parent="Shoot" unique_id=1082995635]
-scale = Vector2(3, 3)
-texture = ExtResource("3_lonyb")
-region_enabled = true
+texture_filter = 1
+position = Vector2(23.225805, 0)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_fvnpy")
 region_rect = Rect2(18, 257, 11, 13)
 
 [node name="Label" type="RichTextLabel" parent="Shoot" unique_id=668401004]
-offset_left = 40.0
-offset_top = -15.0
-offset_right = 413.0
-offset_bottom = 12.0
+texture_filter = 1
+offset_left = 107.09677
+offset_top = -14.193548
+offset_right = 480.09677
+offset_bottom = 12.806452
 theme_override_fonts/normal_font = ExtResource("2_dlnx3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "- PRESS [color=cyan]Q[/color] TO SHOOT BULLETS"
+text = "- PRESS / HOLD TO [color=cyan]SHOOT BULLETS[/color]"
+fit_content = true
 scroll_active = false
+autowrap_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Laser" type="Node2D" parent="." unique_id=18311785]
@@ -128,21 +114,25 @@ position = Vector2(65, 229)
 scale = Vector2(0.775, 0.775)
 
 [node name="E" type="Sprite2D" parent="Laser" unique_id=1795318067]
-scale = Vector2(3, 3)
-texture = ExtResource("3_lonyb")
-region_enabled = true
+texture_filter = 1
+position = Vector2(23.225805, 9.032258)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("6_spxys")
 region_rect = Rect2(18, 65, 11, 13)
 
 [node name="Label" type="RichTextLabel" parent="Laser" unique_id=2077062842]
-offset_left = 40.0
-offset_top = -15.0
-offset_right = 380.0
-offset_bottom = 12.0
+texture_filter = 1
+offset_left = 109.677414
+offset_top = -6.4516134
+offset_right = 483.67743
+offset_bottom = 20.548386
 theme_override_fonts/normal_font = ExtResource("2_dlnx3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "- PRESS [color=#00F5FF]E[/color] TO SHOOT LASER"
+text = "- PRESS / HOLD TO [color=#00F5FF]SHOOT LASER[/color]"
+fit_content = true
 scroll_active = false
+autowrap_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Boost" type="Node2D" parent="." unique_id=2028648545]
@@ -150,40 +140,42 @@ position = Vector2(65, 298)
 scale = Vector2(0.775, 0.775)
 
 [node name="W" type="Sprite2D" parent="Boost" unique_id=1862620142]
-scale = Vector2(3, 3)
-texture = ExtResource("3_lonyb")
-region_enabled = true
+texture_filter = 1
+position = Vector2(23.225805, 12.903225)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_27c06")
 region_rect = Rect2(18, 353, 11, 13)
 
 [node name="Label" type="RichTextLabel" parent="Boost" unique_id=970597419]
-offset_left = 40.0
-offset_top = -15.0
-offset_right = 777.0
-offset_bottom = 12.0
+texture_filter = 1
+offset_left = 114.83871
+offset_top = -1.2903233
+offset_right = 851.8387
+offset_bottom = 25.709677
 theme_override_fonts/normal_font = ExtResource("2_dlnx3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "- PRESS [color=#00F5FF]W[/color] TO ACTIVATE BOOST"
+text = "- PRESS / HOLD TO [color=#00F5FF]ACTIVATE BOOST[/color]"
 scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="Fuel" type="Node2D" parent="." unique_id=1676619183]
-position = Vector2(65, 372)
+position = Vector2(113, 387)
 scale = Vector2(0.775, 0.775)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fuel" unique_id=674058247]
 texture_filter = 1
-position = Vector2(-11, 71)
-scale = Vector2(0.7063107, 0.8540609)
+position = Vector2(-24.516127, 78.70968)
 texture = ExtResource("4_lonyb")
 region_enabled = true
 region_rect = Rect2(562, 187, 103, 197)
 
 [node name="Label" type="RichTextLabel" parent="Fuel" unique_id=1316723331]
-offset_left = 40.0
-offset_top = -15.0
-offset_right = 897.0
-offset_bottom = 72.0
+texture_filter = 1
+offset_left = 55.48387
+offset_top = -15.4838705
+offset_right = 912.4839
+offset_bottom = 281.51614
 theme_override_fonts/normal_font = ExtResource("2_dlnx3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
@@ -208,9 +200,10 @@ texture_filter = 1
 scale = Vector2(3, 3)
 texture = ExtResource("1_hl01w")
 region_enabled = true
-region_rect = Rect2(17, 1, 14, 13)
+region_rect = Rect2(82, 209, 11, 13)
 
 [node name="Label" type="RichTextLabel" parent="Exit" unique_id=1597214208]
+texture_filter = 1
 offset_left = -50.0
 offset_top = 19.0
 offset_right = 687.0
@@ -218,7 +211,7 @@ offset_bottom = 46.0
 theme_override_fonts/normal_font = ExtResource("2_dlnx3")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[color=#00F5FF]GO BACK[/color]"
+text = "[color=#FFD700]GO BACK[/color]"
 fit_content = true
 scroll_active = false
 metadata/_edit_use_anchors_ = true
@@ -226,3 +219,36 @@ metadata/_edit_use_anchors_ = true
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Exit" unique_id=1398822309]
 shape = SubResource("RectangleShape2D_nt4u1")
 action = "ui_cancel"
+
+[node name="Extra" type="Node2D" parent="." unique_id=521758456]
+
+[node name="Label" type="RichTextLabel" parent="Extra" unique_id=1501503945]
+texture_filter = 1
+offset_left = 531.0
+offset_top = 38.0
+offset_right = 1388.0
+offset_bottom = 447.0
+theme_override_font_sizes/normal_font_size = 250
+bbcode_enabled = true
+text = "]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="RichTextLabel" parent="Extra" unique_id=690726568]
+texture_filter = 1
+offset_left = 611.0
+offset_top = 139.0
+offset_right = 1348.0
+offset_bottom = 247.0
+theme_override_fonts/normal_font = ExtResource("2_dlnx3")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "- WHEN YOUR FUEL RUNS OUT , 
+[color=#FFD700]PRESS[/color] THE
+CORRESPONDING BUTTON TO [color=#00F5FF]EJECT[/color]
+THE COMPONENT"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true

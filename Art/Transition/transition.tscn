@@ -20,7 +20,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 [node name="Transition" type="Node2D" unique_id=175599750]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=947052756]
-offset_left = -500.0
+offset_left = -515.0
 offset_top = -113.0
 offset_right = 37.0
 offset_bottom = 113.0
@@ -28,7 +28,7 @@ color = Color(0.7058824, 0.015686275, 0.08627451, 1)
 
 [node name="lines" type="Node2D" parent="." unique_id=674411789]
 
-[node name="Line2D" type="Line2D" parent="lines" unique_id=2005607726 node_paths=PackedStringArray("tracker")]
+[node name="Line2D" type="Line2D" parent="lines" unique_id=2005607726]
 top_level = true
 position = Vector2(-180, -4)
 rotation = 4.712389
@@ -39,9 +39,8 @@ default_color = Color(0.76171875, 0, 0, 1)
 gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
 script = ExtResource("2_co3v5")
-tracker = NodePath("")
 
-[node name="Line2D2" type="Line2D" parent="lines" unique_id=1286504523 node_paths=PackedStringArray("tracker")]
+[node name="Line2D2" type="Line2D" parent="lines" unique_id=1286504523]
 top_level = true
 position = Vector2(-180, -216)
 rotation = 4.712389
@@ -51,9 +50,8 @@ width_curve = SubResource("Curve_blwhy")
 gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
 script = ExtResource("2_co3v5")
-tracker = NodePath("")
 
-[node name="Line2D3" type="Line2D" parent="lines" unique_id=1566371559 node_paths=PackedStringArray("tracker")]
+[node name="Line2D3" type="Line2D" parent="lines" unique_id=1566371559]
 top_level = true
 position = Vector2(-71, -177)
 rotation = 4.712389
@@ -64,9 +62,8 @@ gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
 script = ExtResource("2_co3v5")
 max_points = 100
-tracker = NodePath("")
 
-[node name="Line2D4" type="Line2D" parent="lines" unique_id=497536103 node_paths=PackedStringArray("tracker")]
+[node name="Line2D4" type="Line2D" parent="lines" unique_id=497536103]
 top_level = true
 position = Vector2(-77, -43)
 rotation = 4.712389
@@ -77,9 +74,8 @@ gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
 script = ExtResource("2_co3v5")
 max_points = 100
-tracker = NodePath("")
 
-[node name="Line2D5" type="Line2D" parent="lines" unique_id=171275133 node_paths=PackedStringArray("tracker")]
+[node name="Line2D5" type="Line2D" parent="lines" unique_id=171275133]
 top_level = true
 position = Vector2(-489, -136)
 rotation = 4.712389
@@ -90,9 +86,8 @@ gradient = SubResource("Gradient_i865g")
 joint_mode = 2
 script = ExtResource("2_co3v5")
 max_points = 300
-tracker = NodePath("")
 
-[node name="Line2D6" type="Line2D" parent="lines" unique_id=319919413 node_paths=PackedStringArray("tracker")]
+[node name="Line2D6" type="Line2D" parent="lines" unique_id=319919413]
 top_level = true
 position = Vector2(-461, -89)
 rotation = 4.712389
@@ -103,9 +98,9 @@ gradient = SubResource("Gradient_i865g")
 joint_mode = 2
 script = ExtResource("2_co3v5")
 max_points = 300
-tracker = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1401930571]
 z_index = 1
+texture_filter = 1
 rotation = 1.5707964
 texture = ExtResource("1_f5nv8")
