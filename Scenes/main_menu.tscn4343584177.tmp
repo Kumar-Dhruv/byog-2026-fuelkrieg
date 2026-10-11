@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://bkaekwxvsrn5j"]
+
+[ext_resource type="Script" uid="uid://dcoaf5i6edw5b" path="res://scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://ldljquvov75t" path="res://Art/MenuUI/PLAY button.png" id="2_1ehe0"]
+[ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="2_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://bqd4tnjc6j5sf" path="res://Art/MenuUI/HELP button.png" id="3_ce3w2"]
+[ext_resource type="Script" uid="uid://by1e1qu0xqhpv" path="res://scripts/play_button.gd" id="3_n45e2"]
+[ext_resource type="Texture2D" uid="uid://dd2dkuv8rwqmq" path="res://Art/MenuUI/Cursors_v2/Light/Hands/Hand2.png" id="4_opfnp"]
+[ext_resource type="Script" uid="uid://dn1xrusaw5adj" path="res://scripts/help_button.gd" id="5_n45e2"]
+[ext_resource type="Texture2D" uid="uid://w4h8cdmcnbe1" path="res://Art/name.png" id="8_yhxw7"]
+[ext_resource type="PackedScene" uid="uid://bql7j31w3ey2h" path="res://Art/Transition/transition.tscn" id="9_trj04"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_67cu3"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 350, 1)
+direction = Vector3(-1, 0.1, 0)
+spread = 7.0
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+color = Color(1, 0.8823829, 0.86183965, 0.9480001)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nt4u1"]
+size = Vector2(103.005, 47.335)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhxw7"]
+size = Vector2(207.555, 47.335)
+
+[sub_resource type="Gradient" id="Gradient_67cu3"]
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0.84300005)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sg31y"]
+gradient = SubResource("Gradient_67cu3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_trj04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_16hvj"]
+resource_name = "trans_start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 0.17677705),
+"update": 0,
+"values": [Vector2(-300, 325), Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_vr1f0"]
+resource_name = "trans_end"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 6.062869),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003), Vector2(2700, 325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vr1f0"]
+_data = {
+&"RESET": SubResource("Animation_trj04"),
+&"trans_end": SubResource("Animation_16hvj"),
+&"trans_start": SubResource("Animation_vr1f0")
+}
+
+[node name="MainMenu" type="Control" unique_id=628923429 node_paths=PackedStringArray("animation_player", "transition", "color_rect", "touch_screen_button_play", "touch_screen_button_help")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28flt")
+animation_player = NodePath("Transition/AnimationPlayer")
+transition = NodePath("Transition")
+color_rect = NodePath("ColorRect2")
+touch_screen_button_play = NodePath("VBoxContainer/Play/TouchScreenButton")
+touch_screen_button_help = NodePath("VBoxContainer/Help/TouchScreenButton")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=560899938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.7058824, 0.015686275, 0.08627451, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ColorRect" unique_id=540394866]
+texture_filter = 1
+position = Vector2(1161, 330)
+amount = 30
+lifetime = 5.0
+fixed_fps = 60
+trail_lifetime = 0.2
+trail_sections = 2
+trail_section_subdivisions = 1
+process_material = SubResource("ParticleProcessMaterial_67cu3")
+
+[node name="cloud spawner" parent="." unique_id=825755951 instance=ExtResource("2_cp0ys")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1280411292]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 74.0
+offset_right = 105.0
+offset_bottom = 194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Play" type="TextureButton" parent="VBoxContainer" unique_id=1707021808]
+texture_filter = 1
+custom_minimum_size = Vector2(105, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("2_1ehe0")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_n45e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Play" unique_id=1594729963]
+visible = false
+position = Vector2(-18, 25)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_opfnp")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="VBoxContainer/Play" unique_id=1311987974]
+position = Vector2(53, 23)
+shape = SubResource("RectangleShape2D_nt4u1")
+
+[node name="Help" type="TextureButton" parent="VBoxContainer" unique_id=1191736589]
+texture_filter = 1
+custom_minimum_size = Vector2(210, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("3_ce3w2")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("5_n45e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Help" unique_id=1406801084]
+visible = false
+position = Vector2(-18, 25)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_opfnp")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="VBoxContainer/Help" unique_id=669400825]
+position = Vector2(105, 26)
+shape = SubResource("RectangleShape2D_yhxw7")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1043242658]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = -32.0
+offset_right = 240.0
+offset_bottom = 448.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource("8_yhxw7")
+
+[node name="ColorRect2" type="TextureRect" parent="." unique_id=1664109780]
+modulate = Color(0.061369143, 0.06136909, 0.06136907, 0.467)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_sg31y")
+
+[node name="Transition" parent="." unique_id=175599750 instance=ExtResource("9_trj04")]
+position = Vector2(1042.0001, 325.00003)
+scale = Vector2(2.9, 2.9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=9771758]
+libraries/ = SubResource("AnimationLibrary_vr1f0")
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Play/TouchScreenButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="VBoxContainer/Help/TouchScreenButton" to="." method="_on_help_pressed"]

@@ -4,9 +4,67 @@
 [ext_resource type="PackedScene" uid="uid://dfad5a3moxo6q" path="res://Scenes/spawner.tscn" id="2_37tse"]
 [ext_resource type="PackedScene" uid="uid://b63ul0dnxrj4a" path="res://Actors/player.tscn" id="2_i7kxl"]
 [ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="3_37tse"]
+[ext_resource type="PackedScene" uid="uid://bql7j31w3ey2h" path="res://Art/Transition/transition.tscn" id="5_edl5w"]
 
-[node name="enemy test world" type="Node2D" unique_id=891534995]
+[sub_resource type="Animation" id="Animation_trj04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_16hvj"]
+resource_name = "trans_start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 0.17677705),
+"update": 0,
+"values": [Vector2(-300, 325), Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_vr1f0"]
+resource_name = "trans_end"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 6.062869),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003), Vector2(2700, 325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_edl5w"]
+_data = {
+&"RESET": SubResource("Animation_trj04"),
+&"trans_end": SubResource("Animation_16hvj"),
+&"trans_start": SubResource("Animation_vr1f0")
+}
+
+[node name="enemy test world" type="Node2D" unique_id=891534995 node_paths=PackedStringArray("animation_player", "color_rect", "transition")]
 script = ExtResource("1_0xt5t")
+animation_player = NodePath("CanvasLayer/Transition/AnimationPlayer")
+color_rect = NodePath("CanvasLayer/ColorRect")
+transition = NodePath("CanvasLayer/Transition")
 
 [node name="Player" parent="." unique_id=1087157977 instance=ExtResource("2_i7kxl")]
 position = Vector2(2.62, 0)
@@ -14,3 +72,23 @@ position = Vector2(2.62, 0)
 [node name="Spawner" parent="." unique_id=896869821 instance=ExtResource("2_37tse")]
 
 [node name="cloud spawner" parent="." unique_id=825755951 instance=ExtResource("3_37tse")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=605418879]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=501245916]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Transition" parent="CanvasLayer" unique_id=175599750 instance=ExtResource("5_edl5w")]
+position = Vector2(1042.0001, 325.00003)
+scale = Vector2(2.9, 2.9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Transition" unique_id=1862537034]
+libraries/ = SubResource("AnimationLibrary_edl5w")
