@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://bql7j31w3ey2h"]
 
 [ext_resource type="Texture2D" uid="uid://bq6j8ye2vn2mg" path="res://Art/Transition/still_a.png" id="1_f5nv8"]
-[ext_resource type="Script" uid="uid://bmo3ynyh5mfuv" path="res://scripts/trail effect.gd" id="2_co3v5"]
+
+[sub_resource type="Gradient" id="Gradient_f5nv8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.53940886)
+colors = PackedColorArray(0, 0, 0, 0, 0.50271606, 0.0072190952, 0.048434995, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sg31y"]
+gradient = SubResource("Gradient_f5nv8")
 
 [sub_resource type="Curve" id="Curve_ysx43"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -17,19 +24,31 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_i865g"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5nv8"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 120, 1)
+direction = Vector3(-1, 0, 0)
+spread = 1.0
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_max = 2.0
+color = Color(1, 0.8823829, 0.86183965, 0.9480001)
+
 [node name="Transition" type="Node2D" unique_id=175599750]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=947052756]
-offset_left = -515.0
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1465860767]
+offset_left = -665.0
 offset_top = -113.0
-offset_right = 37.0
+offset_right = 35.0
 offset_bottom = 113.0
-color = Color(0.7058824, 0.015686275, 0.08627451, 1)
+texture = SubResource("GradientTexture1D_sg31y")
+metadata/_edit_use_anchors_ = true
 
 [node name="lines" type="Node2D" parent="." unique_id=674411789]
 
 [node name="Line2D" type="Line2D" parent="lines" unique_id=2005607726]
-top_level = true
 position = Vector2(-180, -4)
 rotation = 4.712389
 points = PackedVector2Array(-111, -32, -110.999985, 111.1409, -111, 200)
@@ -38,10 +57,8 @@ width_curve = SubResource("Curve_ysx43")
 default_color = Color(0.76171875, 0, 0, 1)
 gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
-script = ExtResource("2_co3v5")
 
 [node name="Line2D2" type="Line2D" parent="lines" unique_id=1286504523]
-top_level = true
 position = Vector2(-180, -216)
 rotation = 4.712389
 points = PackedVector2Array(-111, -32, -111, 200)
@@ -49,10 +66,8 @@ width = 5.0
 width_curve = SubResource("Curve_blwhy")
 gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
-script = ExtResource("2_co3v5")
 
 [node name="Line2D3" type="Line2D" parent="lines" unique_id=1566371559]
-top_level = true
 position = Vector2(-71, -177)
 rotation = 4.712389
 points = PackedVector2Array(-111, -32, -111, 92)
@@ -60,11 +75,8 @@ width = 5.0
 width_curve = SubResource("Curve_ysx43")
 gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
-script = ExtResource("2_co3v5")
-max_points = 100
 
 [node name="Line2D4" type="Line2D" parent="lines" unique_id=497536103]
-top_level = true
 position = Vector2(-77, -43)
 rotation = 4.712389
 points = PackedVector2Array(-111, -32, -111, 98)
@@ -72,11 +84,8 @@ width = 5.0
 width_curve = SubResource("Curve_blwhy")
 gradient = SubResource("Gradient_la7nl")
 joint_mode = 2
-script = ExtResource("2_co3v5")
-max_points = 100
 
 [node name="Line2D5" type="Line2D" parent="lines" unique_id=171275133]
-top_level = true
 position = Vector2(-489, -136)
 rotation = 4.712389
 points = PackedVector2Array(-111, -32, -111, 383)
@@ -84,11 +93,8 @@ width = 5.0
 width_curve = SubResource("Curve_ysx43")
 gradient = SubResource("Gradient_i865g")
 joint_mode = 2
-script = ExtResource("2_co3v5")
-max_points = 300
 
 [node name="Line2D6" type="Line2D" parent="lines" unique_id=319919413]
-top_level = true
 position = Vector2(-461, -89)
 rotation = 4.712389
 points = PackedVector2Array(-111, -32, -111, 357)
@@ -96,11 +102,23 @@ width = 5.0
 width_curve = SubResource("Curve_blwhy")
 gradient = SubResource("Gradient_i865g")
 joint_mode = 2
-script = ExtResource("2_co3v5")
-max_points = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1401930571]
 z_index = 1
 texture_filter = 1
 rotation = 1.5707964
 texture = ExtResource("1_f5nv8")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1009120362]
+texture_filter = 1
+position = Vector2(35, 0)
+amount = 20
+lifetime = 2.0
+preprocess = 2.0
+speed_scale = 5.0
+fixed_fps = 60
+trail_enabled = true
+trail_lifetime = 0.09999999999999999
+trail_sections = 2
+trail_section_subdivisions = 1
+process_material = SubResource("ParticleProcessMaterial_f5nv8")

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="6_i0xi1"]
 [ext_resource type="Texture2D" uid="uid://b2b7crfsb3i8q" path="res://Art/UI/laser.png" id="6_spxys"]
 [ext_resource type="Texture2D" uid="uid://cw5401le6x4ka" path="res://Art/UI/boost.png" id="7_27c06"]
+[ext_resource type="PackedScene" uid="uid://bql7j31w3ey2h" path="res://Art/Transition/transition.tscn" id="10_27c06"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cv7bn"]
 particle_flag_disable_z = true
@@ -25,7 +26,61 @@ color = Color(1, 0.8823829, 0.86183965, 0.9480001)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt4u1"]
 size = Vector2(74.635, 51.68)
 
-[node name="HowToPlay" type="Control" unique_id=1686020113]
+[sub_resource type="Animation" id="Animation_trj04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_16hvj"]
+resource_name = "trans_start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 0.17677705),
+"update": 0,
+"values": [Vector2(-300, 325), Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_vr1f0"]
+resource_name = "trans_end"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 6.062869),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003), Vector2(2700, 325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_27c06"]
+_data = {
+&"RESET": SubResource("Animation_trj04"),
+&"trans_end": SubResource("Animation_16hvj"),
+&"trans_start": SubResource("Animation_vr1f0")
+}
+
+[node name="HowToPlay" type="Control" unique_id=1686020113 node_paths=PackedStringArray("color_rect", "touch_screen_button_esc", "transition", "animation_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +88,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7d32w")
+color_rect = NodePath("ColorRect")
+touch_screen_button_esc = NodePath("Exit/TouchScreenButton")
+transition = NodePath("Transition")
+animation_player = NodePath("Transition/AnimationPlayer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1947826895]
 layout_mode = 1
@@ -48,6 +107,7 @@ texture_filter = 1
 position = Vector2(1161, 330)
 amount = 30
 lifetime = 5.0
+fixed_fps = 60
 trail_lifetime = 0.2
 trail_sections = 2
 trail_section_subdivisions = 1
@@ -252,3 +312,10 @@ THE COMPONENT"
 fit_content = true
 scroll_active = false
 metadata/_edit_use_anchors_ = true
+
+[node name="Transition" parent="." unique_id=175599750 instance=ExtResource("10_27c06")]
+position = Vector2(1042.0001, 325.00003)
+scale = Vector2(2.9, 2.9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=1439797396]
+libraries/ = SubResource("AnimationLibrary_27c06")
