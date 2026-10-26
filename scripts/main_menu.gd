@@ -19,10 +19,11 @@ func _process(delta: float) -> void:
 func _on_play_pressed() -> void:
 	end_transition("res://Scenes/enemy_test_world.tscn")
 
-
 func _on_help_pressed() -> void:
 	end_transition("res://Scenes/how_to_play.tscn")
 
+func _on_settings_pressed() -> void:
+	end_transition("res://Scenes/settings.tscn")
 
 func start_transition():
 	transition.position.x = 1042

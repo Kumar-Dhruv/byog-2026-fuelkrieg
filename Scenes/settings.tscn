@@ -1,0 +1,239 @@
+[gd_scene format=3 uid="uid://bg1ystwwkkdr4"]
+
+[ext_resource type="Script" uid="uid://dp6h763tpiinc" path="res://scripts/settings.gd" id="1_aaqfp"]
+[ext_resource type="Texture2D" uid="uid://bqbwnx3y2pjex" path="res://Art/SettingsUI/master.png" id="3_f60ng"]
+[ext_resource type="Texture2D" uid="uid://dqv05uurnquuk" path="res://Art/SettingsUI/sound.png" id="4_bismi"]
+[ext_resource type="Texture2D" uid="uid://63rikjnye00e" path="res://Art/SettingsUI/music.png" id="5_rgw85"]
+[ext_resource type="Texture2D" uid="uid://vgagjuohb8wp" path="res://Art/SettingsUI/back.png" id="7_6vr2p"]
+[ext_resource type="Texture2D" uid="uid://cd3cn3eqeifr0" path="res://Art/SettingsUI/itchpage.png" id="7_l7vst"]
+[ext_resource type="Texture2D" uid="uid://chdreoxpxgah" path="res://Art/SettingsUI/playstore.png" id="8_35cvv"]
+[ext_resource type="PackedScene" uid="uid://bql7j31w3ey2h" path="res://Art/Transition/transition.tscn" id="8_f60ng"]
+
+[sub_resource type="Gradient" id="Gradient_67cu3"]
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0.84300005)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j2dne"]
+gradient = SubResource("Gradient_67cu3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xixe"]
+size = Vector2(100, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sg31y"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67cu3"]
+size = Vector2(220, 220)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kekcn"]
+size = Vector2(60, 80)
+
+[sub_resource type="Animation" id="Animation_trj04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_16hvj"]
+resource_name = "trans_start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 0.17677705),
+"update": 0,
+"values": [Vector2(-300, 325), Vector2(1042.0001, 325.00003)]
+}
+
+[sub_resource type="Animation" id="Animation_vr1f0"]
+resource_name = "trans_end"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 6.062869),
+"update": 0,
+"values": [Vector2(1042.0001, 325.00003), Vector2(2700, 325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bismi"]
+_data = {
+&"RESET": SubResource("Animation_trj04"),
+&"trans_end": SubResource("Animation_16hvj"),
+&"trans_start": SubResource("Animation_vr1f0")
+}
+
+[node name="Settings" type="CanvasLayer" unique_id=1248715734 node_paths=PackedStringArray("animation_player", "transition", "color_rect", "MusicIcon", "SFXIcon", "MasterIcon", "MusicSlider", "SFXSlider", "MasterSlider")]
+layer = 1000
+script = ExtResource("1_aaqfp")
+animation_player = NodePath("Transition/AnimationPlayer")
+transition = NodePath("Transition")
+color_rect = NodePath("ColorRect2")
+MusicIcon = NodePath("Music/MusicIcon")
+SFXIcon = NodePath("SFX/SFXIcon")
+MasterIcon = NodePath("Master/Sprite2D")
+MusicSlider = NodePath("Music/MusicSlider")
+SFXSlider = NodePath("SFX/SFXSlider")
+MasterSlider = NodePath("Master/MasterSlider")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=276702429]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.7058824, 0.015686275, 0.08627451, 1)
+
+[node name="ColorRect2" type="TextureRect" parent="." unique_id=560434495]
+modulate = Color(0.061369143, 0.06136909, 0.06136907, 0.467)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_j2dne")
+
+[node name="Master" type="Node2D" parent="." unique_id=1107569974]
+
+[node name="MasterSlider" type="HSlider" parent="Master" unique_id=274991584]
+offset_left = 294.25
+offset_top = 134.5
+offset_right = 894.25
+offset_bottom = 191.5
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Master" unique_id=2027483929]
+texture_filter = 1
+position = Vector2(234.25, 162.5)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("3_f60ng")
+
+[node name="mastermute" type="TouchScreenButton" parent="Master" unique_id=778821664]
+position = Vector2(234.25, 162.5)
+shape = SubResource("RectangleShape2D_6xixe")
+
+[node name="SFX" type="Node2D" parent="." unique_id=1148876647]
+
+[node name="SFXSlider" type="HSlider" parent="SFX" unique_id=1461297301]
+offset_left = 295.25
+offset_top = 213.5
+offset_right = 895.25
+offset_bottom = 276.5
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXIcon" type="Sprite2D" parent="SFX" unique_id=1300374815]
+texture_filter = 1
+position = Vector2(256.25, 246.50002)
+scale = Vector2(5, 5)
+texture = ExtResource("4_bismi")
+
+[node name="sfxmute" type="TouchScreenButton" parent="SFX" unique_id=374886084]
+position = Vector2(258.25, 248.5)
+shape = SubResource("RectangleShape2D_sg31y")
+
+[node name="Music" type="Node2D" parent="." unique_id=781588561]
+
+[node name="MusicSlider" type="HSlider" parent="Music" unique_id=892896292]
+offset_left = 297.25
+offset_top = 295.5
+offset_right = 897.25
+offset_bottom = 360.5
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicIcon" type="Sprite2D" parent="Music" unique_id=379607338]
+texture_filter = 1
+position = Vector2(259.25, 329.5)
+scale = Vector2(5.2, 5.2)
+texture = ExtResource("5_rgw85")
+
+[node name="musicmute" type="TouchScreenButton" parent="Music" unique_id=1331171825]
+position = Vector2(259.25, 328.5)
+shape = SubResource("RectangleShape2D_sg31y")
+
+[node name="ItchPage" type="TextureButton" parent="." unique_id=760342020]
+texture_filter = 1
+offset_left = 373.0
+offset_top = 476.0
+offset_right = 563.0
+offset_bottom = 666.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_l7vst")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="ItchPage" unique_id=336665802]
+position = Vector2(92.49999, 94.99999)
+shape = SubResource("RectangleShape2D_67cu3")
+
+[node name="Playstore" type="TextureButton" parent="." unique_id=1580181650]
+texture_filter = 1
+offset_left = 629.0
+offset_top = 476.0
+offset_right = 819.0
+offset_bottom = 666.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("8_35cvv")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Playstore" unique_id=161859947]
+position = Vector2(92.49999, 94.99999)
+shape = SubResource("RectangleShape2D_67cu3")
+
+[node name="Back" type="TextureButton" parent="." unique_id=1814654280]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Back" unique_id=1885500427]
+texture_filter = 1
+position = Vector2(1088.9999, 56.999996)
+scale = Vector2(7, 7)
+texture = ExtResource("7_6vr2p")
+
+[node name="exit" type="TouchScreenButton" parent="Back" unique_id=1440755612]
+position = Vector2(1090, 52)
+shape = SubResource("RectangleShape2D_kekcn")
+
+[node name="Transition" parent="." unique_id=175599750 instance=ExtResource("8_f60ng")]
+position = Vector2(1042.0001, 325.00003)
+scale = Vector2(2.9, 2.9)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition" unique_id=1313743238]
+libraries/ = SubResource("AnimationLibrary_bismi")
+
+[connection signal="value_changed" from="Master/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="pressed" from="Master/mastermute" to="." method="_on_mastermute_pressed"]
+[connection signal="value_changed" from="SFX/SFXSlider" to="." method="_on_sfx_value_changed"]
+[connection signal="pressed" from="SFX/sfxmute" to="." method="_on_sfxmute_pressed"]
+[connection signal="value_changed" from="Music/MusicSlider" to="." method="_on_music_value_changed"]
+[connection signal="pressed" from="Music/musicmute" to="." method="_on_musicmute_pressed"]
+[connection signal="pressed" from="ItchPage" to="." method="_on_itch_page_pressed"]
+[connection signal="pressed" from="Playstore" to="." method="_on_playstore_pressed"]
+[connection signal="pressed" from="Back/exit" to="." method="_on_exit_pressed"]
