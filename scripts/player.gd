@@ -1,6 +1,8 @@
 extends Node2D
+
 #@onready var player : Player = Loader.player
 @export var death_fx : PackedScene
+
 func _on_health_component_zero_health() -> void:
 	Loader.player_died.emit()
 	for i in range(5):

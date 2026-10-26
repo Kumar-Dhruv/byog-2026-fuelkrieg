@@ -2,13 +2,16 @@ extends Node2D
 @export var animation_player: AnimationPlayer
 @export var color_rect: ColorRect
 @export var transition: Node2D
+const SETTINGS_SCENE = preload("res://scenes/settings.tscn")
 
 func _ready() -> void:
 	Loader.restart_level.connect(reset)
 	start_transition()
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("restart"):
+	if get_tree().paused:
+		return
+	if event.is_action_pressed("restart"):
 		reset()
 		end_transition()
 
@@ -32,7 +35,14 @@ func end_transition():
 	var tree = get_tree()
 	color_rect.mouse_filter = Control.MOUSE_FILTER_STOP
 	transition.position.x = -300
-	transition.visible = true
-	animation_player.play("trans_end")
-	await animation_player.animation_finished
+	#transition.visible = true
+	#animation_player.play("trans_end")
+	#await animation_player.animation_finished
 	tree.reload_current_scene()
+
+func _on_pause_pressed() -> void:
+	var settings = SETTINGS_SCENE.instantiate()
+	settings.opened_from_game = true 
+	get_tree().paused = true
+	get_tree().root.add_child(settings)
+	settings.process_mode = Node.PROCESS_MODE_ALWAYS

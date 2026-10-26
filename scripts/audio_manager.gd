@@ -15,6 +15,9 @@ extends Node
 	"shoot" : preload("uid://rf76key6yffx")
 }
 
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func play(id: String) -> void:
 	if not sounds.has(id):
 		push_warning("AudioManager: Sound ID '" + id + "' not found!")

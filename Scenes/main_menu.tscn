@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ldljquvov75t" path="res://Art/MenuUI/PLAY button.png" id="2_1ehe0"]
 [ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="2_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://bqd4tnjc6j5sf" path="res://Art/MenuUI/HELP button.png" id="3_ce3w2"]
-[ext_resource type="Script" uid="uid://by1e1qu0xqhpv" path="res://scripts/play_button.gd" id="3_n45e2"]
+[ext_resource type="Script" uid="uid://by1e1qu0xqhpv" path="res://scripts/menu_button.gd" id="3_n45e2"]
 [ext_resource type="Texture2D" uid="uid://dd2dkuv8rwqmq" path="res://Art/MenuUI/Cursors_v2/Light/Hands/Hand2.png" id="4_opfnp"]
-[ext_resource type="Script" uid="uid://dn1xrusaw5adj" path="res://scripts/help_button.gd" id="5_n45e2"]
+[ext_resource type="Texture2D" uid="uid://lgr6bvo6tlts" path="res://Art/MenuUI/SETTINGS button.png" id="7_trj04"]
 [ext_resource type="Texture2D" uid="uid://w4h8cdmcnbe1" path="res://Art/name.png" id="8_yhxw7"]
 [ext_resource type="PackedScene" uid="uid://bql7j31w3ey2h" path="res://Art/Transition/transition.tscn" id="9_trj04"]
 
@@ -28,11 +28,11 @@ size = Vector2(103.005, 47.335)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhxw7"]
 size = Vector2(207.555, 47.335)
 
-[sub_resource type="Gradient" id="Gradient_67cu3"]
+[sub_resource type="Gradient" id="Gradient_trj04"]
 colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 0.84300005)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_sg31y"]
-gradient = SubResource("Gradient_67cu3")
+gradient = SubResource("Gradient_trj04")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -174,7 +174,7 @@ size_flags_vertical = 5
 texture_normal = ExtResource("3_ce3w2")
 ignore_texture_size = true
 stretch_mode = 0
-script = ExtResource("5_n45e2")
+script = ExtResource("3_n45e2")
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Help" unique_id=1406801084]
 visible = false
@@ -184,6 +184,28 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_opfnp")
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="VBoxContainer/Help" unique_id=669400825]
+position = Vector2(105, 26)
+shape = SubResource("RectangleShape2D_yhxw7")
+
+[node name="Settings" type="TextureButton" parent="VBoxContainer" unique_id=683567213]
+texture_filter = 1
+custom_minimum_size = Vector2(203.125, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("7_trj04")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_n45e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Settings" unique_id=465181169]
+visible = false
+position = Vector2(-18, 25)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_opfnp")
+
+[node name="settings" type="TouchScreenButton" parent="VBoxContainer/Settings" unique_id=1509377418]
 position = Vector2(105, 26)
 shape = SubResource("RectangleShape2D_yhxw7")
 
@@ -222,3 +244,4 @@ libraries/ = SubResource("AnimationLibrary_vr1f0")
 [connection signal="pressed" from="VBoxContainer/Play/TouchScreenButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="VBoxContainer/Help/TouchScreenButton" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings/settings" to="." method="_on_settings_pressed"]

@@ -5,6 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://b63ul0dnxrj4a" path="res://Actors/player.tscn" id="2_i7kxl"]
 [ext_resource type="PackedScene" uid="uid://whsuyc84v4qe" path="res://Scenes/cloud_spawner.tscn" id="3_37tse"]
 [ext_resource type="PackedScene" uid="uid://bql7j31w3ey2h" path="res://Art/Transition/transition.tscn" id="5_edl5w"]
+[ext_resource type="FontFile" uid="uid://dmp540r6gmfvx" path="res://Art/UI/upheavtt.ttf" id="6_0d8ns"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8aptv"]
+font = ExtResource("6_0d8ns")
+font_size = 30
+font_color = Color(0, 0, 0, 0.60784316)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vpax"]
+size = Vector2(500, 64.48)
 
 [sub_resource type="Animation" id="Animation_trj04"]
 length = 0.001
@@ -76,6 +85,24 @@ position = Vector2(2.62, 0)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=605418879]
 layer = 10
 
+[node name="Label5" type="Label" parent="CanvasLayer" unique_id=1658667602]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -452.0
+offset_top = 28.0
+offset_right = -259.0
+offset_bottom = 72.0
+grow_horizontal = 0
+text = "Pause"
+label_settings = SubResource("LabelSettings_8aptv")
+
+[node name="pause" type="TouchScreenButton" parent="CanvasLayer/Label5" unique_id=1878769572]
+position = Vector2(57, 16)
+scale = Vector2(0.37, 0.37)
+shape = SubResource("RectangleShape2D_8vpax")
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=501245916]
 modulate = Color(1, 1, 1, 0)
 top_level = true
@@ -87,8 +114,11 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Transition" parent="CanvasLayer" unique_id=175599750 instance=ExtResource("5_edl5w")]
+visible = false
 position = Vector2(1042.0001, 325.00003)
 scale = Vector2(2.9, 2.9)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Transition" unique_id=1862537034]
 libraries/ = SubResource("AnimationLibrary_edl5w")
+
+[connection signal="pressed" from="CanvasLayer/Label5/pause" to="." method="_on_pause_pressed"]
